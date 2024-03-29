@@ -22,8 +22,8 @@ const Header: React.FC = () => {
           </div> */}
           <div className="text-[var(--white-1)] font-bold text-3xl">
             <span>J</span>
-            <span className="inline-block h-[15px] w-[15px] rounded-full bg-[var(--white-1)] mr-[2px]"></span>
-            <span className="inline-block h-[15px] w-[15px] rounded-full bg-[var(--white-1)]"></span>
+            <span className="inline-block h-[17.5px] w-[17.5px] rounded-full bg-[var(--white-1)] mr-[2px]"></span>
+            <span className="inline-block h-[17.5px] w-[17.5px] rounded-full bg-[var(--white-1)]"></span>
             <span>ble</span>
           </div>
         </Link>
