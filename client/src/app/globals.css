@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .shadow-1 {
+    --shadow-color: rgba(100, 100, 111, 0.2);
+    box-shadow: var(--shadow-color) 0px 7px 29px 0px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue-1: #4570e9;
+  --blue-2: #265df5;
+
+  --white-1: #fff;
+  --white-2: rgb(240, 240, 240);
+
+  --gray-1: #c4c4c4;
+  --gray-2: #999;
+  --gray-3: #777;
+  --gray-4: #555;
+
+  --orange-1: rgb(241, 168, 31);
+  --orange-2: rgb(230, 151, 4);
+
+  --radius-1: 3px;
+  --radius-2: 5px;
+  --radius-3: 7.5px;
+}
+
+body {
+  /* background: var(--white-2); */
+  color: var(--gray-4);
+}
+
+.round:focus {
+  border: 1px solid transparent;
+  outline: 2px solid var(--blue-2);
+}
