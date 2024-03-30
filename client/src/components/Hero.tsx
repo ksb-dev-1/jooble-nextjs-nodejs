@@ -1,5 +1,5 @@
 import Image from "next/image";
-import JobSearch from "../../public/job-search-3.svg";
+import JobSearch from "../../public/job-search-icon.svg";
 
 // react-icons
 import { FiSearch } from "react-icons/fi";
@@ -7,16 +7,16 @@ import { FiSearch } from "react-icons/fi";
 const Hero: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-end">
+      <div className="flex items-center">
         <div className="relative h-[150px] w-[250px]">
           <Image src={JobSearch} alt="job-search" fill priority />
         </div>
         <span className="h-[150px] w-[1px] bg-[var(--white-1)] mx-8"></span>
         <div>
-          <p className="font-semibold text-xl sm:text-3xl text-[var(--white-1)]">
+          <p className="font-semibold text-2xl lg:text-3xl text-[var(--white-1)]">
             Find your dream job now
           </p>
-          <p className="sm:font-semibold text-[var(--white-1)] mt-2">
+          <p className="font-normal lg:font-semibold text-[var(--white-1)] mt-2">
             One of the best job portal for you to explore
           </p>
         </div>

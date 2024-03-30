@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import JobIcon from "../../public/job-3.svg";
+import JobIcon from "../../public/job-icon.svg";
 
 const Header: React.FC = () => {
   return (
