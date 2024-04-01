@@ -1,6 +1,13 @@
 // 3rd party libraries
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import morgan from "morgan";
+//import fileUpload from "express-fileupload";
+//import helmet from "helmet";
+//import mongoSanitize from "express-mongo-sanitize";
+import "express-async-errors";
 
 // db
 import connectDB from "./db/connectDB.js";
@@ -18,6 +25,14 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser(process.env.JWT_SECRET));
+app.use(morgan("tiny"));
+//app.use(helmet());
+//app.use(mongoSanitize());
+//app.use(fileUpload());
+//app.use(fileUpload({ useTempFiles: true }));
+//app.set("trust proxy", 1);
 
 app.use("/jooble/api/auth", authRoutes);
 app.use("/jooble/api/users", userRoutes);
