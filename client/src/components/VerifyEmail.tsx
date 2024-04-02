@@ -6,80 +6,69 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 // 3rd party libraries
-// axios
-import axios from "axios";
 // react-toastify
 import { toast } from "react-toastify";
-import { error } from "console";
+
+// redux
+import { useVerifyEmailMutation } from "@/redux/slices/authApi";
+
+interface ErrorProps {
+  data?: {
+    msg?: string;
+  };
+  error?: string;
+}
 
 const VerifyEmail: React.FC = () => {
-  const [successMsg, setSuccessMsg] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-  const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const token = searchParams.get("token");
   const email = searchParams.get("email");
 
+  const [verifyEmail, { isLoading, isError, isSuccess }] =
+    useVerifyEmailMutation();
+
   const verifyToken = async () => {
     try {
-      setLoading(true);
-
-      const response = await axios.post("/verifyEmail", {
+      const res = await verifyEmail({
         verificationToken: token,
         email,
-      });
+      }).unwrap();
 
-      console.log(response);
-
-      if (response.statusText === "OK") {
-        //toast.success("Verification successful");
-        setSuccessMsg(response.data.msg);
-      } else {
-        toast.error(response.data.msg);
-        setErrorMsg(response.data.msg);
+      if (isError) {
+        toast.error(res.data.msg);
       }
-    } catch (error: any) {
-      toast.error(error.response.data.msg);
-      setErrorMsg(error.response.data.msg);
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      const error = err as ErrorProps;
+
+      if (error?.data?.msg === "User already verified") {
+        router.push("/pages/login");
+        return;
+      }
+
+      toast.error(error?.data?.msg);
     }
   };
 
   useEffect(() => {
-    if (errorMsg === "User already verified") {
-      router.push("/pages/login");
-    }
-  }, [errorMsg]);
-
-  useEffect(() => {
-    if (errorMsg === "User already verified") {
-      router.push("/pages/login");
-    }
     verifyToken();
   }, []);
 
   return (
-    <div className="max-w-[1100px] w-full pt-[4rem] mx-auto flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0 my-4 sm:my-0">
-      {loading && (
-        <div>
-          <p>Verifying</p>
-          <p>Loading...</p>
+    <div className="max-w-[1100px] w-full mx-auto flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0">
+      {isLoading && (
+        <div className="border border-slate-300 rounded px-8 py-4 flex flex-col items-center">
+          <p className="mb-4">Verifying email account</p>
+          <div className="loader-2"></div>
         </div>
       )}
 
-      {successMsg ? (
-        <div>
-          <p className="mb-4 bg-green-200 rounded flex items-center justify-center py-4 px-8 border-[2px] border-green-500 font-semibold">
-            Account verification successful.
-          </p>
-          <Link
-            href="/pages/login"
-            className="h-[42px] bg-[var(--blue-1)] text-white rounded flex items-center justify-center"
-          >
-            Login
+      {isSuccess ? (
+        <div className="border border-slate-300 rounded px-8 py-4 flex flex-col items-center">
+          <p className="mb-2">Email account verification successful.</p>
+          <Link href="/pages/login" className="text-blue-500">
+            Log in to your account
           </Link>
         </div>
       ) : (

@@ -1,16 +1,21 @@
 "use client";
 
-import { useState, useEffect, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import Link from "next/link";
 
 // 3rd party libraries
-// axios
-import axios from "axios";
 // react-toastify
 import { toast } from "react-toastify";
 
-// components
-import Loader from "@/components/Loader";
+// redux
+import { useRegisterMutation } from "@/redux/slices/authApi";
+
+interface ErrorProps {
+  data?: {
+    msg?: string;
+  };
+  error?: string;
+}
 
 const RegisterPage: React.FC = () => {
   const [values, setValues] = useState({
@@ -19,33 +24,21 @@ const RegisterPage: React.FC = () => {
     password: "",
     confirmPassword: "",
   });
-  const [successMsg, setSuccessMsg] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-  const [loading, setLoading] = useState(false);
+
+  const [register, { isLoading, isError, isSuccess }] = useRegisterMutation();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { name, email, password, confirmPassword } = values;
-    const registerNewUser = { name, email, password, confirmPassword };
-
     try {
-      setLoading(true);
+      const res = await register(values).unwrap();
 
-      const response = await axios.post("/register", registerNewUser);
-
-      if (response.statusText === "Created") {
-        //toast.success("User registered succesfully");
-        setSuccessMsg(response.data.msg);
-      } else {
-        toast.error(response.data.msg);
-        setErrorMsg(response.data.msg);
+      if (isError) {
+        toast.error(res.data.msg);
       }
-    } catch (error: any) {
-      toast.error(error.response.data.msg);
-      setErrorMsg(error.response.data.msg);
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      const error = err as ErrorProps;
+      toast.error(error?.data?.msg);
     }
   };
 
@@ -54,78 +47,75 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1100px] w-full pt-[4rem] mx-auto flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0 my-4 sm:my-0">
-      {successMsg ? (
-        <p className="mb-4 bg-green-200 rounded flex items-center justify-center py-4 px-8 border-[2px] border-green-500 font-semibold">
-          Please check your email account to verify.
-        </p>
+    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0 my-4 sm:my-0">
+      {isSuccess ? (
+        <div className="border border-slate-300 rounded px-8 py-4 flex flex-col items-center">
+          <p className="mb-2">We've sent you a link to your email account.</p>
+          <p>Please check to verify.</p>
+        </div>
       ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="w-[500px] border border-[var(--gray-1)] rounded-[var(--radius-3)] p-8"
-        >
-          <p className="font-bold text-2xl">Register</p>
-          <div className="flex flex-col mt-4">
-            <label htmlFor="name" className="font-semibold">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="border border-[var(--gray-1)] rounded mt-2 p-2 focus:outline-[var(--blue-1)]"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex flex-col mt-4">
-            <label htmlFor="email" className="font-semibold">
-              Email
-            </label>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              className="border border-[var(--gray-1)] rounded mt-2 p-2 focus:outline-[var(--blue-1)]"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex flex-col mt-4">
-            <label htmlFor="password" className="font-semibold">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="border border-[var(--gray-1)] rounded mt-2 p-2 focus:outline-[var(--blue-1)]"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex flex-col mt-4">
-            <label htmlFor="confirmPassword" className="font-semibold">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              className="border border-[var(--gray-1)] rounded mt-2 p-2 focus:outline-[var(--blue-1)]"
-              onChange={handleChange}
-            />
-          </div>
-          <button
-            type="submit"
-            className="h-[42px] font-semibold border border-[var(--blue-1)] rounded mt-4 p-2 w-full bg-[var(--blue-1)] text-[var(--white-1)] hover:bg-[var(--blue-2)] flex items-center justify-center"
-          >
-            {loading ? <Loader /> : "Register"}
-          </button>
-          <p className="mt-4">
-            Already have an account?{" "}
-            <Link href="/pages/login" className="text-[var(--blue-1)]">
-              Login
-            </Link>
+        <>
+          <p className="font-bold text-xl sm:text-3xl mb-8 text-center">
+            Register for a <span className="text-blue-500">Jooble</span> account
           </p>
-        </form>
+          <form
+            onSubmit={handleSubmit}
+            className="max-w-[500px] w-[100%] border border-slate-300 rounded-[var(--radius-3)] p-4 sm:p-8"
+          >
+            <div className="flex flex-col">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="border border-slate-300 rounded mt-2 p-2 focus:outline-blue-500"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex flex-col mt-4">
+              <label htmlFor="email">Email</label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                className="border border-slate-300 rounded mt-2 p-2 focus:outline-blue-500"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex flex-col mt-4">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className="border border-slate-300 rounded mt-2 p-2 focus:outline-blue-500"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex flex-col mt-4">
+              <label htmlFor="confirmPassword">Confirm password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                className="border border-slate-300 rounded mt-2 p-2 focus:outline-blue-500"
+                onChange={handleChange}
+              />
+            </div>
+            <button
+              type="submit"
+              className="h-[42px] font-semibold rounded mt-4 p-2 w-full bg-blue-500 text-[var(--white-1)] hover:bg-blue-400 flex items-center justify-center"
+            >
+              {isLoading ? <div className="loader-1"></div> : "Register"}
+            </button>
+            <p className="mt-4">
+              <span>Already have an account? </span>
+              <Link href="/pages/login" className="text-blue-500">
+                Login
+              </Link>
+            </p>
+          </form>
+        </>
       )}
     </div>
   );

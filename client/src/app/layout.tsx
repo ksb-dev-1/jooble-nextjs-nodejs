@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} suppressContentEditableWarning>
         <Providers>
           <Header />
           <InnerLayout>

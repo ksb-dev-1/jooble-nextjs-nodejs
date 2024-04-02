@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
   }
 
   if (password !== confirmPassword) {
-    throw new CustomError.BadRequestError("Confirm Pawssword doesn't match.");
+    throw new CustomError.BadRequestError("Confirm password doesn't match.");
   }
 
   const emailAlreadyExists = await User.findOne({ email });
