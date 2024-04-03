@@ -1,7 +1,7 @@
 import Image from "next/image";
 import svg from "../../public/job-search-icon.svg";
 
-// react-icons
+// ----- react-icons -----
 import { FiSearch } from "react-icons/fi";
 
 const Hero: React.FC = () => {

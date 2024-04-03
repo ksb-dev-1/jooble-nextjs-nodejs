@@ -5,11 +5,9 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-// 3rd party libraries
-// react-toastify
+// ----- react-toastify -----
 import { toast } from "react-toastify";
-
-// redux
+// ----- redux -----
 import { useVerifyEmailMutation } from "@/redux/slices/authApi";
 
 interface ErrorProps {
@@ -21,11 +19,9 @@ interface ErrorProps {
 
 const VerifyEmail: React.FC = () => {
   const searchParams = useSearchParams();
-  const router = useRouter();
-
   const token = searchParams.get("token");
   const email = searchParams.get("email");
-
+  const router = useRouter();
   const [verifyEmail, { isLoading, isError, isSuccess }] =
     useVerifyEmailMutation();
 

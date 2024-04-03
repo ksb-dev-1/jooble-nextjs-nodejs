@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 // react-redux
 import { Provider } from "react-redux";
 
-import store from "@/redux/stote";
+import store from "@/redux/store";
 
 interface Props {
   children: React.ReactNode;

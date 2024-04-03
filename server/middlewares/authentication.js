@@ -1,6 +1,5 @@
 import CustomError from "../errors/index.js";
-import isTokenValid from "../utils/index.js";
-import attachCookiesToResponse from "../utils/index.js";
+import jwtUtils from "../utils/index.js";
 import Token from "../models/Token.js";
 
 const authenticateUser = async (req, res, next) => {
@@ -8,12 +7,12 @@ const authenticateUser = async (req, res, next) => {
 
   try {
     if (accessToken) {
-      const payload = isTokenValid(accessToken);
+      const payload = jwtUtils.isTokenValid(accessToken);
       req.user = payload.user;
       return next();
     }
 
-    const payload = isTokenValid(refreshToken);
+    const payload = jwtUtils.isTokenValid(refreshToken);
 
     const existingToken = await Token.findOne({
       user: payload.user.userId,
@@ -24,7 +23,7 @@ const authenticateUser = async (req, res, next) => {
       throw new CustomError.UnauthenticatedError("Authentication Invalid");
     }
 
-    attachCookiesToResponse({
+    jwtUtils.attachCookiesToResponse({
       res,
       user: payload.user,
       refreshToken: existingToken.refreshToken,

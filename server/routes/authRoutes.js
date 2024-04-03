@@ -14,8 +14,7 @@ import {
 router.post("/register", registerUser);
 router.post("/verify-email", verifyEmail);
 router.post("/login", loginUser);
-//router.delete("/logout", authenticateUser, logoutUser);
-router.delete("/logout", logoutUser);
+router.delete("/logout", authenticateUser, logoutUser);
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password", resetPassword);
 

@@ -3,11 +3,9 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import Link from "next/link";
 
-// 3rd party libraries
-// react-toastify
+// ----- react-toastify -----
 import { toast } from "react-toastify";
-
-// redux
+// ----- redux
 import { useRegisterMutation } from "@/redux/slices/authApi";
 
 interface ErrorProps {
@@ -24,7 +22,6 @@ const RegisterPage: React.FC = () => {
     password: "",
     confirmPassword: "",
   });
-
   const [register, { isLoading, isError, isSuccess }] = useRegisterMutation();
 
   const handleSubmit = async (e: FormEvent) => {
@@ -33,9 +30,7 @@ const RegisterPage: React.FC = () => {
     try {
       const res = await register(values).unwrap();
 
-      if (isError) {
-        toast.error(res.data.msg);
-      }
+      isError && toast.error(res.data.msg);
     } catch (err) {
       const error = err as ErrorProps;
       toast.error(error?.data?.msg);
@@ -47,7 +42,7 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0 my-4 sm:my-0">
+    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0">
       {isSuccess ? (
         <div className="border border-slate-300 rounded px-8 py-4 flex flex-col items-center">
           <p className="mb-2">We've sent you a link to your email account.</p>
