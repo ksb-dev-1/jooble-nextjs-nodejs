@@ -25,12 +25,14 @@ interface ErrorProps {
 
 const HeaderAuth: React.FC = () => {
   const pathname = usePathname();
-  const path = pathname.includes("login") || pathname.includes("register");
+  //const path = pathname.includes("login") || pathname.includes("register");
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.info);
   const [logout, { isLoading, isError }] = useLogoutMutation();
 
-  const handleLogout = async (e: FormEvent) => {
+  const handleLogout = async (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
     e.preventDefault();
 
     try {
@@ -60,7 +62,7 @@ const HeaderAuth: React.FC = () => {
           </Link>
         )}
 
-        {typeof window !== "undefined" && path && !user && (
+        {typeof window !== "undefined" && pathname !== "/" && !user && (
           <Link
             href="/pages/register"
             className="border text-white bg-blue-500 border-blue-500 rounded hover:bg-blue-400 min-w-[83.79px] h-[33.6px] hidden sm:flex items-center justify-center ml-4"

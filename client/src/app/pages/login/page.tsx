@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -59,13 +59,13 @@ const LoginPage: React.FC = () => {
       </p>
       {/* Form */}
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleLogin}
         className="max-w-[500px] w-[100%] border border-slate-300 rounded-[var(--radius-3)] p-4 sm:p-8"
       >
         <div className="flex flex-col">
           <label htmlFor="email">Email</label>
           <input
-            type="text"
+            type="email"
             autoComplete="off"
             id="email"
             name="email"
@@ -98,7 +98,7 @@ const LoginPage: React.FC = () => {
         </p>
         <p className="mt-2">
           <span>Forgot your password? </span>
-          <Link href="#" className="text-blue-500">
+          <Link href="/pages/forgot-password" className="text-blue-500">
             Reset password
           </Link>
         </p>

@@ -1,23 +1,13 @@
 "use client";
 
-import { FormEvent, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
 import svg from "../../public/job-icon-4.svg";
 
 // ----- react-icons -----
-import { FaCircleUser } from "react-icons/fa6";
 import { GrMenu } from "react-icons/gr";
-import { SlUser } from "react-icons/sl";
-// ----- react-toastify -----
-import { toast } from "react-toastify";
-// ----- redux -----
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/redux/store";
-import { useLogoutMutation } from "@/redux/slices/authApi";
-import { removeUser } from "@/redux/slices/userInfoSlice";
 
 // components
 import Menu from "./Menu";
@@ -32,12 +22,7 @@ interface ErrorProps {
 }
 
 const Header: React.FC = () => {
-  const pathname = usePathname();
-  const path = pathname.includes("login") || pathname.includes("register");
   const menuRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
-  const { user } = useSelector((state: RootState) => state.info);
-  const [logout, { isLoading, isError }] = useLogoutMutation();
 
   const showMenu = () => {
     if (menuRef.current) {
@@ -68,22 +53,6 @@ const Header: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const handleLogout = async (e: FormEvent) => {
-    e.preventDefault();
-
-    try {
-      const res = await logout(user).unwrap();
-      dispatch(removeUser());
-
-      res.msg && toast.success("User logged out successfully");
-
-      isError && toast.error(res.data.msg);
-    } catch (err) {
-      const error = err as ErrorProps;
-      toast.error(error?.data?.msg);
-    }
-  };
 
   return (
     <>

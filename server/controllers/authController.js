@@ -11,6 +11,7 @@ import CustomError from "../errors/index.js";
 import jwtUtils from "../utils/index.js";
 import crypto from "crypto";
 
+// ----- Register user -----
 const registerUser = async (req, res) => {
   const { email, name, password, confirmPassword } = req.body;
 
@@ -59,6 +60,7 @@ const registerUser = async (req, res) => {
   });
 };
 
+// ----- Verify email -----
 const verifyEmail = async (req, res) => {
   const { verificationToken, email } = req.body;
 
@@ -85,6 +87,7 @@ const verifyEmail = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Email Verified" });
 };
 
+// ----- Login user -----
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -143,6 +146,7 @@ const loginUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user: tokenUser });
 };
 
+// ----- Logout user -----
 const logoutUser = async (req, res) => {
   await Token.findOneAndDelete({ user: req.user.userId });
 
@@ -159,12 +163,72 @@ const logoutUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "user logged out!" });
 };
 
-const forgotPassword = (req, res) => {
-  res.send("Forgot password");
+// ----- Forgot password -----
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  console.log(req.body);
+
+  if (!email) {
+    throw new CustomError.BadRequestError("Please provide valid email");
+  }
+
+  const user = await User.findOne({ email });
+
+  if (user) {
+    const passwordToken = crypto.randomBytes(70).toString("hex");
+    // send email
+    const origin = "http://localhost:3000";
+
+    await jwtUtils.sendResetPasswordEmail({
+      name: user.name,
+      email: user.email,
+      token: passwordToken,
+      origin,
+    });
+
+    const tenMinutes = 1000 * 60 * 10;
+    const passwordTokenExpirationDate = new Date(Date.now() + tenMinutes);
+
+    user.passwordToken = jwtUtils.createHash(passwordToken);
+    user.passwordTokenExpirationDate = passwordTokenExpirationDate;
+    await user.save();
+  }
+
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: "Please check your email for reset password link" });
 };
 
-const resetPassword = (req, res) => {
-  res.send("Reset password");
+// ----- Reset password -----
+const resetPassword = async (req, res) => {
+  const { token, email, password, confirmPassword } = req.body;
+
+  if (!token || !email || !password || !confirmPassword) {
+    throw new CustomError.BadRequestError("Please provide all values");
+  }
+
+  if (password !== confirmPassword) {
+    throw new CustomError.BadRequestError("Confirm password doesn't match.");
+  }
+
+  const user = await User.findOne({ email });
+
+  if (user) {
+    const currentDate = new Date();
+
+    if (
+      user.passwordToken === jwtUtils.createHash(token) &&
+      user.passwordTokenExpirationDate > currentDate
+    ) {
+      user.password = password;
+      user.passwordToken = null;
+      user.passwordTokenExpirationDate = null;
+      await user.save();
+    }
+  }
+
+  res.status(StatusCodes.OK).json({ msg: "Reset password successful" });
 };
 
 export {

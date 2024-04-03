@@ -7,7 +7,7 @@ const nextConfig = {
         destination: "http://localhost:8000/jooble/api/auth/register",
       },
       {
-        source: "/verifyEmail",
+        source: "/verify-email",
         destination: "http://localhost:8000/jooble/api/auth/verify-email",
       },
       {
@@ -17,6 +17,14 @@ const nextConfig = {
       {
         source: "/logout",
         destination: "http://localhost:8000/jooble/api/auth/logout",
+      },
+      {
+        source: "/forgot-password",
+        destination: "http://localhost:8000/jooble/api/auth/forgot-password",
+      },
+      {
+        source: "/reset-password",
+        destination: "http://localhost:8000/jooble/api/auth/reset-password",
       },
     ];
   },

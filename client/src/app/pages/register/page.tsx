@@ -24,7 +24,7 @@ const RegisterPage: React.FC = () => {
   });
   const [register, { isLoading, isError, isSuccess }] = useRegisterMutation();
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -54,7 +54,7 @@ const RegisterPage: React.FC = () => {
             Register for a <span className="text-blue-500">Jooble</span> account
           </p>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleRegister}
             className="max-w-[500px] w-[100%] border border-slate-300 rounded-[var(--radius-3)] p-4 sm:p-8"
           >
             <div className="flex flex-col">
@@ -70,7 +70,7 @@ const RegisterPage: React.FC = () => {
             <div className="flex flex-col mt-4">
               <label htmlFor="email">Email</label>
               <input
-                type="text"
+                type="email"
                 id="email"
                 name="email"
                 className="border border-slate-300 rounded mt-2 p-2 focus:outline-blue-500"

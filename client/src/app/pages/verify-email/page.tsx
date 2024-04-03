@@ -3,7 +3,7 @@ import { Suspense } from "react";
 // components
 import VerifyEmail from "@/components/VerifyEmail";
 
-const page: React.FC = () => {
+const VerifyEmailPage: React.FC = () => {
   return (
     <Suspense>
       <VerifyEmail />
@@ -11,4 +11,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default VerifyEmailPage;
