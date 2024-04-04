@@ -36,8 +36,10 @@ const ForgotPasswordPage: React.FC = () => {
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0">
       {isSuccess ? (
-        <div className="border border-slate-300 rounded px-8 py-4 flex flex-col items-center">
-          <p className="mb-2">We've sent you a link to your email account.</p>
+        <div className="border border-slate-300 rounded p-4 flex flex-col items-center">
+          <p className="mb-2 text-center">
+            We've sent you a link to your email account.
+          </p>
           <p>Please check to verify.</p>
         </div>
       ) : (
@@ -49,7 +51,7 @@ const ForgotPasswordPage: React.FC = () => {
             onSubmit={handleForgotPassword}
             className="max-w-[500px] w-[100%] border border-slate-300 rounded-[var(--radius-3)] p-4 sm:p-8"
           >
-            <div className="flex flex-col mt-4">
+            <div className="flex flex-col">
               <label htmlFor="email">Email</label>
               <input
                 type="email"

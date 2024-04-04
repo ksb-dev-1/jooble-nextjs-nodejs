@@ -73,13 +73,13 @@ const Header: React.FC = () => {
             </Link>
 
             <div className="hidden sm:block">
-              <Link href="#" className="mx-8">
+              <Link href="/pages/jobs" className="mx-8">
                 Jobs
               </Link>
-              <Link href="#" className="mr-8">
+              <Link href="/pages/pricing" className="mr-8">
                 Pricing
               </Link>
-              <Link href="#" className="">
+              <Link href="/pages/dashboard" className="">
                 Dashboard
               </Link>
             </div>

@@ -217,6 +217,12 @@ const resetPassword = async (req, res) => {
   if (user) {
     const currentDate = new Date();
 
+    if (user.passwordTokenExpirationDate < currentDate) {
+      throw new CustomError.BadRequestError(
+        "Your token expired. Try again sending your email"
+      );
+    }
+
     if (
       user.passwordToken === jwtUtils.createHash(token) &&
       user.passwordTokenExpirationDate > currentDate
