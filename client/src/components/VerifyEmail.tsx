@@ -65,7 +65,7 @@ const VerifyEmail: React.FC = () => {
           <p className="mb-2 text-center">
             Email account verification successful.
           </p>
-          <Link href="/pages/login" className="text-blue-500">
+          <Link href="/pages/login" className="text-blue-600">
             Log in to your account
           </Link>
         </div>

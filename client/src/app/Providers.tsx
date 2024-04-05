@@ -16,7 +16,7 @@ interface Props {
 const Providers: React.FC<Props> = ({ children }) => {
   return (
     <Provider store={store}>
-      <ToastContainer autoClose={5000} position="top-center" />
+      <ToastContainer autoClose={3000} position="top-center" />
       {children}
     </Provider>
   );

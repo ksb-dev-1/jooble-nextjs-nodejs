@@ -12,6 +12,7 @@ export const authApi = createApi({
         url: "/register",
         method: "POST",
         body: data,
+        formData: true,
       }),
     }),
     verifyEmail: builder.mutation({

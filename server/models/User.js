@@ -7,6 +7,9 @@ const { genSalt, hash, compare } = bcryptjs;
 const { isEmail } = validator;
 
 const UserSchema = new Schema({
+  image: {
+    type: String,
+  },
   name: {
     type: String,
     required: [true, "Please provide name"],

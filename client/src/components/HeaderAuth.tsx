@@ -10,6 +10,8 @@ import { HiOutlineUserCircle } from "react-icons/hi2";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { IoIosLogOut } from "react-icons/io";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdAdminPanelSettings } from "react-icons/md";
 // ----- react-toastify -----
 import { toast } from "react-toastify";
 // ----- redux -----
@@ -88,7 +90,7 @@ const HeaderAuth: React.FC = () => {
         {pathname !== "/" && !user && (
           <Link
             href="/pages/register"
-            className="border text-white bg-blue-500 border-blue-500 rounded hover:bg-blue-400 w-[75px] h-[33.6px] hidden sm:flex items-center justify-center ml-4"
+            className="border text-white bg-blue-600 border-blue-500 rounded hover:bg-blue-500 w-[75px] h-[33.6px] hidden sm:flex items-center justify-center ml-4"
           >
             Register
           </Link>
@@ -103,16 +105,21 @@ const HeaderAuth: React.FC = () => {
         >
           <div className="flex items-center justify-center border border-slate-300 hover:bg-slate-100 rounded px-2 h-[33.6px] cursor-pointer">
             <span>
-              <HiOutlineUserCircle className="text-xl" />
+              <HiOutlineUserCircle className="text-lg" />
             </span>
-            <span className="ml-1">{user.name}</span>
+            <span className="ml-1">Profile</span>
           </div>
           <div
             ref={modalRef}
             className="absolute top-[100%] border border-slate-300 rounded bg-white w-max scale-0 opacity-0 transition-opacity flex flex-col"
           >
-            {/* <p className="font-semibold mb-2">Hello {user.name}</p>
-            <p className="w-[100%] h-[1px] bg-slate-300 mb-4"></p> */}
+            <p className="font-bold px-4 py-2 flex items-center">
+              <span className="mr-2 text-blue-600">
+                {user.role === "admin" && <MdAdminPanelSettings />}
+              </span>
+              <span>Hello {user.name}</span>
+            </p>
+            <p className="h-[1px] bg-slate-300"></p>
             <Link
               href="/pages/profile"
               className="px-4 py-2 flex items-center hover:bg-slate-100"
@@ -143,32 +150,7 @@ const HeaderAuth: React.FC = () => {
               <IoIosLogOut className="mr-2" />
               {isLoading ? <span className="loader-3"></span> : "Logout"}
             </button>
-            {/* <button
-              className="border border-slate-300 rounded hover:bg-slate-100 w-full h-[33.6px] hidden sm:flex items-center justify-center"
-              onClick={(e) => {
-                !isLoading && handleLogout(e);
-              }}
-            >
-              {isLoading ? <span className="loader-3"></span> : "Logout"}
-            </button> */}
           </div>
-          {/* {user.role === "admin" && (
-            <Link
-              href="/pages/admin"
-              className="border text-blue-500 border-blue-500 rounded hover:bg-slate-100 w-[75px] h-[33.6px] hidden sm:flex items-center justify-center mr-4"
-            >
-              Admin
-            </Link>
-          )}
-          <Link
-            href="#"
-            className="border border-slate-300 rounded hover:bg-slate-100 w-[75px] h-[33.6px] hidden sm:flex items-center justify-center"
-            onClick={(e) => {
-              !isLoading && handleLogout(e);
-            }}
-          >
-            {isLoading ? <span className="loader-3"></span> : "Logout"}
-          </Link> */}
         </div>
       )}
     </>

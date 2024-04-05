@@ -26,10 +26,10 @@ const Hero: React.FC = () => {
         <input
           type="text"
           placeholder="Enter skills / companies / designations"
-          className="w-full xl:w-[1100px] p-4 pl-12 rounded-[50px] text-blue-500 focus:outline-none focus:placeholder:text-transparent"
+          className="w-full xl:w-[1100px] p-4 pl-12 rounded-[50px] text-blue-600 focus:outline-none focus:placeholder:text-transparent"
         />
         <FiSearch className="absolute top-[17px] left-[12px] text-[var(--gray-3)] text-2xl" />
-        <button className="absolute bg-blue-500 top-[8.25px] right-[8.25px] rounded-[50px] px-[2rem] py-[0.5rem] border-none outline-none font-semibold hover:bg-blue-400">
+        <button className="absolute bg-blue-600 top-[8.25px] right-[8.25px] rounded-[50px] px-[2rem] py-[0.5rem] border-none outline-none font-semibold hover:bg-blue-500">
           Search
         </button>
       </form>

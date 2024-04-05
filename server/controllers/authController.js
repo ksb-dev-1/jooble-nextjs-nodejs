@@ -1,5 +1,6 @@
 // 3rd party
 import { StatusCodes } from "http-status-codes";
+import { v2 as cloudinary } from "cloudinary";
 
 // models
 import User from "../models/User.js";
@@ -13,7 +14,7 @@ import crypto from "crypto";
 
 // ----- Register user -----
 const registerUser = async (req, res) => {
-  const { email, name, password, confirmPassword } = req.body;
+  const { image, email, name, password, confirmPassword } = req.body;
 
   if (!name || !email || !password || !confirmPassword) {
     throw new CustomError.BadRequestError("You must enter all the fields.");
@@ -35,13 +36,32 @@ const registerUser = async (req, res) => {
 
   const verificationToken = crypto.randomBytes(40).toString("hex");
 
-  const user = await User.create({
-    name,
-    email,
-    password,
-    role,
-    verificationToken,
-  });
+  let imageUrl = "";
+  let user = {};
+
+  if (image) {
+    imageUrl = await uploadProfilePictureToCloudinary(image);
+
+    if (imageUrl.secure_url) {
+      user = await User.create({
+        image: imageUrl.secure_url,
+        name,
+        email,
+        password,
+        role,
+        verificationToken,
+      });
+    } else {
+      user = await User.create({
+        image: "",
+        name,
+        email,
+        password,
+        role,
+        verificationToken,
+      });
+    }
+  }
 
   const origin = "http://localhost:3000";
   // const newOrigin = 'https://react-node-user-workflow-front-end.netlify.app';
@@ -58,6 +78,24 @@ const registerUser = async (req, res) => {
     msg: "Success! Please check your email to verify account",
     //verificationToken: user.verificationToken,
   });
+};
+
+const uploadProfilePictureToCloudinary = async (image) => {
+  const uploaded = await cloudinary.uploader.upload(
+    image,
+    {
+      upload_preset: "unsigned_uploads",
+      allowed_formats: ["png", "svg", "jpg", "webp", "jpeg", "ico", "jfif"],
+      folder: "jooble",
+    },
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }
+      return result;
+    }
+  );
+  return uploaded;
 };
 
 // ----- Verify email -----
