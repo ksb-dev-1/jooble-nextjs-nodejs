@@ -11,6 +11,7 @@ import { HiOutlineHeart } from "react-icons/hi2";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { IoIosLogOut } from "react-icons/io";
 import { MdAdminPanelSettings } from "react-icons/md";
+import { BsChevronDown } from "react-icons/bs";
 // ----- react-toastify -----
 import { toast } from "react-toastify";
 // ----- redux -----
@@ -35,6 +36,7 @@ const HeaderAuth: React.FC = () => {
   const [logout, { isLoading, isError }] = useLogoutMutation();
   const profileRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const downIconRef = useRef<HTMLSpanElement>(null);
 
   const handleLogout = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -60,14 +62,16 @@ const HeaderAuth: React.FC = () => {
   };
 
   const showModal = () => {
-    if (modalRef.current && profileRef.current) {
+    if (downIconRef.current && modalRef.current) {
+      downIconRef.current.style.transform = "rotate(180deg)";
       modalRef.current.style.transform = "scale(1)";
       modalRef.current.style.opacity = "1";
     }
   };
 
   const hideModal = () => {
-    if (modalRef.current && profileRef.current) {
+    if (downIconRef.current && modalRef.current) {
+      downIconRef.current.style.transform = "rotate(0deg)";
       modalRef.current.style.transform = "scale(0)";
       modalRef.current.style.opacity = "0";
     }
@@ -81,7 +85,7 @@ const HeaderAuth: React.FC = () => {
         {!user && (
           <Link
             href="/pages/login"
-            className="border border-slate-300 rounded hover:bg-slate-100 w-[75px] h-[33.6px] hidden sm:flex items-center justify-center"
+            className="border border-slate-400 rounded hover:bg-slate-100 w-[75px] h-[33.6px] hidden sm:flex items-center justify-center"
           >
             Login
           </Link>
@@ -105,47 +109,50 @@ const HeaderAuth: React.FC = () => {
         >
           <div
             ref={profileRef}
-            className="flex items-center justify-center border border-slate-300 hover:bg-slate-100 rounded px-2 h-[33.6px] cursor-pointer"
+            className="flex items-center justify-center border border-slate-400 hover:bg-slate-100 rounded px-2 h-[33.6px] cursor-pointer"
           >
             <span>
               <HiOutlineUserCircle className="text-lg" />
             </span>
-            <span className="ml-1">Profile</span>
+            <span className="ml-1 mr-8">Profile</span>
+            <span ref={downIconRef} className="transition">
+              <BsChevronDown />
+            </span>
           </div>
           <div
             ref={modalRef}
-            className="absolute top-[100%] border border-slate-300 rounded bg-white w-max scale-0 opacity-0 transition-opacity flex flex-col right-0 xl:left-0"
+            className="absolute top-[100%] border border-slate-400 rounded bg-white w-full scale-0 opacity-0 transition-opacity flex flex-col"
           >
-            <p className="font-bold px-4 py-2 flex items-center">
+            <p className="font-bold pl-2 py-2 flex items-center">
               <span className="mr-2 text-blue-600">
                 {user.role === "admin" && <MdAdminPanelSettings />}
               </span>
-              <span>Hello {user.name}</span>
+              <span>{user.name}</span>
             </p>
             <p className="h-[1px] bg-slate-300"></p>
             <Link
               href="/pages/profile"
-              className="px-4 py-2 flex items-center hover:bg-slate-100"
+              className="pl-2 py-2 flex items-center hover:bg-slate-100"
               onClick={hideModal}
             >
               <HiOutlineUserCircle className="mr-2" /> My Profile
             </Link>
             <Link
               href="/pages/saved"
-              className="px-4 py-2 flex items-center hover:bg-slate-100"
+              className="pl-2 py-2 flex items-center hover:bg-slate-100"
               onClick={hideModal}
             >
               <HiOutlineHeart className="mr-2" /> Saved Jobs
             </Link>
             {/* <Link
               href="/pages/edit-profile"
-              className="px-4 py-2 flex items-center hover:bg-slate-100"
+              className="pl-2 py-2 flex items-center hover:bg-slate-100"
               onClick={hideModal}
             >
               <LiaUserEditSolid className="mr-2" /> Edit Profile
             </Link> */}
             <button
-              className="flex items-center px-4 py-2 hover:bg-slate-100"
+              className="flex items-center pl-2 py-2 hover:bg-slate-100"
               onClick={(e) => {
                 !isLoading && handleLogout(e);
               }}

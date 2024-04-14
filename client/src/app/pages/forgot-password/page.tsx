@@ -6,7 +6,6 @@ import Link from "next/link";
 // ----- react-toastify -----
 import { toast } from "react-toastify";
 // ----- react-icons -----
-import { MdOutlineEmail } from "react-icons/md";
 // ----- redux
 import { useForgotPasswordMutation } from "@/redux/slices/authApi";
 
@@ -45,14 +44,11 @@ const ForgotPasswordPage: React.FC = () => {
           <p>Please check to verify.</p>
         </div>
       ) : (
-        <>
-          <p className="font-bold text-xl sm:text-2xl mb-8 text-center">
+        <div className="max-w-[500px] w-[100%] border border-slate-400 rounded p-4 sm:p-8">
+          <p className="font-bold text-lg sm:text-2xl mb-8 text-center">
             Send your <span className="text-blue-600">Jooble</span> email.
           </p>
-          <form
-            onSubmit={handleForgotPassword}
-            className="max-w-[500px] w-[100%] border border-slate-300 rounded-[var(--radius-3)] p-4 sm:p-8"
-          >
+          <form onSubmit={handleForgotPassword}>
             <div className="relative">
               <input
                 type="email"
@@ -61,7 +57,6 @@ const ForgotPasswordPage: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
               />
-              {/* <MdOutlineEmail className="absolute top-[30%] left-[8px] text-slate-400" /> */}
             </div>
             <button
               type="submit"
@@ -69,15 +64,8 @@ const ForgotPasswordPage: React.FC = () => {
             >
               {isLoading ? <div className="loader-1"></div> : "Submit"}
             </button>
-            {/* <Link
-              href="/pages/login"
-              //className="mt-4 border border-slate-300 rounded hover:bg-slate-100 p-2 w-[75px] h-[33.2px] flex items-center justify-center"
-              className="inline-block mt-2 text-blue-600"
-            >
-              Login
-            </Link> */}
           </form>
-        </>
+        </div>
       )}
     </div>
   );
