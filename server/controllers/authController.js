@@ -136,7 +136,7 @@ const loginUser = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    throw new CustomError.UnauthenticatedError("Email doesn't exists.");
+    throw new CustomError.UnauthenticatedError("Email doesn't exist.");
   }
 
   const isPasswordCorrect = await user.comparePassword(password);

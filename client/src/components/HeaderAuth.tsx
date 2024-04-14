@@ -10,7 +10,6 @@ import { HiOutlineUserCircle } from "react-icons/hi2";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { IoIosLogOut } from "react-icons/io";
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdAdminPanelSettings } from "react-icons/md";
 // ----- react-toastify -----
 import { toast } from "react-toastify";
@@ -34,6 +33,7 @@ const HeaderAuth: React.FC = () => {
   const router = useRouter();
   const { user } = useSelector((state: RootState) => state.info);
   const [logout, { isLoading, isError }] = useLogoutMutation();
+  const profileRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const handleLogout = async (
@@ -60,14 +60,14 @@ const HeaderAuth: React.FC = () => {
   };
 
   const showModal = () => {
-    if (modalRef.current) {
+    if (modalRef.current && profileRef.current) {
       modalRef.current.style.transform = "scale(1)";
       modalRef.current.style.opacity = "1";
     }
   };
 
   const hideModal = () => {
-    if (modalRef.current) {
+    if (modalRef.current && profileRef.current) {
       modalRef.current.style.transform = "scale(0)";
       modalRef.current.style.opacity = "0";
     }
@@ -103,7 +103,10 @@ const HeaderAuth: React.FC = () => {
           onMouseOver={showModal}
           onMouseLeave={hideModal}
         >
-          <div className="flex items-center justify-center border border-slate-300 hover:bg-slate-100 rounded px-2 h-[33.6px] cursor-pointer">
+          <div
+            ref={profileRef}
+            className="flex items-center justify-center border border-slate-300 hover:bg-slate-100 rounded px-2 h-[33.6px] cursor-pointer"
+          >
             <span>
               <HiOutlineUserCircle className="text-lg" />
             </span>
@@ -111,7 +114,7 @@ const HeaderAuth: React.FC = () => {
           </div>
           <div
             ref={modalRef}
-            className="absolute top-[100%] border border-slate-300 rounded bg-white w-max scale-0 opacity-0 transition-opacity flex flex-col"
+            className="absolute top-[100%] border border-slate-300 rounded bg-white w-max scale-0 opacity-0 transition-opacity flex flex-col right-0 xl:left-0"
           >
             <p className="font-bold px-4 py-2 flex items-center">
               <span className="mr-2 text-blue-600">
@@ -134,13 +137,13 @@ const HeaderAuth: React.FC = () => {
             >
               <HiOutlineHeart className="mr-2" /> Saved Jobs
             </Link>
-            <Link
+            {/* <Link
               href="/pages/edit-profile"
               className="px-4 py-2 flex items-center hover:bg-slate-100"
               onClick={hideModal}
             >
               <LiaUserEditSolid className="mr-2" /> Edit Profile
-            </Link>
+            </Link> */}
             <button
               className="flex items-center px-4 py-2 hover:bg-slate-100"
               onClick={(e) => {

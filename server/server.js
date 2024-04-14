@@ -31,7 +31,8 @@ cloudinary.config({
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(morgan("tiny"));
 app.use(

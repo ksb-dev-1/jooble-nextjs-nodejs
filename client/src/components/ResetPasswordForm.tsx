@@ -69,7 +69,7 @@ const ResetPasswordForm: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
-          <RiLockPasswordLine className="absolute top-1/3 left-[8px] text-slate-400" />
+          <RiLockPasswordLine className="absolute top-[30%] left-[8px] text-slate-400" />
         </div>
         <div className="relative">
           <input

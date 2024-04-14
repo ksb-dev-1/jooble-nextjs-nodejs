@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
+  },
   async rewrites() {
     return [
       {
@@ -25,6 +33,10 @@ const nextConfig = {
       {
         source: "/reset-password",
         destination: "http://localhost:8000/jooble/api/auth/reset-password",
+      },
+      {
+        source: "/show-me",
+        destination: "http://localhost:8000/jooble/api/users/showMe",
       },
     ];
   },
