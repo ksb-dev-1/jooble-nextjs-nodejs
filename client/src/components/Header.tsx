@@ -8,6 +8,7 @@ import svg from "../../public/job-icon-4.svg";
 
 // ----- react-icons -----
 import { GrMenu } from "react-icons/gr";
+import { FiSearch } from "react-icons/fi";
 
 // components
 import Menu from "./Menu";
@@ -58,16 +59,20 @@ const Header: React.FC = () => {
     <>
       <header className="fixed top-0 left-0 w-full bg-white z-10 px-4 lg:px-8 xl:px-0 border shadow-sm">
         <div className="max-w-[1100px] w-[100%] h-[4rem] mx-auto flex items-center justify-between">
+          <span className="text-xl sm:hidden cursor-pointer" onClick={showMenu}>
+            <GrMenu />
+          </span>
+
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <p className="relative h-[35px] w-[35px] mr-2 bg-blue-600 rounded-full">
+              <p className="relative h-[25px] sm:h-[35px] w-[25px] sm:w-[35px] mr-2 bg-blue-600 rounded-full">
                 <Image
                   src={svg}
                   alt="icon"
-                  className="h-[20px] w-[20px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  className="h-[15px] sm:h-[20px] w-[15px] sm:w-[20px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 />
               </p>
-              <span className="text-blue-600 font-bold text-3xl cursor-pointer no-underline">
+              <span className="text-blue-600 font-bold text-2xl sm:text-3xl cursor-pointer no-underline">
                 Jooble
               </span>
             </Link>
@@ -87,11 +92,8 @@ const Header: React.FC = () => {
 
           <HeaderAuthNoSSR />
 
-          <span
-            className="text-2xl sm:hidden cursor-pointer"
-            onClick={showMenu}
-          >
-            <GrMenu />
+          <span className="text-xl sm:hidden cursor-pointer" onClick={showMenu}>
+            <FiSearch />
           </span>
         </div>
       </header>

@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 // ----- react-icons -----
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { HiOutlineHeart } from "react-icons/hi2";
-import { LiaUserEditSolid } from "react-icons/lia";
 import { IoIosLogOut } from "react-icons/io";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { BsChevronDown } from "react-icons/bs";

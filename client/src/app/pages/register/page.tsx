@@ -87,7 +87,7 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-0">
+    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-0rem)] px-4 sm:px-0">
       {isSuccess ? (
         <div className="border border-slate-400 rounded p-4 flex flex-col items-center">
           <p className="mb-2">We've sent you a link to your email account.</p>

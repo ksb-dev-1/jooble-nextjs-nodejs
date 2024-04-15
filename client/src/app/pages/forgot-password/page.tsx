@@ -35,7 +35,7 @@ const ForgotPasswordPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0">
+    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-0rem)] px-4 sm:px-8 xl:px-0">
       {isSuccess ? (
         <div className="border border-slate-300 rounded p-4 flex flex-col items-center">
           <p className="mb-2 text-center">
@@ -55,7 +55,7 @@ const ForgotPasswordPage: React.FC = () => {
                 name="email"
                 className="border border-slate-400 rounded p-4 py-3 focus:outline-blue-600 w-[100%] focus:placeholder:text-transparent"
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+                placeholder="Email Address"
               />
             </div>
             <button
