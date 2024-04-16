@@ -56,8 +56,8 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-0rem)] px-4 sm:px-0">
-      <div className="max-w-[500px] w-[100%] border border-slate-400 rounded p-4 sm:p-8">
+    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem]">
+      <div className="max-w-[500px] w-[100%] rounded p-4 sm:p-8 bg-white shadow-1">
         <p className="font-bold text-lg sm:text-2xl mb-8 text-center">
           Log in to <span className="text-blue-600">Jooble</span> account
         </p>

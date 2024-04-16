@@ -79,22 +79,35 @@ const HeaderAuth: React.FC = () => {
   return (
     <>
       {!user && (
-        <div className="hidden sm:flex items-center rounded-[50px] text-white bg-blue-600">
+        <div className="hidden sm:flex items-center rounded-[50px] bg-blue-600 text-white">
           {/* {typeof window === "undefined" && <div className="loader-3"></div>} */}
 
-          <Link
-            href="/pages/login"
-            className="px-4 py-2 hover:bg-blue-500 hover:text-white rounded-tl-[50px] rounded-bl-[50px] w-[88.91px] text-center"
-          >
-            Login
-          </Link>
-          <span className="h-[20px] w-[1px] bg-white"></span>
-          <Link
-            href="/pages/register"
-            className="px-4 py-2 hover:bg-blue-500 hover:text-white rounded-tr-[50px] rounded-br-[50px]"
-          >
-            Register
-          </Link>
+          {pathname === "/" && (
+            <Link
+              href="/pages/login"
+              className="px-4 py-2 hover:bg-blue-500 rounded-[50px] w-[88.91px] text-center"
+            >
+              Login
+            </Link>
+          )}
+
+          {pathname !== "/" && (
+            <>
+              <Link
+                href="/pages/login"
+                className="px-4 py-2 hover:bg-blue-500 rounded-tl-[50px] rounded-bl-[50px] w-[88.91px] text-center"
+              >
+                Login
+              </Link>
+              <span className="h-[20px] w-[1.5px] bg-white"></span>
+              <Link
+                href="/pages/register"
+                className="px-4 py-2 hover:bg-blue-500 rounded-tr-[50px] rounded-br-[50px]"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       )}
 
@@ -118,11 +131,11 @@ const HeaderAuth: React.FC = () => {
           </div>
           <div
             ref={modalRef}
-            className="absolute top-[100%] rounded-[25px] border border-slate-400 w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col p-2 bg-white"
+            className="absolute top-[100%] rounded-[25px] shadow-1 w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white p-2"
           >
             <Link
               href="/pages/profile"
-              className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[25px]"
+              className="pl-2 py-2 flex items-center hover:bg-[#F5F5FC] rounded-[25px]"
               onClick={hideModal}
             >
               <HiOutlineUserCircle className="mr-2" />{" "}
@@ -130,14 +143,14 @@ const HeaderAuth: React.FC = () => {
             </Link>
             <Link
               href="/pages/saved"
-              className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[25px]"
+              className="pl-2 py-2 flex items-center hover:bg-[#F5F5FC] rounded-[25px]"
               onClick={hideModal}
             >
               <HiOutlineHeart className="mr-2" />{" "}
               <span className="text-base">Saved</span>
             </Link>
             <button
-              className="flex items-center pl-2 py-2 hover:bg-slate-100 rounded-[25px]"
+              className="flex items-center pl-2 py-2 hover:bg-[#F5F5FC] rounded-[25px]"
               onClick={(e) => {
                 !isLoading && handleLogout(e);
               }}

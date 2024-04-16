@@ -35,16 +35,16 @@ const ForgotPasswordPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-0rem)] px-4 sm:px-8 xl:px-0">
+    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 xl:px-0 pt-[8.5rem] pb-[4rem]">
       {isSuccess ? (
-        <div className="border border-slate-300 rounded p-4 flex flex-col items-center">
-          <p className="mb-2 text-center">
-            We've sent you a link to your email account.
+        <div className="text-blue-600 rounded p-8 bg-white shadow-1 w-full sm:w-[500px]">
+          <p className="text-center">
+            We've sent you a link to your email account. Please check to verify
+            your email account.
           </p>
-          <p>Please check to verify.</p>
         </div>
       ) : (
-        <div className="max-w-[500px] w-[100%] border border-slate-400 rounded p-4 sm:p-8">
+        <div className="max-w-[500px] w-[100%] rounded p-4 sm:p-8 bg-white shadow-1">
           <p className="font-bold text-lg sm:text-2xl mb-8 text-center">
             Send your <span className="text-blue-600">Jooble</span> email.
           </p>
