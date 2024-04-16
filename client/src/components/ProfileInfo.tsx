@@ -29,7 +29,9 @@ const ProfileInfo: React.FC<UserProps> = ({ user }: any) => {
         )}
       </div>
       <div>
-        <p className="font-semibold text-sm sm:text-xl">{user?.name}</p>
+        <p className="font-semibold text-sm sm:text-xl">
+          {user?.first_name} <span>{user?.last_name}</span>
+        </p>
         <p className="text-xs sm:text-base">{user?.email}</p>
       </div>
     </>

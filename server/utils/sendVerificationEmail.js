@@ -1,7 +1,7 @@
 import sendEmail from "./sendEmail.js";
 
 const sendVerificationEmail = async ({
-  name,
+  first_name,
   email,
   verificationToken,
   origin,
@@ -14,7 +14,7 @@ const sendVerificationEmail = async ({
   return sendEmail({
     to: email,
     subject: "Email Confirmation",
-    html: `<h4> Hello, ${name}</h4>
+    html: `<h4> Hello, ${first_name}</h4>
     ${message}
     `,
   });

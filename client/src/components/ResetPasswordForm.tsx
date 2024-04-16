@@ -54,40 +54,39 @@ const ResetPasswordForm: React.FC = () => {
 
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0">
-      <p className="font-bold text-xl sm:text-2xl mb-8 text-center">
-        Reset <span className="text-blue-600">Jooble</span> password.
-      </p>
-      <form
-        onSubmit={handleForgotPassword}
-        className="max-w-[400px] w-[100%] border border-slate-300 rounded-[var(--radius-3)] p-4 sm:p-8"
-      >
-        <div className="relative">
-          <input
-            type="password"
-            name="password"
-            className="border border-slate-300 rounded p-2 pl-8 focus:outline-blue-600 w-[100%] focus:placeholder:text-transparent"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <RiLockPasswordLine className="absolute top-[30%] left-[8px] text-slate-400" />
-        </div>
-        <div className="relative">
-          <input
-            type="password"
-            name="confirmPassword"
-            className="border border-slate-300 rounded mt-4 p-2 pl-8 focus:outline-blue-600 w-[100%] focus:placeholder:text-transparent"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Confirm Password"
-          />
-          <RiLockPasswordLine className="absolute top-1/2 left-[8px] text-slate-400" />
-        </div>
-        <button
-          type="submit"
-          className="h-[42px] font-semibold rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
-        >
-          {isLoading ? <div className="loader-1"></div> : "Submit"}
-        </button>
-      </form>
+      <div className="max-w-[500px] w-[100%] border border-slate-400 rounded p-4 sm:p-8">
+        <p className="font-bold text-lg sm:text-2xl mb-8 text-center">
+          Reset <span className="text-blue-600">Jooble</span> password.
+        </p>
+        <form onSubmit={handleForgotPassword}>
+          <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
+            <div className="max-w-[50%] box-border">
+              <input
+                type="password"
+                name="password"
+                className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              />
+            </div>
+            <div className="max-w-[50%] box-border">
+              <input
+                type="password"
+                name="confirmPassword"
+                className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm"
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="h-[41.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+          >
+            {isLoading ? <div className="loader-1"></div> : "Submit"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

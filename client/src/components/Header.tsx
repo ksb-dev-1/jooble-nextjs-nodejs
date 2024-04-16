@@ -58,7 +58,7 @@ const Header: React.FC = () => {
   return (
     <>
       <header className="fixed top-0 left-0 w-full bg-white z-10 px-4 lg:px-8 xl:px-0 border shadow-sm">
-        <div className="max-w-[1100px] w-[100%] h-[4rem] mx-auto flex items-center justify-between">
+        <div className="max-w-[1100px] w-[100%] h-[4.5rem] mx-auto flex items-center justify-between">
           <span className="text-xl sm:hidden cursor-pointer" onClick={showMenu}>
             <GrMenu />
           </span>
@@ -77,14 +77,23 @@ const Header: React.FC = () => {
               </span>
             </Link>
 
-            <div className="hidden sm:block">
-              <Link href="/pages/jobs" className="mx-8">
+            <div className="hidden sm:flex items-center rounded-[50px] ml-4">
+              <Link
+                href="/pages/jobs"
+                className="px-4 py-2 hover:bg-slate-100 rounded-[50px]"
+              >
                 Jobs
               </Link>
-              <Link href="/pages/pricing" className="mr-8">
+              <Link
+                href="/pages/pricing"
+                className="px-4 py-2 hover:bg-slate-100 rounded-[50px]"
+              >
                 Pricing
               </Link>
-              <Link href="/pages/dashboard" className="">
+              <Link
+                href="/pages/dashboard"
+                className="px-4 py-2 hover:bg-slate-100 rounded-[50px]"
+              >
                 Dashboard
               </Link>
             </div>

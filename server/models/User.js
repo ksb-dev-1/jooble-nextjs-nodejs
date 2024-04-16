@@ -10,7 +10,13 @@ const UserSchema = new Schema({
   image: {
     type: String,
   },
-  name: {
+  first_name: {
+    type: String,
+    required: [true, "Please provide name"],
+    minlength: 3,
+    maxlength: 50,
+  },
+  last_name: {
     type: String,
     required: [true, "Please provide name"],
     minlength: 3,

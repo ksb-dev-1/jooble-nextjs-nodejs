@@ -52,21 +52,24 @@ const VerifyEmail: React.FC = () => {
   }, []);
 
   return (
-    <div className="max-w-[1100px] w-full mx-auto flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0">
+    <div className="max-w-[1100px] w-full mx-auto flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0 text-blue-600">
       {isLoading && (
-        <div className="border border-slate-300 rounded p-4 flex flex-col items-center">
+        <div className="border border-blue-600 rounded p-4 sm:p-8 flex flex-col items-center">
           <p className="mb-4 text-center">Verifying email account</p>
           <div className="loader-2"></div>
         </div>
       )}
 
       {isSuccess ? (
-        <div className="border border-slate-300 rounded p-4 flex flex-col items-center">
-          <p className="mb-2 text-center">
-            Email account verification successful.
-          </p>
-          <Link href="/pages/login" className="text-blue-600">
-            Log in to your account
+        <div className="border border-blue-600 rounded p-4 sm:p-8 flex flex-col">
+          <p className="mb-4">Email verification successful.</p>
+          <Link
+            href="/pages/login"
+            className="relative border border-slate-300 hover:bg-slate-100 rounded h-[33.6px] w-[75px]"
+          >
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black">
+              Login
+            </span>
           </Link>
         </div>
       ) : (

@@ -16,8 +16,15 @@
 }
 
 :root {
-  --blue-1: #2563eb;
-  --blue-2: #1a68e7;
+  --blue-1: #cadcfc;
+  --blue-2: #00246b;
+  --blue-1: #d3c5e5;
+  --blue-2: #735da5;
+  --blue-2: cornflowerblue;
+  --blue-3: #856fbb;
+
+  /* --blue-1: #2563eb;
+  --blue-2: #1a68e7; */
 
   --white-1: #fff;
   --white-2: rgb(240, 240, 240);
@@ -38,8 +45,7 @@
 }
 
 body {
-  /* background: var(--white-2); */
-  /* color: #777; */
+  /* font-family: sans-serif; */
 }
 
 /* Loader Style */
@@ -71,6 +77,19 @@ body {
   height: 20px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 1.5s linear infinite;
+}
+
+.polygon {
+  /* clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%); */
+  clip-path: polygon(
+    0% 20%,
+    60% 20%,
+    60% 0%,
+    100% 50%,
+    60% 100%,
+    60% 80%,
+    0% 80%
+  );
 }
 
 /* Safari */

@@ -1,17 +1,15 @@
 "use client";
 
-import { useState, FormEvent, ChangeEvent, useRef } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import WebSearch from "../../../../public/web-search.svg";
 
 // ----- react-toastify -----
 import { toast } from "react-toastify";
 // ----- recat-icons -----
-import { FaUpload } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { BiSolidUserCircle } from "react-icons/bi";
+import { FaUpload } from "react-icons/fa";
 // ----- redux
 import { useRegisterMutation } from "@/redux/slices/authApi";
 
@@ -25,12 +23,13 @@ interface ErrorProps {
 const RegisterPage: React.FC = () => {
   const [values, setValues] = useState({
     image: "",
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-  const [onHoverImage, setOnHoverImage] = useState(false);
+
   const [register, { isLoading, isError, isSuccess }] = useRegisterMutation();
 
   const handleRegister = async (e: FormEvent) => {
@@ -38,7 +37,8 @@ const RegisterPage: React.FC = () => {
 
     const formData = new FormData();
     formData.append("image", values.image);
-    formData.append("name", values.name);
+    formData.append("first_name", values.first_name);
+    formData.append("last_name", values.last_name);
     formData.append("email", values.email);
     formData.append("password", values.password);
     formData.append("confirmPassword", values.confirmPassword);
@@ -89,9 +89,11 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-0rem)] px-4 sm:px-0">
       {isSuccess ? (
-        <div className="border border-slate-400 rounded p-4 flex flex-col items-center">
-          <p className="mb-2">We've sent you a link to your email account.</p>
-          <p>Please check to verify.</p>
+        <div className="border text-blue-600 border-blue-600 rounded p-4 sm:p-8 max-w-[400px] w-[100%]">
+          <p className="text-center">
+            We've sent you a link to your email account. Please check to verify.
+          </p>
+          {/* <p className="text-blue-600"></p> */}
         </div>
       ) : (
         <div className="max-w-[500px] w-[100%] border border-slate-400 rounded p-4 sm:p-8">
@@ -136,8 +138,8 @@ const RegisterPage: React.FC = () => {
               <div className="max-w-[50%] box-border">
                 <input
                   type="text"
-                  name="name"
-                  className="border border-slate-400 rounded p-4 py-3 focus:outline-blue-600 focus:placeholder:text-transparent mr-2 w-[100%]"
+                  name="first_name"
+                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
                   onChange={handleChange}
                   placeholder="First Name"
                 />
@@ -145,74 +147,74 @@ const RegisterPage: React.FC = () => {
               <div className="max-w-[50%] box-border">
                 <input
                   type="text"
-                  name="name"
-                  className="border border-slate-400 rounded p-4 py-3 focus:outline-blue-600 focus:placeholder:text-transparent ml-2 w-[100%]"
+                  name="last_name"
+                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
                   onChange={handleChange}
                   placeholder="Last Name"
                 />
               </div>
             </div>
-            <div className="relative">
+            <div className="relative mt-4">
               <input
                 type="email"
                 name="email"
-                className="border border-slate-400 rounded mt-4 p-4 py-3 focus:outline-blue-600 w-[100%] focus:placeholder:text-transparent"
+                className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent"
                 onChange={handleChange}
-                placeholder="Email Address"
+                placeholder="Email"
               />
             </div>
 
-            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border">
+            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
               <div className="max-w-[50%] box-border">
                 <input
                   type="password"
                   name="password"
-                  className="border border-slate-400 rounded mt-4 p-4 py-3 focus:outline-blue-600 focus:placeholder:text-transparent mr-2 w-[100%]"
+                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
                   onChange={handleChange}
-                  placeholder="Enter Password"
+                  placeholder="Password"
                 />
               </div>
               <div className="max-w-[50%] box-border">
                 <input
                   type="password"
                   name="confirmPassword"
-                  className="border border-slate-400 rounded mt-4 p-4 py-3 focus:outline-blue-600 focus:placeholder:text-transparent ml-2 w-[100%]"
+                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
                   onChange={handleChange}
-                  placeholder="Confirm Password"
+                  placeholder="Confirm"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+              className="h-[41.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
             >
               {isLoading ? <div className="loader-1"></div> : "Register"}
             </button>
           </form>
           <div className="relative bg-slate-400 w-full h-[0.5px] my-8">
-            <span className="absolute bg-white top-[-12px] left-[calc(50%-(20.81px))] px-3">
-              Or
+            <span className="absolute bg-white top-[-12px] left-[calc(50%-(70.95px))] px-3 font-semibold">
+              Or continue with
             </span>
           </div>
 
           <div className="flex items-center justify-between w-[calc(100%)] box-border">
             <button
               type="submit"
-              className="h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-2"
+              className="h-[41.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
             >
               <FcGoogle className="text-2xl" />
             </button>
             <button
               type="submit"
-              className="h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-2"
+              className="h-[41.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
             >
               <FaGithub className="text-2xl" />
             </button>
           </div>
           <p className="mt-4">
             <span>Already have an account? </span>
-            <Link href="/pages/login" className="text-blue-600 font-semibold">
+            <Link href="/pages/login" className="text-blue-600">
               Login
             </Link>
           </p>

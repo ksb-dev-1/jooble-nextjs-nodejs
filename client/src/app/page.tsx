@@ -3,11 +3,11 @@ import Hero from "@/components/Hero";
 
 const Home: React.FC = () => {
   return (
-    <section className="min-h-[calc(100vh-4rem)]">
-      <div className="w-full bg-blue-600 mt-[64px] p-4 sm:p-8 xl:px-0 text-white flex justify-center">
+    <section className="min-h-[100vh]">
+      {/* <div className="w-full mt-[4.5rem] px-4 lg:px-8 py-8 lg:py-16 xl:px-0 hidden sm:flex justify-center bg-blue-600">
         <Hero />
       </div>
-      <div className="max-w-[1100px] w-[100%] mx-auto">Home</div>
+      <div className="max-w-[1100px] w-[100%] mx-auto">Home</div> */}
     </section>
   );
 };

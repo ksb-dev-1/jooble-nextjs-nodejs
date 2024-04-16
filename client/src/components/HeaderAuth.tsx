@@ -78,86 +78,76 @@ const HeaderAuth: React.FC = () => {
 
   return (
     <>
-      <div className="hidden sm:flex items-center">
-        {/* {typeof window === "undefined" && <div className="loader-3"></div>} */}
+      {!user && (
+        <div className="hidden sm:flex items-center rounded-[50px] text-white bg-blue-600">
+          {/* {typeof window === "undefined" && <div className="loader-3"></div>} */}
 
-        {!user && (
           <Link
             href="/pages/login"
-            className="border border-slate-400 rounded hover:bg-slate-100 w-[75px] h-[33.6px] hidden sm:flex items-center justify-center"
+            className="px-4 py-2 hover:bg-blue-500 hover:text-white rounded-tl-[50px] rounded-bl-[50px] w-[88.91px] text-center"
           >
             Login
           </Link>
-        )}
-
-        {pathname !== "/" && !user && (
+          <span className="h-[20px] w-[1px] bg-white"></span>
           <Link
             href="/pages/register"
-            className="border text-white bg-blue-600 border-blue-500 rounded hover:bg-blue-500 w-[75px] h-[33.6px] hidden sm:flex items-center justify-center ml-4"
+            className="px-4 py-2 hover:bg-blue-500 hover:text-white rounded-tr-[50px] rounded-br-[50px]"
           >
             Register
           </Link>
-        )}
-      </div>
+        </div>
+      )}
 
       {user && (
         <div
-          className="relative hidden sm:flex items-center"
+          className="relative hidden sm:flex items-center rounded-[50px] bg-blue-600"
           onMouseOver={showModal}
           onMouseLeave={hideModal}
         >
           <div
             ref={profileRef}
-            className="flex items-center justify-center border border-slate-400 hover:bg-slate-100 rounded px-2 h-[33.6px] cursor-pointer"
+            className="flex items-center px-4 py-2 hover:bg-blue-500 transition rounded-[50px] cursor-pointer text-white"
           >
             <span>
-              <HiOutlineUserCircle className="text-lg" />
+              <HiOutlineUserCircle />
             </span>
-            <span className="ml-1 mr-8">Profile</span>
+            <span className="ml-1 mr-6">Profile</span>
             <span ref={downIconRef} className="transition">
               <BsChevronDown />
             </span>
           </div>
           <div
             ref={modalRef}
-            className="absolute top-[100%] border border-slate-400 rounded bg-white w-full scale-0 opacity-0 transition-opacity flex flex-col"
+            className="absolute top-[100%] rounded-[25px] border border-slate-400 w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col p-2 bg-white"
           >
-            <p className="font-bold pl-2 py-2 flex items-center">
-              <span className="mr-2 text-blue-600">
-                {user.role === "admin" && <MdAdminPanelSettings />}
-              </span>
-              <span>{user.name}</span>
-            </p>
-            <p className="h-[1px] bg-slate-300"></p>
             <Link
               href="/pages/profile"
-              className="pl-2 py-2 flex items-center hover:bg-slate-100"
+              className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[25px]"
               onClick={hideModal}
             >
-              <HiOutlineUserCircle className="mr-2" /> My Profile
+              <HiOutlineUserCircle className="mr-2" />{" "}
+              <span className="text-base">My Profile</span>
             </Link>
             <Link
               href="/pages/saved"
-              className="pl-2 py-2 flex items-center hover:bg-slate-100"
+              className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[25px]"
               onClick={hideModal}
             >
-              <HiOutlineHeart className="mr-2" /> Saved Jobs
+              <HiOutlineHeart className="mr-2" />{" "}
+              <span className="text-base">Saved</span>
             </Link>
-            {/* <Link
-              href="/pages/edit-profile"
-              className="pl-2 py-2 flex items-center hover:bg-slate-100"
-              onClick={hideModal}
-            >
-              <LiaUserEditSolid className="mr-2" /> Edit Profile
-            </Link> */}
             <button
-              className="flex items-center pl-2 py-2 hover:bg-slate-100"
+              className="flex items-center pl-2 py-2 hover:bg-slate-100 rounded-[25px]"
               onClick={(e) => {
                 !isLoading && handleLogout(e);
               }}
             >
               <IoIosLogOut className="mr-2" />
-              {isLoading ? <span className="loader-3"></span> : "Logout"}
+              {isLoading ? (
+                <span className="loader-3"></span>
+              ) : (
+                <span className="text-base">Logout</span>
+              )}
             </button>
           </div>
         </div>
