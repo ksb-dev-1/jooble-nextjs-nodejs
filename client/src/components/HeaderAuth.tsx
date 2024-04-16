@@ -79,30 +79,21 @@ const HeaderAuth: React.FC = () => {
   return (
     <>
       {!user && (
-        <div className="hidden sm:flex items-center rounded-[50px] bg-blue-600 text-white">
+        <div className="hidden sm:flex items-center ">
           {/* {typeof window === "undefined" && <div className="loader-3"></div>} */}
 
-          {pathname === "/" && (
-            <Link
-              href="/pages/login"
-              className="px-4 py-2 hover:bg-blue-500 rounded-[50px] w-[88.91px] text-center"
-            >
-              Login
-            </Link>
-          )}
+          <Link
+            href="/pages/login"
+            className="px-4 py-[calc(0.5rem-0.8px)] hover:bg-[#F5F5FC] text-blue-600 rounded-[25px] w-[88.91px] text-center border border-blue-600 font-semibold"
+          >
+            Login
+          </Link>
 
           {pathname !== "/" && (
             <>
               <Link
-                href="/pages/login"
-                className="px-4 py-2 hover:bg-blue-500 rounded-tl-[50px] rounded-bl-[50px] w-[88.91px] text-center"
-              >
-                Login
-              </Link>
-              <span className="h-[20px] w-[1.5px] bg-white"></span>
-              <Link
                 href="/pages/register"
-                className="px-4 py-2 hover:bg-blue-500 rounded-tr-[50px] rounded-br-[50px]"
+                className="px-4 py-2 hover:bg-blue-500 text-white rounded-[25px] bg-blue-600 ml-2"
               >
                 Register
               </Link>
@@ -113,13 +104,13 @@ const HeaderAuth: React.FC = () => {
 
       {user && (
         <div
-          className="relative hidden sm:flex items-center rounded-[50px] bg-blue-600"
+          className="relative hidden sm:flex items-center"
           onMouseOver={showModal}
           onMouseLeave={hideModal}
         >
           <div
             ref={profileRef}
-            className="flex items-center px-4 py-2 hover:bg-blue-500 transition rounded-[50px] cursor-pointer text-white"
+            className="flex items-center px-4 py-2 rounded-[25px] bg-blue-600 hover:bg-blue-500 transition cursor-pointer text-white"
           >
             <span>
               <HiOutlineUserCircle />
