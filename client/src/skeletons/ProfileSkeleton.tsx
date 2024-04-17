@@ -11,10 +11,10 @@ const ProfileSkeleton: React.FC = () => {
         <Skeleton circle height={150} width={150} />
       </div>
       <div className="ml-2 w-full">
-        <Skeleton height={30} />
-        <Skeleton height={30} />
-        <Skeleton height={30} />
-        <Skeleton height={30} />
+        <Skeleton height={25} />
+        <Skeleton height={25} className="mt-2" />
+        <Skeleton height={25} className="mt-2" />
+        <Skeleton height={25} className="mt-2" />
       </div>
     </div>
   );
