@@ -9,6 +9,7 @@ const { isEmail } = validator;
 const UserSchema = new Schema({
   image: {
     type: String,
+    default: "",
   },
   first_name: {
     type: String,
@@ -41,11 +42,29 @@ const UserSchema = new Schema({
     enum: ["admin", "user"],
     default: "user",
   },
+  last_updated: {
+    type: Date,
+    default: Date.now,
+  },
+  location: {
+    type: String,
+    default: "",
+  },
+  available_to_join: {
+    type: String,
+    enum: ["available", "not available"],
+    default: "available",
+  },
+  mobile_no: {
+    type: String,
+    default: "",
+  },
   verificationToken: String,
   isVerified: {
     type: Boolean,
     default: false,
   },
+
   verified: Date,
   passwordToken: {
     type: String,

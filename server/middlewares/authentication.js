@@ -5,8 +5,6 @@ import Token from "../models/Token.js";
 const authenticateUser = async (req, res, next) => {
   const { refreshToken, accessToken } = req.signedCookies;
 
-  console.log(req);
-
   try {
     if (accessToken) {
       const payload = jwtUtils.isTokenValid(accessToken);

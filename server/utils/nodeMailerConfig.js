@@ -2,8 +2,8 @@ const nodeMailerConfig = {
   host: "smtp.ethereal.email",
   port: 587,
   auth: {
-    user: "cristian68@ethereal.email",
-    pass: "RH9e7XYqXUTvjrHGsq",
+    user: "filiberto.stanton@ethereal.email",
+    pass: "HnuPQqzVmF165RGqxX",
   },
 };
 

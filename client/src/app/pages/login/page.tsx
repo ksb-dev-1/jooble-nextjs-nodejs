@@ -10,10 +10,10 @@ import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 // ----- redux -----
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLoginMutation } from "@/redux/slices/authApi";
 import { setCredentials } from "@/redux/slices/userInfoSlice";
-import { RootState } from "@/redux/store";
+import { userApi } from "@/redux/slices/userApi";
 
 interface ErrorProps {
   data?: {
@@ -27,8 +27,8 @@ const LoginPage: React.FC = () => {
     email: "",
     password: "",
   });
-  const [register, { isLoading, isError }] = useLoginMutation();
-  const { user } = useSelector((state: RootState) => state.info);
+  const [login, { isLoading, isError }] = useLoginMutation();
+
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -36,10 +36,11 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const res = await register(values).unwrap();
+      const res = await login(values).unwrap();
 
       if (res.user) {
         dispatch(setCredentials({ ...res.user }));
+        dispatch(userApi.util.invalidateTags([{ type: "User" }]));
         router.push("/");
         toast.success("User logged in successfully");
       }

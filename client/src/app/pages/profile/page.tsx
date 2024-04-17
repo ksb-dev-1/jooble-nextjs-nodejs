@@ -1,20 +1,23 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
+// ----- react-skeleton-icons -----
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 // ----- redux -----
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useShowMeQuery } from "@/redux/slices/userApi";
 
-// ----- components -----
-import AdminHeader from "@/components/AdminHeader";
+// ----- skeletons -----
+import ProfileSkeleton from "@/skeletons/ProfileSkeleton";
 
 const ProfileInfoNoSSR = dynamic(() => import("@/components/ProfileInfo"), {
   ssr: false,
 });
 
 const ProfilePage: React.FC = () => {
-  const { user } = useSelector((state: RootState) => state.info);
+  const { data, isFetching, error, isSuccess } = useShowMeQuery();
 
   return (
     <>
@@ -22,10 +25,11 @@ const ProfilePage: React.FC = () => {
         // className={`max-w-[1100px] w-full mx-auto min-h-[calc(100vh-4.5rem)] ${
         //   user?.role === "admin" ? "mt-[4.5rem]" : "mt-[4.5rem]"
         // }`}
-        className="max-w-[1100px] w-full mx-auto min-h-[calc(100vh-4.5rem)] mpx-4 sm:px-8 xl:px-0 pt-[4.5rem] pb-[4rem]"
+        className="max-w-[1100px] w-full mx-auto min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 xl:px-0 pt-[4.5rem] pb-[4rem]"
       >
-        <div className="p-2 sm:p-4 rounded min-h-[133.6px] w-fit bg-white shadow-1 mt-8">
-          <ProfileInfoNoSSR user={user} />
+        <div className="p-4 sm:p-8 rounded min-h-[214px] bg-white shadow-1 mt-4 sm:mt-8">
+          {isFetching && <ProfileSkeleton />}
+          {isSuccess && <ProfileInfoNoSSR user={data.user} />}
         </div>
       </div>
     </>

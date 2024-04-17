@@ -36,7 +36,7 @@ const nextConfig = {
       },
       {
         source: "/show-me",
-        destination: "http://localhost:8000/jooble/api/users/showMe",
+        destination: "http://localhost:8000/jooble/api/users/show-me",
       },
     ];
   },

@@ -1,3 +1,5 @@
+import { StatusCodes } from "http-status-codes";
+
 const getAllUsers = async (req, res) => {
   res.send("Get all users");
 };

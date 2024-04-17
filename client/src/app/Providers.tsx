@@ -1,10 +1,9 @@
 "use client";
 
-// 3rd party libraries
-// react-toastify
+// ----- react-toastify -----
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// react-redux
+// ----- react-redux -----
 import { Provider } from "react-redux";
 
 import store from "@/redux/store";
