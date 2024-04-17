@@ -46,7 +46,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
         </div>
 
         <div className="md:ml-8 mt-4 md:mt-0">
-          <p className="font-semibold text-center md:text-start sm:text-xl">
+          <p className="font-semibold text-center md:text-start sm:text-lg">
             <span>
               {first_name.charAt(0).toUpperCase() + first_name.substring(1)}{" "}
             </span>

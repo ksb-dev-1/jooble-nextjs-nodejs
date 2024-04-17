@@ -12,8 +12,12 @@ const showCurrentUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user: req.user });
 };
 
-const updateUser = async (req, res) => {
-  res.send("Update user");
+const updateUserProfile = async (req, res) => {
+  res.send("Update user profile");
+};
+
+const updateUserEmail = async (req, res) => {
+  res.send("Update user email");
 };
 
 const updateUserPassword = async (req, res) => {
@@ -24,6 +28,7 @@ export {
   getAllUsers,
   getSingleUser,
   showCurrentUser,
-  updateUser,
+  updateUserProfile,
+  updateUserEmail,
   updateUserPassword,
 };

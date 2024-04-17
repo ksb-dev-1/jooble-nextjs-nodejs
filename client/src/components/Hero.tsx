@@ -3,7 +3,7 @@ import { FiSearch } from "react-icons/fi";
 
 const Hero: React.FC = () => {
   return (
-    <div className="max-w-[1100px] w-[100%] flex flex-col items-center shadow-2 rounded-[25px] p-8">
+    <div className="max-w-[1100px] w-[100%] flex flex-col items-center">
       <p className="text-white text-3xl text-center mb-8 font-semibold">
         Find your dream job now
       </p>
