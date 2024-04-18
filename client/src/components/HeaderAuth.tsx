@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useLogoutMutation } from "@/redux/slices/authApi";
 import { removeUser } from "@/redux/slices/userInfoSlice";
+import { userApi } from "@/redux/slices/userApi";
 
 interface ErrorProps {
   data?: {
@@ -44,6 +45,7 @@ const HeaderAuth: React.FC = () => {
 
     try {
       const res = await logout(user).unwrap();
+      dispatch(userApi.util.invalidateTags([{ type: "User" }]));
       dispatch(removeUser());
 
       if (res.msg) {

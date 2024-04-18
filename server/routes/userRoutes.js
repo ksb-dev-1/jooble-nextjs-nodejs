@@ -9,7 +9,7 @@ import {
   getAllUsers,
   getSingleUser,
   showCurrentUser,
-  updateUserProfile,
+  editUserProfile,
   updateUserEmail,
   updateUserPassword,
 } from "../controllers/userController.js";
@@ -24,9 +24,9 @@ import {
 
 router.route("/").get(getAllUsers);
 router.route("/show-me").get(authenticateUser, showCurrentUser);
-router.route("/update-user-profile").patch(updateUserProfile);
-router.route("/update-user-email").patch(updateUserEmail);
-router.route("/update-user-password").patch(updateUserPassword);
+router.route("/edit-profile").patch(editUserProfile);
+router.route("/update-email").patch(updateUserEmail);
+router.route("/update-password").patch(updateUserPassword);
 router.route("/:id").get(getSingleUser);
 
 export default router;

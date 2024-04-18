@@ -12,7 +12,30 @@ const showCurrentUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user: req.user });
 };
 
-const updateUserProfile = async (req, res) => {
+const editUserProfile = async (req, res) => {
+  const {
+    image,
+    first_name,
+    last_name,
+    location,
+    mobile_no,
+    available_to_join,
+    password,
+    confirmPassword,
+  } = req.body;
+
+  console.log(image);
+
+  console.log(
+    first_name,
+    last_name,
+    location,
+    mobile_no,
+    available_to_join,
+    password,
+    confirmPassword
+  );
+
   res.send("Update user profile");
 };
 
@@ -28,7 +51,7 @@ export {
   getAllUsers,
   getSingleUser,
   showCurrentUser,
-  updateUserProfile,
+  editUserProfile,
   updateUserEmail,
   updateUserPassword,
 };

@@ -18,7 +18,15 @@ export const userApi = createApi({
       }),
       providesTags: [{ type: "User" }],
     }),
+    editProfile: builder.mutation({
+      query: (data) => ({
+        url: "/edit-profile",
+        method: "PATCH",
+        body: data,
+        formData: true,
+      }),
+    }),
   }),
 });
 
-export const { useShowMeQuery } = userApi;
+export const { useShowMeQuery, useEditProfileMutation } = userApi;

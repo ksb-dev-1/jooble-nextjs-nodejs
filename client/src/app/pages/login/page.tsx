@@ -36,11 +36,11 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
 
     try {
+      dispatch(userApi.util.invalidateTags([{ type: "User" }]));
       const res = await login(values).unwrap();
 
       if (res.user) {
         dispatch(setCredentials({ ...res.user }));
-        dispatch(userApi.util.invalidateTags([{ type: "User" }]));
         router.push("/");
         toast.success("User logged in successfully");
       }

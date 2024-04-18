@@ -5,7 +5,7 @@ interface User {
   email: string;
   role: string;
   last_updated: Date;
-  location: String;
-  available_to_join: String;
-  mobile_no: String;
+  location: string;
+  available_to_join: string;
+  mobile_no: string;
 }

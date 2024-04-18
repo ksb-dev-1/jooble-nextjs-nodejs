@@ -83,7 +83,7 @@ const ResetPasswordForm: React.FC = () => {
             type="submit"
             className="h-[41.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
           >
-            {isLoading ? <div className="loader-1"></div> : "Submit"}
+            {isLoading ? <div className="loader-1"></div> : "Save"}
           </button>
         </form>
       </div>
