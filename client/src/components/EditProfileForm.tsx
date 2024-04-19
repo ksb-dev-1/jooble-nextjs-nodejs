@@ -18,7 +18,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
 import { FaUpload } from "react-icons/fa6";
 // ----- redux
-import { useEditProfileMutation } from "@/redux/slices/userApi";
+import { useEditProfileMutation, useShowMeQuery } from "@/redux/slices/userApi";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "@/redux/slices/authApi";
 import { setCredentials } from "@/redux/slices/userInfoSlice";
@@ -56,17 +56,43 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
       available_to_join,
     } = user;
 
+    // const [values, setValues] = useState({
+    //   image: image,
+    //   first_name: first_name,
+    //   last_name: last_name,
+    //   email: email,
+    //   location: location,
+    //   mobile_no: mobile_no,
+    //   available_to_join: available_to_join,
+    //   password: "",
+    //   confirmPassword: "",
+    // });
+
     const [values, setValues] = useState({
-      image: image,
-      first_name: first_name,
-      last_name: last_name,
-      email: email,
-      location: location,
-      mobile_no: mobile_no,
-      available_to_join: available_to_join,
+      image,
+      first_name,
+      last_name,
+      email,
+      location,
+      mobile_no,
+      available_to_join,
       password: "",
       confirmPassword: "",
     });
+
+    useEffect(() => {
+      setValues({
+        ...values,
+        image,
+        first_name,
+        last_name,
+        location,
+        mobile_no,
+        password: "",
+        confirmPassword: "",
+      });
+    }, [user]);
+
     const [available, setAvailable] = useState(
       available_to_join === "available" ? "available" : "not available"
     );
