@@ -15,10 +15,14 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 // ----- recat-icons -----
 import { BiSolidUserCircle } from "react-icons/bi";
-import { FaUpload } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import { FaUpload } from "react-icons/fa6";
 // ----- redux
 import { useEditProfileMutation } from "@/redux/slices/userApi";
+import { useDispatch } from "react-redux";
+import { useLoginMutation } from "@/redux/slices/authApi";
+import { setCredentials } from "@/redux/slices/userInfoSlice";
+import { userApi } from "@/redux/slices/userApi";
 
 interface UserProps {
   user: User;
@@ -44,6 +48,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
 
     const {
       image,
+      email,
       first_name,
       last_name,
       location,
@@ -55,6 +60,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
       image: image,
       first_name: first_name,
       last_name: last_name,
+      email: email,
       location: location,
       mobile_no: mobile_no,
       available_to_join: available_to_join,
@@ -67,6 +73,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
     const [onHoverImage, setOnHoverImage] = useState(false);
     const [editProfile, { isLoading, isError, isSuccess }] =
       useEditProfileMutation();
+    const dispatch = useDispatch();
 
     // ----- Handle outside click -----
     useEffect(() => {
@@ -94,8 +101,10 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
           editFormRef.current.contains(e.target as Node) &&
           closeBtnRef.current.contains(e.target as Node))
       ) {
-        editFormContainerRef.current.style.transform = "scale(0)";
         editFormContainerRef.current.style.opacity = "0";
+        setTimeout(() => {
+          editFormContainerRef.current!.style.transform = "scale(0)";
+        }, 300);
 
         setValues({
           ...values,
@@ -119,11 +128,13 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
       const formData = new FormData();
 
       formData.append("image", values.image);
-      if (available_to_join) {
-        formData.append("available_to_join", available_to_join);
-      }
+      // if (values.available_to_join) {
+      //   formData.append("available_to_join", values.available_to_join);
+      // }
+      formData.append("available_to_join", values.available_to_join);
       formData.append("first_name", values.first_name);
       formData.append("last_name", values.last_name);
+      formData.append("email", values.email);
       formData.append("location", values.location);
       formData.append("mobile_no", values.mobile_no);
       formData.append("password", values.password);
@@ -131,6 +142,31 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
 
       try {
         const res = await editProfile(formData).unwrap();
+
+        if (res.msg) {
+          dispatch(userApi.util.invalidateTags([{ type: "User" }]));
+          toast.success("Profile updated successfully");
+
+          if (editFormContainerRef.current) {
+            editFormContainerRef.current.style.opacity = "0";
+            setTimeout(() => {
+              editFormContainerRef.current!.style.transform = "scale(0)";
+            }, 300);
+          }
+
+          setValues({
+            ...values,
+            image,
+            first_name,
+            last_name,
+            location,
+            mobile_no,
+            password: "",
+            confirmPassword: "",
+          });
+
+          setAvailable(user.available_to_join);
+        }
 
         isError && toast.error(res.data.msg);
       } catch (err) {
@@ -176,7 +212,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
     return (
       <div
         ref={editFormContainerRef}
-        className="z-30 scale-0 opacity-0 fixed w-full h-full top-0 left-0 mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem] bg-[rgba(0,0,0,0.75)] transition-opacity duration-300"
+        className="z-30 scale-0 opacity-0 fixed w-full h-full top-0 left-0 mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0  bg-[rgba(0,0,0,0.75)] transition-opacity duration-300"
       >
         <div
           ref={editFormRef}
@@ -184,7 +220,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
         >
           <span
             ref={closeBtnRef}
-            className="absolute text-3xl -top-[15px] sm:top-4 right-[calc(50%-30px)] sm:right-4 text-white sm:text-red-500 cursor-pointer hover:rotate-[360deg] transition-all bg-red-500 sm:bg-red-100 rounded shadow-1 sm:shadow-none"
+            className="absolute text-3xl -top-[15px] sm:top-2 right-[calc(50%-30px)] sm:right-2 text-white bg-[tomato] cursor-pointer hover:rotate-[360deg] transition-all  rounded shadow-1 sm:shadow-none"
             onClick={(e: any) => hideEditForm(e)}
           >
             <IoMdClose />
@@ -210,10 +246,15 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                 onMouseLeave={() => setOnHoverImage(false)}
               >
                 {onHoverImage && (
-                  <FaUpload className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl sm:text-5xl text-slate-300" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.5)] text-white rounded-full w-[4.15rem] sm:w-[5.5rem] h-[4.15rem] sm:h-[5.5rem] flex flex-col items-center justify-center">
+                    <FaUpload className="sm:text-xl mb-1 sm:mb-2" />
+                    <span className="text-[0.6rem] sm:text-xs font-medium">
+                      Upload
+                    </span>
+                  </div>
                 )}
                 {!onHoverImage && !values.image && (
-                  <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl sm:text-8xl text-slate-300" />
+                  <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[4.85rem] sm:text-[6.5rem] text-slate-300" />
                 )}
                 {values.image && !onHoverImage && (
                   <Image

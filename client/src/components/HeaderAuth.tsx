@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
+// ----- react-skeleton-icons -----
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 // ----- react-icons -----
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { HiOutlineHeart } from "react-icons/hi2";
@@ -18,7 +21,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useLogoutMutation } from "@/redux/slices/authApi";
 import { removeUser } from "@/redux/slices/userInfoSlice";
-import { userApi } from "@/redux/slices/userApi";
 
 interface ErrorProps {
   data?: {
@@ -45,7 +47,6 @@ const HeaderAuth: React.FC = () => {
 
     try {
       const res = await logout(user).unwrap();
-      dispatch(userApi.util.invalidateTags([{ type: "User" }]));
       dispatch(removeUser());
 
       if (res.msg) {

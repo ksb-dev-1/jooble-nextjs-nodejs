@@ -1,13 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
-// ----- react-toastify -----
-import { toast } from "react-toastify";
-// ----- react-skeleton-icons -----
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 // ----- redux -----
 import { useShowMeQuery } from "@/redux/slices/userApi";
 
@@ -19,11 +13,7 @@ const ProfileInfoNoSSR = dynamic(() => import("@/components/ProfileInfo"), {
 });
 
 const ProfilePage: React.FC = () => {
-  const { data, isFetching, isError, isSuccess } = useShowMeQuery();
-
-  if (isError) {
-    toast.error("Failed to fetch profile info. Try again.");
-  }
+  const { data, isFetching, isSuccess } = useShowMeQuery();
 
   return (
     <>

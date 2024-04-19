@@ -9,6 +9,7 @@ const authenticateUser = async (req, res, next) => {
     if (accessToken) {
       const payload = jwtUtils.isTokenValid(accessToken);
       req.user = payload.user;
+
       return next();
     }
 
