@@ -12,7 +12,6 @@ import { FiPhone } from "react-icons/fi";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { FaCheckCircle } from "react-icons/fa";
-
 // ----- components -----
 import EditProfileForm from "./EditProfileForm";
 
@@ -96,7 +95,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
           </div>
 
           <div className="md:ml-8 mt-4 md:mt-0">
-            <p className="font-semibold text-center md:text-start sm:text-lg">
+            <p className="font-bold text-center md:text-start sm:text-xl">
               <span>
                 {first_name.charAt(0).toUpperCase() + first_name.substring(1)}{" "}
               </span>
@@ -116,22 +115,6 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             <div className="flex flex-col sm:flex-row sm:items-center">
               <div className="flex flex-col items-center sm:block">
                 <div className="flex items-center">
-                  <HiOutlineMail />
-                  <span className="text-sm ml-2">{email}</span>
-                  <FaCheckCircle className="ml-2 text-green-600" />
-                </div>
-                <div className="flex items-center mt-4">
-                  <FiPhone />
-                  <span className="text-sm ml-2">
-                    {mobile_no ? mobile_no : "Not provided"}
-                  </span>
-                </div>
-              </div>
-
-              <span className="hidden sm:inline-block h-[50px] w-[0.5px] bg-slate-300 mx-8"></span>
-
-              <div className="mt-4 sm:mt-0 flex flex-col items-center sm:block">
-                <div className="flex items-center">
                   <IoLocationOutline />
                   <span className="text-sm ml-2">
                     {location ? location : "Not provided"}
@@ -142,6 +125,22 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                   <span className="text-sm ml-2">
                     {available_to_join.charAt(0).toUpperCase() +
                       available_to_join.substring(1)}
+                  </span>
+                </div>
+              </div>
+
+              <span className="hidden sm:inline-block h-[50px] w-[0.5px] bg-slate-300 mx-8"></span>
+
+              <div className="flex flex-col items-center sm:block">
+                <div className="mt-4 sm:mt-0 flex items-center">
+                  <HiOutlineMail />
+                  <span className="text-sm ml-2">{email}</span>
+                  <FaCheckCircle className="ml-2 text-green-600" />
+                </div>
+                <div className="flex items-center mt-4">
+                  <FiPhone />
+                  <span className="text-sm ml-2">
+                    {mobile_no ? mobile_no : "Not provided"}
                   </span>
                 </div>
               </div>
@@ -177,6 +176,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
           </button>
         </div>
       </div>
+
       <EditProfileForm
         ref={editFormContainerRef}
         values={values}

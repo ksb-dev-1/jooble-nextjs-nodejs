@@ -21,6 +21,34 @@ const ProfilePage: React.FC = () => {
         {isFetching && <ProfileSkeleton />}
         {isSuccess && <ProfileInfoNoSSR user={data.user} />}
       </div>
+      <div className="flex flex-col md:flex-row w-full mt-4 md:mt-8">
+        <div className="flex flex-wrap md:flex-col bg-white shadow-1 rounded-[25px] p-2 md:p-4 w-full md:w-[200px]">
+          <p className="font-bold px-2 sm:px-4 mb-2 hidden md:block">
+            Quick links
+          </p>
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+            Key skills
+          </p>
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+            Projects
+          </p>
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+            Education
+          </p>
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+            Certifications
+          </p>
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+            Career profile
+          </p>
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+            Personal details
+          </p>
+        </div>
+        <div className="flex-grow bg-white shadow-1 rounded-[25px] p-2 mt-4 md:mt-0 md:ml-8">
+          Page
+        </div>
+      </div>
     </div>
   );
 };
