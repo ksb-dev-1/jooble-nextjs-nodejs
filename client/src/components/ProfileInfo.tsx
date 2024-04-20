@@ -121,10 +121,10 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                   <div className="text-sm ml-2">
                     {!country && !state && !city && <span>Not provided</span>}
                     <span>
-                      {country &&
-                        country.charAt(0).toUpperCase() +
-                          country.substring(1) +
-                          ", "}
+                      {city &&
+                        city.charAt(0).toUpperCase() +
+                          city.substring(1) +
+                          " , "}
                     </span>
                     <span>
                       {state &&
@@ -133,7 +133,8 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                           ", "}
                     </span>
                     <span>
-                      {city && city.charAt(0).toUpperCase() + city.substring(1)}
+                      {country &&
+                        country.charAt(0).toUpperCase() + country.substring(1)}
                     </span>
                   </div>
                 </div>
@@ -165,7 +166,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
           </div>
         </div>
 
-        <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0">
+        <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0 bg-blue-50 p-4 rounded-[25px]">
           <div className="w-[100%]">
             <input
               type="file"
@@ -177,7 +178,8 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             />
             <label
               htmlFor="resume"
-              className="relative cursor-pointer h-[100px] px-4 w-full border border-dashed hover:bg-slate-100 border-blue-600 rounded-[25px] overflow-hidden flex flex-col items-center justify-center"
+              className="relative p-4 bg-white cursor-pointer px-4 w-full border border-dashed hover:bg-slate-100 border-blue-600 rounded-[25px] overflow-hidden flex flex-col items-center 
+              justify-center"
             >
               <p className="text-blue-600">Upload Resume</p>
               <p className="text-sm mt-2 text-center">
@@ -186,17 +188,17 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             </label>
           </div>
           <button
-            className="flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-4 h-[40px] rounded-[25px] mt-4"
+            className="flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-[25px] mt-2"
             onClick={showEditForm}
           >
-            Edit Profile
+            Edit
           </button>
         </div>
       </div>
 
       <EditProfileForm
         ref={editFormContainerRef}
-        user={user}
+        //user={user}
         values={values}
         setValues={setValues}
       />

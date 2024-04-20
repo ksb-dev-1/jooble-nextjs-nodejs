@@ -103,7 +103,7 @@ const RegisterPage: React.FC = () => {
 
           <form onSubmit={handleRegister}>
             <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border">
-              <div className="max-w-[50%] box-border">
+              <div className="flex-grow box-border">
                 <input
                   type="text"
                   name="first_name"
@@ -112,7 +112,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="First Name"
                 />
               </div>
-              <div className="max-w-[50%] box-border">
+              <div className="flex-grow box-border">
                 <input
                   type="text"
                   name="last_name"
@@ -133,7 +133,7 @@ const RegisterPage: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
-              <div className="max-w-[50%] box-border">
+              <div className="flex-grow box-border">
                 <input
                   type="password"
                   name="password"
@@ -142,7 +142,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="Password"
                 />
               </div>
-              <div className="max-w-[50%] box-border">
+              <div className="flex-grow box-border">
                 <input
                   type="password"
                   name="confirmPassword"

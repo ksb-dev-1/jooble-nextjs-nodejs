@@ -60,7 +60,7 @@ const UserSchema = new Schema({
   },
   available_to_join: {
     type: String,
-    default: "15 days or less",
+    default: "15 days",
   },
   mobile_no: {
     type: String,

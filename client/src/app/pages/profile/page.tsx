@@ -17,7 +17,7 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div className="max-w-[1100px] w-full mx-auto min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 xl:px-0 pt-[4.5rem] pb-[4rem]">
-      <div className="p-4 sm:p-8 rounded-[25px] min-h-[220px] bg-white shadow-1 mt-4 sm:mt-8">
+      <div className="p-4 sm:p-8 rounded-[25px] min-h-[229.6px] bg-white shadow-1 mt-4 sm:mt-8">
         {isFetching && <ProfileSkeleton />}
         {isSuccess && <ProfileInfoNoSSR user={data.user} />}
       </div>
@@ -26,19 +26,19 @@ const ProfilePage: React.FC = () => {
           <p className="font-bold px-2 sm:px-4 mb-2 hidden md:block">
             Quick links
           </p>
-          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 mb-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
             Key skills
           </p>
-          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 mb-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
             Projects
           </p>
-          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 mb-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
             Education
           </p>
-          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 mb-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
             Certifications
           </p>
-          <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
+          <p className="rounded-[25px] px-2 sm:px-4 py-2 mb-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
             Career profile
           </p>
           <p className="rounded-[25px] px-2 sm:px-4 py-2 cursor-pointer hover:bg-[#f8f8f8] text-sm">
