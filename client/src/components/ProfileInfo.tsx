@@ -25,7 +25,9 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
     first_name,
     last_name,
     email,
-    location,
+    country,
+    state,
+    city,
     mobile_no,
     last_updated,
     available_to_join,
@@ -33,32 +35,32 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
 
   const [values, setValues] = useState({
     image: user.image,
+    available_to_join: user.available_to_join,
     first_name: user.first_name,
     last_name: user.last_name,
     email: user.email,
-    location: user.location,
+    country: user.country,
+    state: user.state,
+    city: user.city,
     mobile_no: user.mobile_no,
-    available_to_join: user.available_to_join,
     password: "",
     confirmPassword: "",
   });
-  const [available, setAvailable] = useState(
-    user.available_to_join === "available" ? "available" : "not available"
-  );
 
   const setValuesFn = () => {
     setValues({
       ...values,
       image: user.image,
+      available_to_join: user.available_to_join,
       first_name: user.first_name,
       last_name: user.last_name,
-      location: user.location,
+      country: user.country,
+      state: user.state,
+      city: user.city,
       mobile_no: user.mobile_no,
       password: "",
       confirmPassword: "",
     });
-
-    setAvailable(user.available_to_join);
   };
 
   useEffect(() => {
@@ -116,9 +118,24 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
               <div className="flex flex-col items-center sm:block">
                 <div className="flex items-center">
                   <IoLocationOutline />
-                  <span className="text-sm ml-2">
-                    {location ? location : "Not provided"}
-                  </span>
+                  <div className="text-sm ml-2">
+                    {!country && !state && !city && <span>Not provided</span>}
+                    <span>
+                      {country &&
+                        country.charAt(0).toUpperCase() +
+                          country.substring(1) +
+                          ", "}
+                    </span>
+                    <span>
+                      {state &&
+                        state.charAt(0).toUpperCase() +
+                          state.substring(1) +
+                          ", "}
+                    </span>
+                    <span>
+                      {city && city.charAt(0).toUpperCase() + city.substring(1)}
+                    </span>
+                  </div>
                 </div>
                 <div className="flex items-center mt-4">
                   <MdOutlineEventAvailable />
@@ -179,10 +196,9 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
 
       <EditProfileForm
         ref={editFormContainerRef}
+        user={user}
         values={values}
         setValues={setValues}
-        available={available}
-        setAvailable={setAvailable}
       />
     </>
   );

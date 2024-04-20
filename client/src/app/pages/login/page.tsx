@@ -66,7 +66,7 @@ const LoginPage: React.FC = () => {
           <input
             type="email"
             name="email"
-            className="border border-slate-400 rounded mt-4 p-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent"
+            className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
             onChange={handleChange}
             placeholder="Email"
           />
@@ -74,7 +74,7 @@ const LoginPage: React.FC = () => {
           <input
             type="password"
             name="password"
-            className="border border-slate-400 rounded mt-4 p-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent"
+            className="border border-slate-400 rounded mt-4 px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
             onChange={handleChange}
             placeholder="Password"
           />
@@ -85,7 +85,7 @@ const LoginPage: React.FC = () => {
           </p>
           <button
             type="submit"
-            className="h-[41.6px] sm:h-[49.6px] rounded mt-2 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+            className="h-[37.6px] sm:h-[49.6px] rounded mt-2 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
           >
             {isLoading ? <div className="loader-1"></div> : "Login"}
           </button>
@@ -100,13 +100,13 @@ const LoginPage: React.FC = () => {
         <div className="flex items-center justify-between w-[calc(100%)] box-border">
           <button
             type="submit"
-            className="h-[41.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-2"
+            className="h-[37.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-2"
           >
             <FcGoogle className="text-2xl" />
           </button>
           <button
             type="submit"
-            className="h-[41.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-2"
+            className="h-[37.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-2"
           >
             <FaGithub className="text-2xl" />
           </button>

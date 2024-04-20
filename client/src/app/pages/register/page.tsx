@@ -102,44 +102,12 @@ const RegisterPage: React.FC = () => {
           </p>
 
           <form onSubmit={handleRegister}>
-            {/* <div className="w-[100%] flex items-center justify-center mb-4 sm:mb-8">
-              <input
-                type="file"
-                id="image"
-                accept="image/*"
-                name="image"
-                className="hidden"
-                onChange={handleImageChange}
-              />
-              <label
-                htmlFor="image"
-                className="relative cursor-pointer block w-[75px] sm:w-[100px] h-[75px] sm:h-[100px] rounded-full overflow-hidden border border-slate-400"
-                onMouseOver={() => setOnHoverImage(true)}
-                onMouseLeave={() => setOnHoverImage(false)}
-              >
-                {onHoverImage && (
-                  <FaUpload className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl sm:text-5xl text-slate-300" />
-                )}
-                {!onHoverImage && !values.image && (
-                  <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl sm:text-8xl text-slate-300" />
-                )}
-                {values.image && !onHoverImage && (
-                  <Image
-                    src={values.image}
-                    alt="pic"
-                    width={100}
-                    height={100}
-                  />
-                )}
-              </label>
-            </div> */}
-
             <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border">
               <div className="max-w-[50%] box-border">
                 <input
                   type="text"
                   name="first_name"
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="First Name"
                 />
@@ -148,7 +116,7 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="text"
                   name="last_name"
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Last Name"
                 />
@@ -158,7 +126,7 @@ const RegisterPage: React.FC = () => {
               <input
                 type="email"
                 name="email"
-                className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent"
+                className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
                 onChange={handleChange}
                 placeholder="Email"
               />
@@ -169,7 +137,7 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="password"
                   name="password"
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Password"
                 />
@@ -178,7 +146,7 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="password"
                   name="confirmPassword"
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Confirm"
                 />
@@ -187,7 +155,7 @@ const RegisterPage: React.FC = () => {
 
             <button
               type="submit"
-              className="h-[41.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+              className="h-[37.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
             >
               {isLoading ? <div className="loader-1"></div> : "Register"}
             </button>
@@ -201,13 +169,13 @@ const RegisterPage: React.FC = () => {
           <div className="flex items-center justify-between w-[calc(100%)] box-border">
             <button
               type="submit"
-              className="h-[41.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
+              className="h-[37.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
             >
               <FcGoogle className="text-2xl" />
             </button>
             <button
               type="submit"
-              className="h-[41.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
+              className="h-[37.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
             >
               <FaGithub className="text-2xl" />
             </button>

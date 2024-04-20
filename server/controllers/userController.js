@@ -32,7 +32,9 @@ const editUserProfile = async (req, res) => {
     first_name,
     last_name,
     email,
-    location,
+    country,
+    state,
+    city,
     mobile_no,
     available_to_join,
     password,
@@ -74,7 +76,9 @@ const editUserProfile = async (req, res) => {
         image: imageUrl.secure_url,
         first_name: first_name !== "" ? first_name : user.first_name,
         last_name: last_name !== "" ? last_name : user.last_name,
-        location: location !== "" ? location : user.location,
+        country: country !== "" ? country : user.country,
+        state: state !== "" ? state : user.state,
+        city: city !== "" ? city : user.city,
         mobile_no: mobile_no !== "" ? mobile_no : user.mobile_no,
         available_to_join:
           available_to_join !== "" ? available_to_join : user.available_to_join,
@@ -86,7 +90,9 @@ const editUserProfile = async (req, res) => {
       {
         first_name: first_name !== "" ? first_name : user.first_name,
         last_name: last_name !== "" ? last_name : user.last_name,
-        location: location !== "" ? location : user.location,
+        country: country !== "" ? country : user.country,
+        state: state !== "" ? state : user.state,
+        city: city !== "" ? city : user.city,
         mobile_no: mobile_no !== "" ? mobile_no : user.mobile_no,
         available_to_join:
           available_to_join !== "" ? available_to_join : user.available_to_join,

@@ -25,13 +25,15 @@ import { useDispatch } from "react-redux";
 import { userApi } from "@/redux/slices/userApi";
 
 interface UserProps {
-  //user: User;
+  user: User;
   values: {
     image: string;
     first_name: string;
     last_name: string;
     email: string;
-    location: string;
+    country: string;
+    state: string;
+    city: string;
     mobile_no: string;
     available_to_join: string;
     password: string;
@@ -43,15 +45,15 @@ interface UserProps {
       first_name: string;
       last_name: string;
       email: string;
-      location: string;
+      country: string;
+      state: string;
+      city: string;
       mobile_no: string;
       available_to_join: string;
       password: string;
       confirmPassword: string;
     }>
   >;
-  available: string;
-  setAvailable: Dispatch<SetStateAction<string>>;
 }
 
 interface ErrorProps {
@@ -62,10 +64,12 @@ interface ErrorProps {
 }
 
 const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
-  ({ values, setValues, available, setAvailable }, ref) => {
+  ({ user, values, setValues }, ref) => {
     const editFormContainerRef = useRef<HTMLDivElement>(null);
     const editFormRef = useRef<HTMLDivElement>(null);
     const closeBtnRef = useRef<HTMLSpanElement>(null);
+
+    console.log(user);
 
     useImperativeHandle(
       ref,
@@ -122,7 +126,9 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
       formData.append("first_name", values.first_name);
       formData.append("last_name", values.last_name);
       formData.append("email", values.email);
-      formData.append("location", values.location);
+      formData.append("country", values.country);
+      formData.append("state", values.state);
+      formData.append("city", values.city);
       formData.append("mobile_no", values.mobile_no);
       formData.append("password", values.password);
       formData.append("confirmPassword", values.confirmPassword);
@@ -243,44 +249,104 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               </label>
             </div>
 
-            <div className="flex items-center justify-center my-8">
-              <div
-                className="flex items-center cursor-pointer mr-4"
-                onClick={() => {
-                  setAvailable("available");
-                  setValues({ ...values, available_to_join: "available" });
-                }}
-              >
-                {available === "available" ? (
-                  <span className="h-[17.5px] w-[17.5px] border border-blue-600 bg-blue-600 mr-2 rounded-full"></span>
+            <div className="flex flex-col items-center justify-center mt-4">
+              <p className="font-semibold">Available to join</p>
+              <div className="flex items-center justify-center sm:justify-start flex-wrap mt-4 rounded-[25px]">
+                {values.available_to_join === "15 days or less" ? (
+                  <span className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer bg-slate-100">
+                    15 Days or less
+                  </span>
                 ) : (
-                  <span className="h-[17.5px] w-[17.5px] border border-slate-400 mr-2 rounded-full"></span>
+                  <span
+                    className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer"
+                    onClick={(e: any) =>
+                      setValues({
+                        ...values,
+                        available_to_join: "15 days or less",
+                      })
+                    }
+                  >
+                    15 Days or less
+                  </span>
                 )}
-                <span className="text-sm">Available</span>
-              </div>
-              <div
-                className="flex items-center cursor-pointer"
-                onClick={() => {
-                  setAvailable("not available");
-                  setValues({ ...values, available_to_join: "not available" });
-                }}
-              >
-                {available === "not available" ? (
-                  <span className="h-[17.5px] w-[17.5px] border border-blue-600 bg-blue-600 mr-2 rounded-full"></span>
+                {values.available_to_join === "1 month" ? (
+                  <span className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer bg-slate-100">
+                    1 Month
+                  </span>
                 ) : (
-                  <span className="h-[17.5px] w-[17.5px] border border-slate-400 mr-2 rounded-full"></span>
+                  <span
+                    className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer"
+                    onClick={(e: any) =>
+                      setValues({
+                        ...values,
+                        available_to_join: "1 month",
+                      })
+                    }
+                  >
+                    1 Month
+                  </span>
                 )}
-                <span className="text-sm">Not Available</span>
+                {values.available_to_join === "2 months" ? (
+                  <span className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer bg-slate-100">
+                    2 Months
+                  </span>
+                ) : (
+                  <span
+                    className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer"
+                    onClick={(e: any) =>
+                      setValues({
+                        ...values,
+                        available_to_join: "2 months",
+                      })
+                    }
+                  >
+                    2 Months
+                  </span>
+                )}
+                {values.available_to_join === "3 months" ? (
+                  <span className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer bg-slate-100">
+                    3 Months
+                  </span>
+                ) : (
+                  <span
+                    className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer"
+                    onClick={(e: any) =>
+                      setValues({
+                        ...values,
+                        available_to_join: "3 months",
+                      })
+                    }
+                  >
+                    3 Months
+                  </span>
+                )}
+                {values.available_to_join === "more than 3 months" ? (
+                  <span className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer bg-slate-100">
+                    More than 3 months
+                  </span>
+                ) : (
+                  <span
+                    className="text-xs sm:text-sm rounded-[25px] py-1 sm:py-2 px-2 sm:px-4 border border-slate-300 mr-2 mb-2 cursor-pointer"
+                    onClick={(e: any) =>
+                      setValues({
+                        ...values,
+                        available_to_join: "more than 3 months",
+                      })
+                    }
+                  >
+                    More than 3 months
+                  </span>
+                )}
               </div>
             </div>
 
-            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border">
+            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4">
               <div className="max-w-[50%] box-border">
                 <input
                   type="text"
                   name="first_name"
                   value={values.first_name}
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="First Name"
                 />
@@ -290,7 +356,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   type="text"
                   name="last_name"
                   value={values.last_name}
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Last Name"
                 />
@@ -301,11 +367,34 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               <div className="max-w-[50%] box-border">
                 <input
                   type="text"
-                  name="location"
-                  value={values.location}
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
+                  name="country"
+                  value={values.country}
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
-                  placeholder="Location"
+                  placeholder="Country"
+                />
+              </div>
+              <div className="max-w-[50%] box-border">
+                <input
+                  type="text"
+                  name="state"
+                  value={values.state}
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  onChange={handleChange}
+                  placeholder="State"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4">
+              <div className="max-w-[50%] box-border">
+                <input
+                  type="text"
+                  name="city"
+                  value={values.city}
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  onChange={handleChange}
+                  placeholder="City"
                 />
               </div>
               <div className="max-w-[50%] box-border">
@@ -313,7 +402,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   type="text"
                   name="mobile_no"
                   value={values.mobile_no}
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Mobile"
                 />
@@ -330,7 +419,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   type="password"
                   name="password"
                   value={values.password}
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Password"
                 />
@@ -340,7 +429,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   type="password"
                   name="confirmPassword"
                   value={values.confirmPassword}
-                  className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
+                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Confirm"
                 />

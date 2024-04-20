@@ -46,25 +46,31 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  location: {
+  country: {
+    type: String,
+    default: "",
+  },
+  state: {
+    type: String,
+    default: "",
+  },
+  city: {
     type: String,
     default: "",
   },
   available_to_join: {
     type: String,
-    enum: ["available", "not available"],
-    default: "available",
+    default: "15 days or less",
   },
   mobile_no: {
     type: String,
-    default: "",
+    default: "Not provided",
   },
   verificationToken: String,
   isVerified: {
     type: Boolean,
     default: false,
   },
-
   verified: Date,
   passwordToken: {
     type: String,

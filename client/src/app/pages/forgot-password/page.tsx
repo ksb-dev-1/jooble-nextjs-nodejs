@@ -53,14 +53,14 @@ const ForgotPasswordPage: React.FC = () => {
               <input
                 type="email"
                 name="email"
-                className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent"
+                className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
               />
             </div>
             <button
               type="submit"
-              className="h-[41.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+              className="h-[37.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
             >
               {isLoading ? <div className="loader-1"></div> : "Send"}
             </button>

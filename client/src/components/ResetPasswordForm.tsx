@@ -59,12 +59,12 @@ const ResetPasswordForm: React.FC = () => {
           Reset <span className="text-blue-600">Jooble</span> password.
         </p>
         <form onSubmit={handleForgotPassword}>
-          <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
+          <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border">
             <div className="max-w-[50%] box-border">
               <input
                 type="password"
                 name="password"
-                className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%]"
+                className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
               />
@@ -73,7 +73,7 @@ const ResetPasswordForm: React.FC = () => {
               <input
                 type="password"
                 name="confirmPassword"
-                className="border border-slate-400 rounded p-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%]"
+                className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirm"
               />
@@ -81,7 +81,7 @@ const ResetPasswordForm: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="h-[41.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+            className="h-[37.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
           >
             {isLoading ? <div className="loader-1"></div> : "Save"}
           </button>
