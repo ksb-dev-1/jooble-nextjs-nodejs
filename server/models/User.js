@@ -20,7 +20,7 @@ const UserSchema = new Schema({
   last_name: {
     type: String,
     required: [true, "Please provide name"],
-    minlength: 3,
+    minlength: 1,
     maxlength: 50,
   },
   email: {

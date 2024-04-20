@@ -55,7 +55,7 @@ const editUserProfile = async (req, res) => {
   let updatedUser = "";
 
   if (image) {
-    if (user.image !== "") {
+    if (user.image !== "" && !image.startsWith("https")) {
       const avatar_url = user.image.split("/");
       const cloudinaryAvatarId = avatar_url[avatar_url.length - 1];
 
@@ -64,7 +64,9 @@ const editUserProfile = async (req, res) => {
       );
     }
 
-    imageUrl = await uploadProfilePictureToCloudinary(image);
+    if (!image.startsWith("https")) {
+      imageUrl = await uploadProfilePictureToCloudinary(image);
+    }
 
     updatedUser = await User.findOneAndUpdate(
       { email },

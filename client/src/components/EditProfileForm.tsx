@@ -8,6 +8,8 @@ import {
   forwardRef,
   FormEvent,
   ChangeEvent,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import Image from "next/image";
 
@@ -18,14 +20,38 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
 import { FaUpload } from "react-icons/fa6";
 // ----- redux
-import { useEditProfileMutation, useShowMeQuery } from "@/redux/slices/userApi";
+import { useEditProfileMutation } from "@/redux/slices/userApi";
 import { useDispatch } from "react-redux";
-import { useLoginMutation } from "@/redux/slices/authApi";
-import { setCredentials } from "@/redux/slices/userInfoSlice";
 import { userApi } from "@/redux/slices/userApi";
 
 interface UserProps {
-  user: User;
+  //user: User;
+  values: {
+    image: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    location: string;
+    mobile_no: string;
+    available_to_join: string;
+    password: string;
+    confirmPassword: string;
+  };
+  setValues: Dispatch<
+    SetStateAction<{
+      image: string;
+      first_name: string;
+      last_name: string;
+      email: string;
+      location: string;
+      mobile_no: string;
+      available_to_join: string;
+      password: string;
+      confirmPassword: string;
+    }>
+  >;
+  available: string;
+  setAvailable: Dispatch<SetStateAction<string>>;
 }
 
 interface ErrorProps {
@@ -36,7 +62,7 @@ interface ErrorProps {
 }
 
 const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
-  ({ user }, ref) => {
+  ({ values, setValues, available, setAvailable }, ref) => {
     const editFormContainerRef = useRef<HTMLDivElement>(null);
     const editFormRef = useRef<HTMLDivElement>(null);
     const closeBtnRef = useRef<HTMLSpanElement>(null);
@@ -46,62 +72,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
       () => editFormContainerRef.current as HTMLDivElement
     );
 
-    const {
-      image,
-      email,
-      first_name,
-      last_name,
-      location,
-      mobile_no,
-      available_to_join,
-    } = user;
-
-    // const [values, setValues] = useState({
-    //   image: image,
-    //   first_name: first_name,
-    //   last_name: last_name,
-    //   email: email,
-    //   location: location,
-    //   mobile_no: mobile_no,
-    //   available_to_join: available_to_join,
-    //   password: "",
-    //   confirmPassword: "",
-    // });
-
-    const [values, setValues] = useState({
-      image,
-      first_name,
-      last_name,
-      email,
-      location,
-      mobile_no,
-      available_to_join,
-      password: "",
-      confirmPassword: "",
-    });
-
-    useEffect(() => {
-      setValues({
-        ...values,
-        image,
-        first_name,
-        last_name,
-        location,
-        mobile_no,
-        password: "",
-        confirmPassword: "",
-      });
-    }, [user]);
-
-    const [available, setAvailable] = useState(
-      available_to_join === "available" ? "available" : "not available"
-    );
-    const [onHoverImage, setOnHoverImage] = useState(false);
-    const [editProfile, { isLoading, isError, isSuccess }] =
-      useEditProfileMutation();
-    const dispatch = useDispatch();
-
-    // ----- Handle outside click -----
+    // ----- Handle edit form ouside click -----
     useEffect(() => {
       const handleOutsideClick = (e: MouseEvent) => {
         hideEditForm(e);
@@ -114,6 +85,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
       };
     }, []);
 
+    // ----- Hide edit form -----
     const hideEditForm = (e: any) => {
       if (
         (editFormContainerRef.current &&
@@ -131,21 +103,13 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
         setTimeout(() => {
           editFormContainerRef.current!.style.transform = "scale(0)";
         }, 300);
-
-        setValues({
-          ...values,
-          image,
-          first_name,
-          last_name,
-          location,
-          mobile_no,
-          password: "",
-          confirmPassword: "",
-        });
-
-        setAvailable(user.available_to_join);
       }
     };
+
+    const [onHoverImage, setOnHoverImage] = useState(false);
+    const [editProfile, { isLoading, isError, isSuccess }] =
+      useEditProfileMutation();
+    const dispatch = useDispatch();
 
     // ----- Handle form edit -----
     const handleEditProfile = async (e: FormEvent) => {
@@ -154,9 +118,6 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
       const formData = new FormData();
 
       formData.append("image", values.image);
-      // if (values.available_to_join) {
-      //   formData.append("available_to_join", values.available_to_join);
-      // }
       formData.append("available_to_join", values.available_to_join);
       formData.append("first_name", values.first_name);
       formData.append("last_name", values.last_name);
@@ -179,19 +140,6 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               editFormContainerRef.current!.style.transform = "scale(0)";
             }, 300);
           }
-
-          setValues({
-            ...values,
-            image,
-            first_name,
-            last_name,
-            location,
-            mobile_no,
-            password: "",
-            confirmPassword: "",
-          });
-
-          setAvailable(user.available_to_join);
         }
 
         isError && toast.error(res.data.msg);
@@ -246,7 +194,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
         >
           <span
             ref={closeBtnRef}
-            className="absolute text-3xl -top-[15px] sm:top-2 right-[calc(50%-30px)] sm:right-2 text-white bg-[tomato] cursor-pointer hover:rotate-[360deg] transition-all  rounded shadow-1 sm:shadow-none"
+            className="absolute text-3xl -top-[15px] sm:top-2 right-[calc(50%-30px)] sm:right-2 text-white bg-[tomato] cursor-pointer hover:bg-[#ff856f] transition rounded shadow-1 sm:shadow-none"
             onClick={(e: any) => hideEditForm(e)}
           >
             <IoMdClose />
@@ -286,8 +234,10 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   <Image
                     src={values.image}
                     alt="pic"
-                    width={100}
-                    height={100}
+                    fill
+                    priority
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 )}
               </label>
@@ -370,7 +320,9 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               </div>
             </div>
 
-            <span className="w-full h-[0.5px] inline-block bg-slate-300"></span>
+            <div className="w-full flex justify-center mt-4">
+              <span className="w-[150px] h-[0.5px] inline-block bg-slate-300"></span>
+            </div>
 
             <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
               <div className="max-w-[50%] box-border">

@@ -20,6 +20,12 @@ const registerUser = async (req, res) => {
     throw new CustomError.BadRequestError("You must enter all the fields.");
   }
 
+  if (first_name.length < 3) {
+    throw new CustomError.BadRequestError(
+      "First name should be atleast 3 characters"
+    );
+  }
+
   if (password !== confirmPassword) {
     throw new CustomError.BadRequestError("Confirm password doesn't match.");
   }

@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 // ----- moment -----
 import moment from "moment";
@@ -33,12 +32,47 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
     available_to_join,
   } = user;
 
+  const [values, setValues] = useState({
+    image: user.image,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    email: user.email,
+    location: user.location,
+    mobile_no: user.mobile_no,
+    available_to_join: user.available_to_join,
+    password: "",
+    confirmPassword: "",
+  });
+  const [available, setAvailable] = useState(
+    user.available_to_join === "available" ? "available" : "not available"
+  );
+
+  const setValuesFn = () => {
+    setValues({
+      ...values,
+      image: user.image,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      location: user.location,
+      mobile_no: user.mobile_no,
+      password: "",
+      confirmPassword: "",
+    });
+
+    setAvailable(user.available_to_join);
+  };
+
+  useEffect(() => {
+    setValuesFn();
+  }, [user]);
+
   const editFormContainerRef = useRef<HTMLDivElement>(null);
 
   const showEditForm = () => {
     if (editFormContainerRef.current) {
       editFormContainerRef.current.style.transform = "scale(1)";
       editFormContainerRef.current.style.opacity = "1";
+      setValuesFn();
     }
   };
 
@@ -46,7 +80,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
     <>
       <div className="flex flex-col xl:flex-row">
         <div className="flex flex-col md:flex-row items-center justify-center">
-          <div className="relative w-[150px] h-[150px] border border-slate-300 rounded-full overflow-hidden ">
+          <div className="relative w-[100px] md:w-[150px] h-[100px] md:h-[150px] border border-slate-300 rounded-full overflow-hidden ">
             {user.image ? (
               <Image
                 src={image}
@@ -57,7 +91,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                 className="object-contain"
               />
             ) : (
-              <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[140px] text-slate-300" />
+              <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[110px] md:text-[165px] text-slate-300" />
             )}
           </div>
 
@@ -143,7 +177,13 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
           </button>
         </div>
       </div>
-      <EditProfileForm user={user} ref={editFormContainerRef} />
+      <EditProfileForm
+        ref={editFormContainerRef}
+        values={values}
+        setValues={setValues}
+        available={available}
+        setAvailable={setAvailable}
+      />
     </>
   );
 };
