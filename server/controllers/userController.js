@@ -41,17 +41,17 @@ const editUserProfile = async (req, res) => {
     confirmPassword,
   } = req.body;
 
-  if (password !== confirmPassword) {
-    throw new CustomError.BadRequestError("Confirm password doesn't match.");
-  }
+  // if (password !== confirmPassword) {
+  //   throw new CustomError.BadRequestError("Confirm password doesn't match.");
+  // }
 
   const user = await User.findOne({ email });
 
-  const isPasswordCorrect = await user.comparePassword(password);
+  // const isPasswordCorrect = await user.comparePassword(password);
 
-  if (!isPasswordCorrect) {
-    throw new CustomError.UnauthenticatedError("Incorrect password");
-  }
+  // if (!isPasswordCorrect) {
+  //   throw new CustomError.UnauthenticatedError("Incorrect password");
+  // }
 
   let imageUrl = "";
   let updatedUser = "";

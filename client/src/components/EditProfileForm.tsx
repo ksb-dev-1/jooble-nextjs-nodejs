@@ -69,7 +69,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
   ({ values, setValues }, ref) => {
     const editFormContainerRef = useRef<HTMLDivElement>(null);
     const editFormRef = useRef<HTMLDivElement>(null);
-    const closeBtnRef = useRef<HTMLSpanElement>(null);
+    const closeBtnRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(
       ref,
@@ -192,25 +192,28 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
     return (
       <div
         ref={editFormContainerRef}
-        className="z-30 scale-0 opacity-0 fixed w-full h-full top-0 left-0 mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0  bg-[rgba(0,0,0,0.75)] transition-opacity duration-300"
+        className="z-30 scale-0 opacity-0 fixed w-full top-0 left-0 right-0 bottom-0 flex justify-center min-h-full px-4 sm:px-0 bg-[rgba(0,0,0,0.85)] transition-opacity duration-300 pt-[4.5rem] pb-[4rem] overflow-y-auto"
+        //className="parent"
       >
         <div
           ref={editFormRef}
-          className="relative max-w-[500px] w-[100%] rounded p-4 sm:p-8 bg-white shadow-1"
+          className="relative max-w-[500px] h-fit w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1"
         >
-          <span
+          <div
             ref={closeBtnRef}
-            className="absolute text-3xl -top-[15px] sm:top-2 right-[calc(50%-30px)] sm:right-2 text-white bg-[tomato] cursor-pointer hover:bg-[#ff856f] transition rounded shadow-1 sm:shadow-none"
+            className="absolute top-2 right-2 bg-[tomato] cursor-pointer rounded-[var(--r1)] h-[40px] w-[40px] hover:bg-[#ff856f]"
             onClick={(e: any) => hideEditForm(e)}
           >
-            <IoMdClose />
-          </span>
-          <p className="font-bold text-lg sm:text-2xl mb-8 text-center mt-2 sm:mt-0">
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-white">
+              <IoMdClose />
+            </span>
+          </div>
+          <p className="font-bold text-lg sm:text-2xl mb-8 mt-2 sm:mt-0">
             Basic Details
           </p>
 
           <form onSubmit={handleEditProfile}>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center">
               <input
                 type="file"
                 id="image"
@@ -249,17 +252,19 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               </label>
             </div>
 
-            <div className="flex flex-col items-center mt-4">
-              <p className="font-semibold">Available to join</p>
-              <div className="flex items-center sm:justify-center flex-wrap mt-4 rounded-[25px]">
+            <div className="flex flex-col mt-8 rounded-[var(--r1)]">
+              <p className="font-semibold text-sm sm:text-base">
+                Available to join
+              </p>
+              <div className="flex flex-wrap mt-2 rounded-[var(--r1)]">
                 {values.available_to_join === "less than 15 days" ? (
-                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white flex items-center">
+                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white flex items-center">
                     <FaLessThan className="mr-1 mt-[2px] text-[0.65rem] text-white" />
                     15 Days
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 mr-2 mb-2 cursor-pointer flex items-center hover:bg-slate-100"
+                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 mr-2 mb-2 cursor-pointer flex items-center hover:bg-slate-100"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -272,12 +277,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "15 days" ? (
-                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
+                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
                     15 Days
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 mr-2 mb-2 cursor-pointer hover:bg-slate-100"
+                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 mr-2 mb-2 cursor-pointer hover:bg-slate-100"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -289,12 +294,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "1 month" ? (
-                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
+                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
                     1 Month
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 mr-2 mb-2 cursor-pointer hover:bg-slate-100"
+                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 mr-2 mb-2 cursor-pointer hover:bg-slate-100"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -306,12 +311,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "2 months" ? (
-                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
+                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
                     2 Months
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 mr-2 mb-2 cursor-pointer hover:bg-slate-100"
+                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 mr-2 mb-2 cursor-pointer hover:bg-slate-100"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -323,12 +328,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "3 months" ? (
-                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
+                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
                     3 Months
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 mr-2 mb-2 cursor-pointer hover:bg-slate-100"
+                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 mr-2 mb-2 cursor-pointer hover:bg-slate-100"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -340,13 +345,13 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "more than 3 months" ? (
-                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white flex items-center">
+                  <span className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 mr-2 mb-2 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white flex items-center">
                     <FaGreaterThan className="mr-1 mt-[2px] text-[0.65rem] text-white" />
                     3 Months
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 mr-2 mb-2 cursor-pointer flex items-center hover:bg-slate-100"
+                    className="text-xs sm:text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 mr-2 mb-2 cursor-pointer flex items-center hover:bg-slate-100"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -367,7 +372,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   type="text"
                   name="first_name"
                   value={values.first_name}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="First Name"
                 />
@@ -377,7 +382,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   type="text"
                   name="last_name"
                   value={values.last_name}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Last Name"
                 />
@@ -390,80 +395,48 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   type="text"
                   name="country"
                   value={values.country}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Country"
                 />
               </div>
-              {/* <div className="flex-grow box-border">
-                <input
-                  type="text"
-                  name="state"
-                  value={values.state}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="State"
-                />
-              </div> */}
               <div className="flex-grow box-border">
                 <input
                   type="text"
                   name="city"
                   value={values.city}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="City"
                 />
               </div>
             </div>
-
-            {/* <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4">
-              <div className="flex-grow box-border">
-                <input
-                  type="text"
-                  name="city"
-                  value={values.city}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="City"
-                />
-              </div>
-              <div className="flex-grow box-border">
-                <input
-                  type="text"
-                  name="mobile_no"
-                  value={values.mobile_no}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="Mobile"
-                />
-              </div>
-            </div> */}
 
             <div className="flex-grow box-border">
               <input
                 type="text"
                 name="mobile_no"
                 value={values.mobile_no}
-                className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mt-4 w-[100%] text-sm sm:text-base"
+                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mt-4 w-[100%] text-sm sm:text-base"
                 onChange={handleChange}
                 placeholder="Mobile"
               />
             </div>
 
-            <div className="w-full flex justify-center mt-4">
+            {/* <div className="w-full flex justify-center mt-4">
               <span className="w-[150px] h-[0.5px] inline-block bg-slate-300"></span>
-            </div>
+            </div> */}
 
-            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
+            {/* <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
               <div className="flex-grow box-border">
                 <input
                   type="password"
                   name="password"
                   value={values.password}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Password"
+                  required
                 />
               </div>
               <div className="flex-grow box-border">
@@ -471,16 +444,17 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   type="password"
                   name="confirmPassword"
                   value={values.confirmPassword}
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
-                  placeholder="Confirm"
+                  placeholder="Confirm Password"
+                  required
                 />
               </div>
-            </div>
+            </div> */}
 
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
             >
               {isLoading ? <div className="loader-1"></div> : "Save"}
             </button>

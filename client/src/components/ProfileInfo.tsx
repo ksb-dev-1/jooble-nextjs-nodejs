@@ -105,7 +105,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                 {last_name.charAt(0).toUpperCase() + last_name.substring(1)}
               </span>
             </p>
-            <p className="text-center md:text-start text-xs sm:text-base">
+            <p className="text-center md:text-start">
               <span className="text-sm">Profile last updated - </span>
               <span className="inline-block text-xs font-medium">
                 {moment(last_updated).format("Do MMM, YYYY")}
@@ -118,19 +118,11 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
               <div className="flex flex-col items-center sm:block">
                 <div className="flex items-center">
                   <IoLocationOutline />
-                  <div className="text-sm ml-2">
+                  <div className="text-sm ml-2 w-max">
                     {!country && !state && !city && <span>Not provided</span>}
                     <span>
                       {city &&
-                        city.charAt(0).toUpperCase() +
-                          city.substring(1) +
-                          " , "}
-                    </span>
-                    <span>
-                      {state &&
-                        state.charAt(0).toUpperCase() +
-                          state.substring(1) +
-                          ", "}
+                        city.charAt(0).toUpperCase() + city.substring(1) + ", "}
                     </span>
                     <span>
                       {country &&
@@ -138,7 +130,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center mt-4">
+                <div className="flex items-center mt-4 w-max">
                   <MdOutlineEventAvailable />
                   <span className="text-sm ml-2">
                     {available_to_join.charAt(0).toUpperCase() +
@@ -150,12 +142,12 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
               <span className="hidden sm:inline-block h-[50px] w-[0.5px] bg-slate-300 mx-8"></span>
 
               <div className="flex flex-col items-center sm:block">
-                <div className="mt-4 sm:mt-0 flex items-center">
+                <div className="mt-4 sm:mt-0 flex items-center w-max">
                   <HiOutlineMail />
                   <span className="text-sm ml-2">{email}</span>
                   <FaCheckCircle className="ml-2 text-green-600" />
                 </div>
-                <div className="flex items-center mt-4">
+                <div className="flex items-center mt-4 w-max">
                   <FiPhone />
                   <span className="text-sm ml-2">
                     {mobile_no ? mobile_no : "Not provided"}
@@ -166,8 +158,8 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
           </div>
         </div>
 
-        <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0 bg-blue-50 p-4 rounded-[25px]">
-          <div className="w-[100%]">
+        <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0 bg-blue-50 p-4 rounded-[var(--r1)]">
+          <div className="max-w-full">
             <input
               type="file"
               id="resume"
@@ -178,7 +170,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             />
             <label
               htmlFor="resume"
-              className="relative p-4 bg-white cursor-pointer px-4 w-full border border-dashed hover:bg-slate-100 border-blue-600 rounded-[25px] overflow-hidden flex flex-col items-center 
+              className="relative p-4 bg-white cursor-pointer px-4 w-full border border-dashed hover:bg-slate-100 border-blue-600 rounded-[var(--r1)] overflow-hidden flex flex-col items-center 
               justify-center"
             >
               <p className="text-blue-600">Upload Resume</p>
@@ -188,7 +180,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             </label>
           </div>
           <button
-            className="flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-[25px] mt-2"
+            className="flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-[var(--r1)] mt-2"
             onClick={showEditForm}
           >
             Edit

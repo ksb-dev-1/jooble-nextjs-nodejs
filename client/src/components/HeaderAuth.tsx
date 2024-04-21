@@ -87,7 +87,7 @@ const HeaderAuth: React.FC = () => {
 
           <Link
             href="/pages/login"
-            className="px-4 py-[calc(0.5rem-0.8px)] hover:bg-[#F5F5FC] text-blue-600 rounded-[25px] w-[88.91px] text-center border border-blue-600 font-semibold"
+            className="px-4 py-[calc(0.5rem-0.8px)] hover:bg-[#F5F5FC] text-blue-600 rounded-[25px] w-[88.91px] text-center border border-blue-600"
           >
             Login
           </Link>

@@ -89,77 +89,88 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem]">
       {isSuccess ? (
-        <div className="text-blue-600 rounded p-8 bg-white shadow-1 w-full sm:w-[500px]">
+        <div className="text-blue-600 rounded-[var(--r1)] p-8 bg-white shadow-1 w-full sm:w-[500px]">
           <p className="text-center">
-            We've sent you a link to your email account. Please check to verify
-            your email account.
+            We've sent you a link to your email account. Please check your email
+            to verify it.
           </p>
         </div>
       ) : (
-        <div className="max-w-[500px] w-[100%] rounded p-4 sm:p-8 bg-white shadow-1">
-          <p className="font-bold text-lg sm:text-2xl mb-8 text-center">
-            Register for a <span className="text-blue-600">Jooble</span> account
+        <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+          <p className="font-bold text-lg sm:text-2xl mb-8">
+            Register
+            {/* for a <span className="text-blue-600">Jooble</span> account */}
           </p>
 
           <form onSubmit={handleRegister}>
             <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border">
-              <div className="flex-grow box-border">
+              <div className="flex-grow">
                 <input
+                  id="first_name"
                   type="text"
                   name="first_name"
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="First Name"
+                  required
                 />
               </div>
-              <div className="flex-grow box-border">
+
+              <div className="flex-grow">
                 <input
+                  id="last_name"
                   type="text"
                   name="last_name"
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Last Name"
+                  required
                 />
               </div>
             </div>
+
             <div className="relative mt-4">
               <input
                 type="email"
                 name="email"
-                className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
                 onChange={handleChange}
-                placeholder="Email"
+                placeholder="Email Address"
+                required
               />
             </div>
 
-            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
+            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4">
               <div className="flex-grow box-border">
                 <input
                   type="password"
                   name="password"
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Password"
+                  required
                 />
               </div>
               <div className="flex-grow box-border">
                 <input
                   type="password"
                   name="confirmPassword"
-                  className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
-                  placeholder="Confirm"
+                  placeholder="Confirm Password"
+                  required
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
             >
               {isLoading ? <div className="loader-1"></div> : "Register"}
             </button>
           </form>
+
           <div className="relative bg-slate-400 w-full h-[0.5px] my-8">
             <span className="absolute bg-white top-[-12px] left-[calc(50%-(70.95px))] px-3 font-semibold">
               Or continue with
@@ -169,18 +180,19 @@ const RegisterPage: React.FC = () => {
           <div className="flex items-center justify-between w-[calc(100%)] box-border">
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
+              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
             >
               <FcGoogle className="text-2xl" />
             </button>
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
+              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
             >
               <FaGithub className="text-2xl" />
             </button>
           </div>
-          <p className="mt-4">
+
+          <p className="mt-4 text-sm sm:text-base">
             <span>Already have an account? </span>
             <Link href="/pages/login" className="text-blue-600">
               Login

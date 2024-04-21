@@ -58,34 +58,39 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem]">
-      <div className="max-w-[500px] w-[100%] rounded p-4 sm:p-8 bg-white shadow-1">
-        <p className="font-bold text-lg sm:text-2xl mb-8 text-center">
-          Log in to <span className="text-blue-600">Jooble</span> account
+      <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+        <p className="font-bold text-lg sm:text-2xl mb-8">
+          Login
+          {/* in to <span className="text-blue-600">Jooble</span> account */}
         </p>
         <form onSubmit={handleLogin}>
           <input
             type="email"
             name="email"
-            className="border border-slate-400 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+            className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
             onChange={handleChange}
-            placeholder="Email"
+            placeholder="Email Address"
+            required
           />
 
           <input
             type="password"
             name="password"
-            className="border border-slate-400 rounded mt-4 px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:font-sans placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+            className="border border-slate-400 rounded-[var(--r1)] mt-4 px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
             onChange={handleChange}
             placeholder="Password"
+            required
           />
-          <p className="mt-4 mb-4">
+
+          <p className="mt-4 mb-4 text-sm sm:text-base">
             <Link href="/pages/forgot-password" className="text-blue-600">
               Forgot your password?
             </Link>
           </p>
+
           <button
             type="submit"
-            className="h-[37.6px] sm:h-[49.6px] rounded mt-2 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+            className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] mt-2 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
           >
             {isLoading ? <div className="loader-1"></div> : "Login"}
           </button>
@@ -100,18 +105,19 @@ const LoginPage: React.FC = () => {
         <div className="flex items-center justify-between w-[calc(100%)] box-border">
           <button
             type="submit"
-            className="h-[37.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-2"
+            className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-2"
           >
             <FcGoogle className="text-2xl" />
           </button>
           <button
             type="submit"
-            className="h-[37.6px] sm:h-[49.6px] rounded p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-2"
+            className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-2"
           >
             <FaGithub className="text-2xl" />
           </button>
         </div>
-        <p className="mt-4">
+
+        <p className="mt-4 text-sm sm:text-base">
           <span>Don't have an account? </span>
           <Link href="/pages/register" className="text-blue-600">
             Register

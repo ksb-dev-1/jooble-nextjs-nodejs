@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-//import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Providers from "./Providers";
@@ -9,7 +8,22 @@ import InnerLayout from "./InnerLayout";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-//const inter = Inter({ subsets: ["latin"] });
+import {
+  Prompt,
+  Nunito,
+  Kanit,
+  Roboto,
+  Poppins,
+  Inter,
+  Work_Sans,
+  Montserrat,
+} from "next/font/google";
+
+// const font_family = Nunito({
+//   weight: ["400", "500", "700", "900"],
+//   style: ["normal"],
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Jooble-Next.js-Node.js",
@@ -23,7 +37,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} suppressContentEditableWarning>
+      <body
+        suppressHydrationWarning={true}
+        suppressContentEditableWarning
+        //className={font_family.className}
+      >
         <Providers>
           <Header />
           <InnerLayout>

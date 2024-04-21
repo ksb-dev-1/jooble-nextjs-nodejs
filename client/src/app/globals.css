@@ -46,9 +46,7 @@
   --orange-1: rgb(241, 168, 31);
   --orange-2: rgb(230, 151, 4);
 
-  --radius-1: 3px;
-  --radius-2: 5px;
-  --radius-3: 7.5px;
+  --r1: 25px;
 
   --shadow-1: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -59,6 +57,30 @@ body {
   background: #f0f4fa;
   background: #f5f5fc;
   background: #f8f8f8;
+}
+
+.parent {
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  transform: scale(0);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.child {
+  min-height: 500px;
+  width: 500px;
+  background: white;
+  margin: 35rem 0;
 }
 
 /* Loader Style */
