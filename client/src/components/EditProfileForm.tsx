@@ -70,6 +70,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
     const editFormContainerRef = useRef<HTMLDivElement>(null);
     const editFormRef = useRef<HTMLDivElement>(null);
     const closeBtnRef = useRef<HTMLDivElement>(null);
+    const cancelBtnRef = useRef<HTMLButtonElement>(null);
 
     useImperativeHandle(
       ref,
@@ -77,31 +78,27 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
     );
 
     // ----- Handle edit form ouside click -----
-    useEffect(() => {
-      const handleOutsideClick = (e: MouseEvent) => {
-        hideEditForm(e);
-      };
+    // useEffect(() => {
+    //   const handleOutsideClick = (e: MouseEvent) => {
+    //     hideEditForm(e);
+    //   };
 
-      document.addEventListener("mousedown", handleOutsideClick);
+    //   document.addEventListener("mousedown", handleOutsideClick);
 
-      return () => {
-        document.removeEventListener("mousedown", handleOutsideClick);
-      };
-    }, []);
+    //   return () => {
+    //     document.removeEventListener("mousedown", handleOutsideClick);
+    //   };
+    // }, []);
 
     // ----- Hide edit form -----
     const hideEditForm = (e: any) => {
       if (
         (editFormContainerRef.current &&
-          editFormRef.current &&
-          editFormContainerRef.current.contains(e.target as Node) &&
-          !editFormRef.current.contains(e.target as Node)) ||
-        (editFormContainerRef.current &&
           closeBtnRef.current &&
-          editFormRef.current &&
-          editFormContainerRef.current.contains(e.target as Node) &&
-          editFormRef.current.contains(e.target as Node) &&
-          closeBtnRef.current.contains(e.target as Node))
+          closeBtnRef.current.contains(e.target as Node)) ||
+        (editFormContainerRef.current &&
+          cancelBtnRef.current &&
+          cancelBtnRef.current.contains(e.target as Node))
       ) {
         editFormContainerRef.current.style.opacity = "0";
         setTimeout(() => {
@@ -201,10 +198,13 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
         >
           <div
             ref={closeBtnRef}
-            className="absolute top-2 right-2 bg-[tomato] cursor-pointer rounded-[var(--r1)] h-[40px] w-[40px] hover:bg-[#ff856f]"
             onClick={(e: any) => hideEditForm(e)}
+            className="absolute top-2 right-2 bg-[tomato] cursor-pointer rounded-[var(--r1)] h-[40px] w-[40px] hover:bg-[#ff856f]"
           >
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-white">
+            <span
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-white"
+              onClick={(e: any) => hideEditForm(e)}
+            >
               <IoMdClose />
             </span>
           </div>
@@ -236,10 +236,10 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                     </span>
                   </div>
                 )}
-                {!onHoverImage && values.image && (
+                {!onHoverImage && !values.image && (
                   <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[110px] sm:text-[135px] text-slate-300" />
                 )}
-                {!values.image && !onHoverImage && (
+                {values.image && !onHoverImage && (
                   <Image
                     src={values.image}
                     alt="pic"
@@ -256,7 +256,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               <p className="font-semibold text-sm sm:text-base">
                 Available to join
               </p>
-              <p className="text-slate-500 text-xs sm:text-sm">
+              <p className="text-slate-500 text-sm sm:text-base">
                 Lets recruiters know your availability to join
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2 rounded-[var(--r1)] border border-slate-400 p-2 sm:p-4">
@@ -426,41 +426,22 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               />
             </div>
 
-            {/* <div className="w-full flex justify-center mt-4">
-              <span className="w-[150px] h-[0.5px] inline-block bg-slate-300"></span>
-            </div> */}
-
-            {/* <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4 ">
-              <div className="flex-grow box-border">
-                <input
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="Password"
-                  required
-                />
-              </div>
-              <div className="flex-grow box-border">
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={values.confirmPassword}
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="Confirm Password"
-                  required
-                />
-              </div>
-            </div> */}
-
-            <button
-              type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
-            >
-              {isLoading ? <div className="loader-1"></div> : "Save"}
-            </button>
+            <div className="flex items-center justify-start mt-8">
+              <button
+                ref={cancelBtnRef}
+                type="button"
+                onClick={(e: any) => hideEditForm(e)}
+                className="h-[40px] px-4 border border-blue-600 hover:bg-slate-100 rounded-[25px] text-blue-600 font-semibold flex items-center justify-center cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="h-[40px] px-4 bg-blue-600 hover:bg-blue-500 rounded-[25px] border border-blue-600 text-white flex items-center justify-center w-[78.74px] ml-2"
+              >
+                {isLoading ? <div className="loader-1"></div> : "Save"}
+              </button>
+            </div>
           </form>
         </div>
       </div>
