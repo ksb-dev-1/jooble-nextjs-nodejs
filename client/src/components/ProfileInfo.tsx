@@ -106,8 +106,8 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
               </span>
             </p>
             <p className="text-center md:text-start">
-              <span className="text-sm">Profile last updated - </span>
-              <span className="inline-block text-xs font-medium">
+              <span className="text-sm">Profile last updated -</span>
+              <span className="inline-block text-[0.85rem] font-semibold">
                 {moment(last_updated).format("Do MMM, YYYY")}
               </span>
             </p>
@@ -158,8 +158,8 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
           </div>
         </div>
 
-        <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0 bg-blue-50 p-4 rounded-[var(--r1)]">
-          <div className="max-w-full">
+        <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0">
+          <div className="max-w-full bg-blue-50 p-4 rounded-[var(--r1)]">
             <input
               type="file"
               id="resume"
@@ -170,7 +170,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             />
             <label
               htmlFor="resume"
-              className="relative p-4 bg-white cursor-pointer px-4 w-full border border-dashed hover:bg-slate-100 border-blue-600 rounded-[var(--r1)] overflow-hidden flex flex-col items-center 
+              className="relative p-4 cursor-pointer px-4 w-full border border-dashed hover:bg-blue-100 border-blue-600 rounded-[var(--r1)] overflow-hidden flex flex-col items-center 
               justify-center"
             >
               <p className="text-blue-600">Upload Resume</p>
@@ -186,14 +186,9 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             Edit
           </button>
         </div>
-        <EditProfileForm
-          ref={editFormContainerRef}
-          //user={user}
-          values={values}
-          setValues={setValues}
-        />
       </div>
 
+      {/* ----- Edit Basic Details Form ----- */}
       <EditProfileForm
         ref={editFormContainerRef}
         //user={user}

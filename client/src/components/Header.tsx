@@ -82,7 +82,7 @@ const Header: React.FC = () => {
                   className="h-[15px] sm:h-[20px] w-[15px] sm:w-[20px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 />
               </p>
-              <span className="text-blue-600 font-bold text-2xl sm:text-3xl cursor-pointer no-underline">
+              <span className="text-blue-600 font-extrabold text-2xl sm:text-3xl cursor-pointer no-underline">
                 Jooble
               </span>
             </Link>

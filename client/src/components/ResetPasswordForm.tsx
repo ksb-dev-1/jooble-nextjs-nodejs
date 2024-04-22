@@ -61,7 +61,7 @@ const ResetPasswordForm: React.FC = () => {
 
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 xl:px-0 pt-[8.5rem] pb-[4rem]">
-      <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+      <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white">
         <p className="font-bold text-lg sm:text-2xl mb-8">
           {/* Reset <span className="text-blue-600">Jooble</span> password. */}
           Reset Password
@@ -72,7 +72,7 @@ const ResetPasswordForm: React.FC = () => {
               <input
                 type="password"
                 name="password"
-                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required
@@ -82,7 +82,7 @@ const ResetPasswordForm: React.FC = () => {
               <input
                 type="password"
                 name="confirmPassword"
-                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirm Password"
                 required

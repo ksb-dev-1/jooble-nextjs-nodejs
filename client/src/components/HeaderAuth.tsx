@@ -87,21 +87,28 @@ const HeaderAuth: React.FC = () => {
 
           <Link
             href="/pages/login"
-            className="px-4 py-[calc(0.5rem-0.8px)] hover:bg-[#F5F5FC] text-blue-600 rounded-[25px] w-[88.91px] font-semibold text-center border border-blue-600"
+            className="px-4 py-[calc(0.5rem-0.8px)] hover:bg-[#F5F5FC] text-blue-600 rounded-[var(--r1)] w-[88.91px] font-medium text-center border border-blue-600"
           >
             Login
           </Link>
 
-          {pathname !== "/" && (
+          <Link
+            href="/pages/register"
+            className="px-4 py-2 hover:bg-blue-500 text-white rounded-[var(--r1)] bg-blue-600 ml-2"
+          >
+            Register
+          </Link>
+
+          {/* {pathname !== "/" && (
             <>
               <Link
                 href="/pages/register"
-                className="px-4 py-2 hover:bg-blue-500 text-white rounded-[25px] bg-blue-600 ml-2"
+                className="px-4 py-2 hover:bg-blue-500 text-white rounded-[var(--r1)] bg-blue-600 ml-2"
               >
                 Register
               </Link>
             </>
-          )}
+          )} */}
         </div>
       )}
 
@@ -113,7 +120,7 @@ const HeaderAuth: React.FC = () => {
         >
           <div
             ref={profileRef}
-            className="flex items-center px-4 py-2 rounded-[25px] bg-blue-600 hover:bg-blue-500 transition cursor-pointer text-white"
+            className="flex items-center px-4 py-2 rounded-[var(--r1)] bg-blue-600 hover:bg-blue-500 transition cursor-pointer text-white"
           >
             <span>
               <HiOutlineUserCircle />
@@ -125,11 +132,11 @@ const HeaderAuth: React.FC = () => {
           </div>
           <div
             ref={modalRef}
-            className="absolute top-[100%] rounded-[25px] shadow-2 w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white p-2"
+            className="absolute top-[100%] rounded-[var(--r1)] shadow-2 w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white p-2"
           >
             <Link
               href="/pages/profile"
-              className="pl-2 py-2 flex items-center hover:bg-[#F5F5FC] rounded-[25px]"
+              className="pl-2 py-2 flex items-center hover:bg-[#F5F5FC] rounded-[var(--r1)]"
               onClick={hideModal}
             >
               <HiOutlineUserCircle className="mr-2" />{" "}
@@ -137,14 +144,14 @@ const HeaderAuth: React.FC = () => {
             </Link>
             <Link
               href="/pages/saved"
-              className="pl-2 py-2 flex items-center hover:bg-[#F5F5FC] rounded-[25px]"
+              className="pl-2 py-2 flex items-center hover:bg-[#F5F5FC] rounded-[var(--r1)]"
               onClick={hideModal}
             >
               <HiOutlineHeart className="mr-2" />{" "}
               <span className="text-base">Saved</span>
             </Link>
             <button
-              className="flex items-center pl-2 py-2 hover:bg-[#F5F5FC] rounded-[25px]"
+              className="flex items-center pl-2 py-2 hover:bg-[#F5F5FC] rounded-[var(--r1)]"
               onClick={(e) => {
                 !isLoading && handleLogout(e);
               }}

@@ -89,14 +89,14 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem]">
       {isSuccess ? (
-        <div className="text-blue-600 rounded-[var(--r1)] p-8 bg-white shadow-1 w-full sm:w-[500px]">
+        <div className="text-blue-600 rounded-[var(--r1)] p-8 bg-white w-full sm:w-[500px]">
           <p className="text-center">
             We've sent you a link to your email account. Please check your email
             to verify it.
           </p>
         </div>
       ) : (
-        <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+        <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white">
           <p className="font-bold text-lg sm:text-2xl mb-8">
             Register
             {/* for a <span className="text-blue-600">Jooble</span> account */}
@@ -109,7 +109,7 @@ const RegisterPage: React.FC = () => {
                   id="first_name"
                   type="text"
                   name="first_name"
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="First Name"
                   required
@@ -121,7 +121,7 @@ const RegisterPage: React.FC = () => {
                   id="last_name"
                   type="text"
                   name="last_name"
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Last Name"
                   required
@@ -133,7 +133,7 @@ const RegisterPage: React.FC = () => {
               <input
                 type="email"
                 name="email"
-                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
                 onChange={handleChange}
                 placeholder="Email Address"
                 required
@@ -145,7 +145,7 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="password"
                   name="password"
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Password"
                   required
@@ -155,7 +155,7 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="password"
                   name="confirmPassword"
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Confirm Password"
                   required
@@ -180,13 +180,13 @@ const RegisterPage: React.FC = () => {
           <div className="flex items-center justify-between w-[calc(100%)] box-border">
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
+              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
             >
               <FcGoogle className="text-2xl" />
             </button>
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-400 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
+              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
             >
               <FaGithub className="text-2xl" />
             </button>
