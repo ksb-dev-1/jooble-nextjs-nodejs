@@ -48,12 +48,12 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1100px] w-full mx-auto min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 xl:px-0 pt-[4.5rem] pb-[4rem]">
-      <div className="p-4 sm:p-8 rounded-[var(--r1)] min-h-[229.6px] bg-white shadow-1 mt-4 sm:mt-8">
+    <div className="relative flex flex-col items-center mx-auto min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 xl:px-0 pt-[4.5rem] pb-[4rem]">
+      <div className="max-w-[1100px] w-full p-4 sm:p-8 rounded-[var(--r1)] min-h-[229.6px] bg-white shadow-1 mt-4 sm:mt-8">
         {isFetching && <ProfileSkeleton />}
         {isSuccess && <ProfileInfoNoSSR user={data.user} />}
       </div>
-      <div className="flex flex-col md:flex-row w-full mt-4 sm:mt-8">
+      <div className="max-w-[1100px] flex flex-col md:flex-row w-full mt-4 sm:mt-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:flex md:flex-wrap md:flex-col bg-white shadow-1 rounded-[var(--r1)] p-4 md:p-8 w-full md:w-[225px] md:sticky top-[6.5rem] h-fit">
           <p className="font-bold hidden md:block text-lg ml-4">Quick links</p>
           <p className="rounded-[var(--r1)] py-2 pl-4 cursor-pointer hover:bg-[#f8f8f8] border md:border-none text-center md:text-start text-sm md:text-base">
@@ -80,7 +80,10 @@ const ProfilePage: React.FC = () => {
           <div className="flex items-center justify-between bg-white shadow-1 rounded-[var(--r1)] p-4 sm:p-8">
             <div className="flex items-center">
               <p className="font-semibold mr-2">Key skills</p>
-              <p className="relative h-[30px] w-[30px] rounded-full text-white bg-blue-600 hover:bg-blue-500 cursor-pointer">
+              <p
+                className="relative h-[30px] w-[30px] rounded-full text-white bg-blue-600 hover:bg-blue-500 cursor-pointer"
+                onClick={showEditForm}
+              >
                 <span
                   ref={keySkillsEditBtnRef}
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

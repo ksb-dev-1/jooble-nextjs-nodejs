@@ -186,6 +186,12 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             Edit
           </button>
         </div>
+        <EditProfileForm
+          ref={editFormContainerRef}
+          //user={user}
+          values={values}
+          setValues={setValues}
+        />
       </div>
 
       <EditProfileForm

@@ -189,12 +189,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
     return (
       <div
         ref={editFormContainerRef}
-        className="z-30 scale-0 opacity-0 fixed w-full top-0 left-0 right-0 bottom-0 flex justify-center min-h-full px-4 sm:px-0 bg-[rgba(0,0,0,0.85)] transition-opacity duration-300 pt-[4.5rem] pb-[4rem] overflow-y-auto"
+        className="z-30 scale-0 opacity-0 absolute w-full top-0 left-0 right-0 bottom-0 flex justify-center min-h-full px-4 sm:px-0 bg-[rgba(0,0,0,0.85)] transition-opacity duration-300 pt-[4.5rem] pb-[4rem]"
         //className="parent"
       >
         <div
           ref={editFormRef}
-          className="relative max-w-[500px] h-fit w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1"
+          className="relative h-fit rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1"
         >
           <div
             ref={closeBtnRef}
@@ -213,7 +213,7 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
           </p>
 
           <form onSubmit={handleEditProfile}>
-            <div className="flex items-center">
+            <div>
               <input
                 type="file"
                 id="image"
@@ -252,6 +252,93 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               </label>
             </div>
 
+            <div className="flex-grow box-border mt-4">
+              <label
+                htmlFor="first_name"
+                className="inline-block mb-1 font-semibold"
+              >
+                First Name
+              </label>
+              <input
+                id="first_name"
+                type="text"
+                name="first_name"
+                value={values.first_name}
+                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
+                onChange={handleChange}
+                placeholder="First Name"
+              />
+            </div>
+
+            <div className="flex-grow box-border mt-4">
+              <label
+                htmlFor="last_name"
+                className="inline-block mb-1 font-semibold"
+              >
+                Last Name
+              </label>
+              <input
+                id="last_name"
+                type="text"
+                name="last_name"
+                value={values.last_name}
+                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
+                onChange={handleChange}
+                placeholder="Last Name"
+              />
+            </div>
+
+            <div className="flex-grow box-border mt-4">
+              <label
+                htmlFor="country"
+                className="inline-block mb-1 font-semibold"
+              >
+                Country
+              </label>
+              <input
+                id="country"
+                type="text"
+                name="country"
+                value={values.country}
+                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
+                onChange={handleChange}
+                placeholder="country"
+              />
+            </div>
+
+            <div className="flex-grow box-border mt-4">
+              <label htmlFor="city" className="inline-block mb-1 font-semibold">
+                City
+              </label>
+              <input
+                id="city"
+                type="text"
+                name="city"
+                value={values.city}
+                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
+                onChange={handleChange}
+                placeholder="Mobile"
+              />
+            </div>
+
+            <div className="flex-grow box-border mt-4">
+              <label
+                htmlFor="mobile_no"
+                className="inline-block mb-1 font-semibold"
+              >
+                Mobile
+              </label>
+              <input
+                id="mobile_no"
+                type="text"
+                name="mobile_no"
+                value={values.mobile_no}
+                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
+                onChange={handleChange}
+                placeholder="Mobile"
+              />
+            </div>
+
             <div className="flex flex-col mt-4 rounded-[var(--r1)]">
               <p className="font-semibold text-sm sm:text-base">
                 Available to join
@@ -259,15 +346,15 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
               <p className="text-slate-500 text-sm sm:text-base">
                 Lets recruiters know your availability to join
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2 rounded-[var(--r1)] border border-slate-400 p-2 sm:p-4">
+              <div className="flex items-center flex-wrap mt-2 rounded-[var(--r1)]">
                 {values.available_to_join === "less than 15 days" ? (
-                  <span className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center">
+                  <span className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center mr-2 mb-2">
                     <FaLessThan className="mr-1 mt-[2px] text-[0.65rem] text-white" />
                     15 Days
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 cursor-pointer flex items-center justify-center hover:bg-slate-100"
+                    className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 cursor-pointer flex items-center justify-center hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -280,12 +367,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "15 days" ? (
-                  <span className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 text-center cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
+                  <span className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 text-center cursor-pointer bg-blue-600 hover:bg-blue-500 text-white mr-2 mb-2">
                     15 Days
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 text-center cursor-pointer hover:bg-slate-100"
+                    className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -297,12 +384,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "1 month" ? (
-                  <span className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 text-center cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
+                  <span className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 text-center cursor-pointer bg-blue-600 hover:bg-blue-500 text-white mr-2 mb-2">
                     1 Month
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 text-center cursor-pointer hover:bg-slate-100"
+                    className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -314,12 +401,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "2 months" ? (
-                  <span className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 text-center cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
+                  <span className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 text-center cursor-pointer bg-blue-600 hover:bg-blue-500 text-white mr-2 mb-2">
                     2 Months
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 text-center cursor-pointer hover:bg-slate-100"
+                    className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -331,12 +418,12 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "3 months" ? (
-                  <span className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 text-center cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
+                  <span className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 text-center cursor-pointer bg-blue-600 hover:bg-blue-500 text-white mr-2 mb-2">
                     3 Months
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 text-center cursor-pointer hover:bg-slate-100"
+                    className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -348,13 +435,13 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "more than 3 months" ? (
-                  <span className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center">
+                  <span className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-blue-600 cursor-pointer bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center mr-2 mb-2">
                     <FaGreaterThan className="mr-1 mt-[2px] text-[0.65rem] text-white" />
                     3 Months
                   </span>
                 ) : (
                   <span
-                    className="text-xs sm:text-sm py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 cursor-pointer flex items-center justify-center hover:bg-slate-100"
+                    className="text-sm py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-400 cursor-pointer flex items-center justify-center hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -367,63 +454,6 @@ const EditProfileForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
               </div>
-            </div>
-
-            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4">
-              <div className="flex-grow box-border">
-                <input
-                  type="text"
-                  name="first_name"
-                  value={values.first_name}
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="First Name"
-                />
-              </div>
-              <div className="flex-grow box-border">
-                <input
-                  type="text"
-                  name="last_name"
-                  value={values.last_name}
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="Last Name"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4">
-              <div className="flex-grow box-border">
-                <input
-                  type="text"
-                  name="country"
-                  value={values.country}
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="Country"
-                />
-              </div>
-              <div className="flex-grow box-border">
-                <input
-                  type="text"
-                  name="city"
-                  value={values.city}
-                  className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="City"
-                />
-              </div>
-            </div>
-
-            <div className="flex-grow box-border mt-4">
-              <input
-                type="text"
-                name="mobile_no"
-                value={values.mobile_no}
-                className="border border-slate-400 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
-                onChange={handleChange}
-                placeholder="Mobile"
-              />
             </div>
 
             <div className="flex items-center justify-start mt-8">
