@@ -23,15 +23,17 @@ interface ErrorProps {
 const KeySkilssForm = () => {
   const { data } = useGetKeySkillsQuery();
 
-  const [skill, setSkill] = useState<string[]>([]);
+  const [skill, setSkill] = useState<string>("");
   const [skills, setSkills] = useState<string[]>([]);
+
+  console.log(skills);
 
   const [editKeySkills, { isLoading, isError, isSuccess }] =
     useEditKeySkillsMutation();
   const dispatch = useDispatch();
 
   const keySkillsEditBtnRef = useRef<HTMLSpanElement>(null);
-  const keySkillsModalRef = useRef<HTMLFormElement>(null);
+  const keySkillsModalRef = useRef<HTMLDivElement>(null);
   const keySkillsCloseBtnRef = useRef<HTMLDivElement>(null);
   const keySkilssCancelBtnRef = useRef<HTMLButtonElement>(null);
 
@@ -69,26 +71,20 @@ const KeySkilssForm = () => {
 
       if (res.msg) {
         dispatch(userApi.util.invalidateTags([{ type: "Skills" }]));
-        //toast.success("Skill added successfully");
+        toast.success("Profile updated successfully");
 
-        // if (keySkillsModalRef.current) {
-        //   keySkillsModalRef.current.style.opacity = "0";
-        //   setTimeout(() => {
-        //     keySkillsModalRef.current!.style.transform = "scale(0)";
-        //   }, 300);
-        // }
+        if (keySkillsModalRef.current) {
+          keySkillsModalRef.current.style.opacity = "0";
+          setTimeout(() => {
+            keySkillsModalRef.current!.style.transform = "scale(0)";
+          }, 300);
+        }
       }
 
       isError && toast.error(res.data.msg);
     } catch (err) {
       const error = err as ErrorProps;
       toast.error(error?.data?.msg);
-    }
-  };
-
-  const handleKeyDown = (e: any) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
     }
   };
 
@@ -113,7 +109,7 @@ const KeySkilssForm = () => {
         <p className="text-blue-600 font-medium cursor-pointer">Add</p>
       </div>
       {/* ----- Key skills modal ----- */}
-      <form
+      <div
         ref={keySkillsModalRef}
         className="fixed top-0 left-0 right-0 bottom-0 z-30 scale-0 opacity-0 bg-[rgba(0,0,0,0.85)] w-full h-full flex justify-center transition-opacity duration-300 pt-[4.5rem] pb-[4rem] px-4 overflow-y-auto"
       >
@@ -132,7 +128,15 @@ const KeySkilssForm = () => {
             Add skills that best define your expertise, for e.g, Javascript,
             Next.js etc. (One at a time)
           </p>
-          <div className="flex-grow box-border mt-8">
+          <form
+            className="flex-grow box-border mt-8"
+            onSubmit={(e: any) => {
+              e.preventDefault();
+
+              setSkills((prevSkills) => [...prevSkills, skill]);
+              setSkill("");
+            }}
+          >
             <label htmlFor="skill" className="inline-block mb-1 font-bold">
               Skills
             </label>
@@ -141,17 +145,16 @@ const KeySkilssForm = () => {
               id="skill"
               type="text"
               name="skill"
-              //value={skill}
+              value={skill}
               className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
-              //   onChange={(e: any) =>
-              //     setSkills((prevSkills) => [...prevSkills, e.target.value])
-              //   }
-              onChange={(e: any) => setSkill(skill)}
+              // onChange={(e: any) =>
+              //   setSkills((prevSkills) => [...prevSkills, e.target.value])
+              // }
+              onChange={(e: any) => setSkill(e.target.value)}
               placeholder="Add skill"
-              onKeyDown={handleKeyDown}
               required
             />
-          </div>
+          </form>
           <div>
             {data &&
               data.skills &&
@@ -163,19 +166,19 @@ const KeySkilssForm = () => {
               ref={keySkilssCancelBtnRef}
               type="button"
               className="h-[40px] px-4 border border-blue-600 hover:bg-[#f8f8f8] rounded-[var(--r1)] text-blue-600 font-medium flex items-center justify-center cursor-pointer"
-              onClick={(e: any) => hideKeySkillsForm(e)}
+              onClick={hideKeySkillsForm}
             >
               Cancel
             </button>
             <button
               className="h-[40px] px-4 bg-blue-600 hover:bg-blue-500 rounded-[var(--r1)] border border-blue-600 text-white flex items-center justify-center w-[90.9px] ml-2"
-              onClick={(e: any) => handleEditKeySkills(e)}
+              onClick={handleEditKeySkills}
             >
               {isLoading ? <div className="loader-1"></div> : "Save"}
             </button>
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 };

@@ -444,7 +444,7 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
               <button
                 ref={cancelBtnRef}
                 type="button"
-                onClick={(e: any) => hideEditForm(e)}
+                onClick={hideEditForm}
                 className="h-[40px] px-4 border border-blue-600 hover:bg-[#f8f8f8] rounded-[var(--r1)] text-blue-600 font-medium flex items-center justify-center cursor-pointer "
               >
                 Cancel
