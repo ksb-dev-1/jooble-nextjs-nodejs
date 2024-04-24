@@ -57,9 +57,9 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem]">
-      <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white">
-        <p className="font-bold text-lg sm:text-2xl mb-8">
+    <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem] ">
+      <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+        <p className="font-bold text-xl mb-8">
           Login
           {/* in to <span className="text-blue-600">Jooble</span> account */}
         </p>
@@ -67,7 +67,7 @@ const LoginPage: React.FC = () => {
           <input
             type="email"
             name="email"
-            className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+            className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
             onChange={handleChange}
             placeholder="Email Address"
             required
@@ -76,13 +76,13 @@ const LoginPage: React.FC = () => {
           <input
             type="password"
             name="password"
-            className="border border-slate-300 rounded-[var(--r1)] mt-4 px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+            className="border border-slate-300 rounded-[var(--r1)] mt-4 px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
             onChange={handleChange}
             placeholder="Password"
             required
           />
 
-          <p className="mt-4 mb-4 text-sm sm:text-base">
+          <p className="mt-4 mb-4">
             <Link href="/pages/forgot-password" className="text-blue-600">
               Forgot your password?
             </Link>
@@ -96,7 +96,7 @@ const LoginPage: React.FC = () => {
           </button>
         </form>
 
-        <div className="relative bg-slate-400 w-full h-[0.5px] my-8">
+        <div className="relative bg-slate-300 w-full h-[0.5px] my-8">
           <span className="absolute bg-white top-[-12px] left-[calc(50%-(70.95px))] px-3 font-semibold">
             Or continue with
           </span>
@@ -117,7 +117,7 @@ const LoginPage: React.FC = () => {
           </button>
         </div>
 
-        <p className="mt-4 text-sm sm:text-base">
+        <p className="mt-4">
           <span>Don't have an account? </span>
           <Link href="/pages/register" className="text-blue-600">
             Register

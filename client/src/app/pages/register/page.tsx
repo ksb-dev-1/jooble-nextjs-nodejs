@@ -8,8 +8,6 @@ import { toast } from "react-toastify";
 // ----- recat-icons -----
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { BiSolidUserCircle } from "react-icons/bi";
-import { FaUpload } from "react-icons/fa";
 // ----- redux
 import { useRegisterMutation } from "@/redux/slices/authApi";
 
@@ -53,51 +51,26 @@ const RegisterPage: React.FC = () => {
     }
   };
 
-  const convertToBase64 = (image: any): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      if (!(image instanceof Blob)) {
-        reject(new Error("Input is not a Blob"));
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.readAsDataURL(image);
-
-      reader.onloadend = () => {
-        if (typeof reader.result === "string") {
-          resolve(reader.result);
-        } else {
-          reject(new Error("Failed to convert image to base64"));
-        }
-      };
-
-      reader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
-  const handleImageChange = async (e: any) => {
-    const base64Image = await convertToBase64(e.target.files[0]);
-    setValues({ ...values, image: base64Image });
-  };
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleGoogleAuth = () => {
+    window.open("http://localhost:8000/auth/google/callback", "_self");
   };
 
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem]">
       {isSuccess ? (
-        <div className="text-blue-600 rounded-[var(--r1)] p-8 bg-white w-full sm:w-[500px]">
+        <div className="text-blue-600 rounded-[var(--r1)] p-8 bg-white w-full sm:w-[500px] shadow-1">
           <p className="text-center">
             We've sent you a link to your email account. Please check your email
             to verify it.
           </p>
         </div>
       ) : (
-        <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white">
-          <p className="font-bold text-lg sm:text-2xl mb-8">
+        <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+          <p className="font-bold text-xl mb-8">
             Register
             {/* for a <span className="text-blue-600">Jooble</span> account */}
           </p>
@@ -109,7 +82,7 @@ const RegisterPage: React.FC = () => {
                   id="first_name"
                   type="text"
                   name="first_name"
-                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="First Name"
                   required
@@ -121,7 +94,7 @@ const RegisterPage: React.FC = () => {
                   id="last_name"
                   type="text"
                   name="last_name"
-                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Last Name"
                   required
@@ -133,7 +106,7 @@ const RegisterPage: React.FC = () => {
               <input
                 type="email"
                 name="email"
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
                 onChange={handleChange}
                 placeholder="Email Address"
                 required
@@ -145,7 +118,7 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="password"
                   name="password"
-                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Password"
                   required
@@ -155,7 +128,7 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="password"
                   name="confirmPassword"
-                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-sm placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
                   placeholder="Confirm Password"
                   required
@@ -171,7 +144,7 @@ const RegisterPage: React.FC = () => {
             </button>
           </form>
 
-          <div className="relative bg-slate-400 w-full h-[0.5px] my-8">
+          <div className="relative bg-slate-300 w-full h-[0.5px] my-8">
             <span className="absolute bg-white top-[-12px] left-[calc(50%-(70.95px))] px-3 font-semibold">
               Or continue with
             </span>
@@ -181,6 +154,7 @@ const RegisterPage: React.FC = () => {
             <button
               type="submit"
               className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
+              onClick={handleGoogleAuth}
             >
               <FcGoogle className="text-2xl" />
             </button>
@@ -192,7 +166,7 @@ const RegisterPage: React.FC = () => {
             </button>
           </div>
 
-          <p className="mt-4 text-sm sm:text-base">
+          <p className="mt-4">
             <span>Already have an account? </span>
             <Link href="/pages/login" className="text-blue-600">
               Login

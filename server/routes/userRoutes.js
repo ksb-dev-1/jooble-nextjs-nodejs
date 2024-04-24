@@ -9,6 +9,8 @@ import {
   getAllUsers,
   getSingleUser,
   showCurrentUser,
+  getKeySkills,
+  editKeySkills,
   editUserProfile,
   updateUserEmail,
   updateUserPassword,
@@ -24,7 +26,9 @@ import {
 
 router.route("/").get(getAllUsers);
 router.route("/show-me").get(authenticateUser, showCurrentUser);
-router.route("/edit-profile").patch(editUserProfile);
+router.route("/edit-profile").patch(authenticateUser, editUserProfile);
+router.route("/get-key-skills").get(authenticateUser, getKeySkills);
+router.route("/edit-key-skills").patch(authenticateUser, editKeySkills);
 router.route("/update-email").patch(updateUserEmail);
 router.route("/update-password").patch(updateUserPassword);
 router.route("/:id").get(getSingleUser);

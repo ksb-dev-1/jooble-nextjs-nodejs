@@ -5,6 +5,7 @@ import { v2 as cloudinary } from "cloudinary";
 // models
 import User from "../models/User.js";
 import Token from "../models/Token.js";
+import Skills from "../models/Skills.js";
 
 // errors
 import CustomError from "../errors/index.js";
@@ -37,24 +38,11 @@ const editUserProfile = async (req, res) => {
     city,
     mobile_no,
     available_to_join,
-    password,
-    confirmPassword,
   } = req.body;
-
-  // if (password !== confirmPassword) {
-  //   throw new CustomError.BadRequestError("Confirm password doesn't match.");
-  // }
 
   const user = await User.findOne({ email });
 
-  // const isPasswordCorrect = await user.comparePassword(password);
-
-  // if (!isPasswordCorrect) {
-  //   throw new CustomError.UnauthenticatedError("Incorrect password");
-  // }
-
   let imageUrl = "";
-  let updatedUser = "";
 
   if (image) {
     if (user.image !== "" && !image.startsWith("https")) {
@@ -170,6 +158,37 @@ const uploadProfilePictureToCloudinary = async (image) => {
   return uploaded;
 };
 
+const getKeySkills = async (req, res) => {
+  const skillsArray = await Skills.findOne({ user: req.user.userId });
+
+  if (!skillsArray) {
+    res.status(StatusCodes.OK).json({ msg: "Start adding skills" });
+  }
+
+  res.status(StatusCodes.OK).json({ skills: skillsArray.skills });
+};
+
+const editKeySkills = async (req, res) => {
+  const { skill } = req.body;
+
+  const skillsArray = await Skills.findOne({ user: req.user.userId });
+
+  if (skillsArray.length === 0 && skill) {
+    const isSkillAdded = await Skills.create({
+      skills: [skill],
+      user: req.user.userId,
+    });
+    console.log(isSkillAdded);
+  } else {
+    if (!skillsArray.skills.includes(skill)) {
+      skillsArray.skills.push(skill);
+      await skillsArray.save();
+    }
+  }
+
+  res.status(StatusCodes.OK).json({ msg: "Key skills updated successfully" });
+};
+
 const updateUserEmail = async (req, res) => {
   res.send("Update user email");
 };
@@ -183,6 +202,8 @@ export {
   getSingleUser,
   showCurrentUser,
   editUserProfile,
+  getKeySkills,
+  editKeySkills,
   updateUserEmail,
   updateUserPassword,
 };

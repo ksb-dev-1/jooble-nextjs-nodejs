@@ -42,6 +42,14 @@ const nextConfig = {
         source: "/edit-profile",
         destination: "http://localhost:8000/jooble/api/users/edit-profile",
       },
+      {
+        source: "/get-key-skills",
+        destination: "http://localhost:8000/jooble/api/users/get-key-skills",
+      },
+      {
+        source: "/edit-key-skills",
+        destination: "http://localhost:8000/jooble/api/users/edit-key-skills",
+      },
     ];
   },
 };

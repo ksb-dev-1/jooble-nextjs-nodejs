@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 // components
-import VerifyEmail from "@/components/VerifyEmail";
+import VerifyEmail from "./VerifyEmail";
 
 const VerifyEmailPage: React.FC = () => {
   return (
