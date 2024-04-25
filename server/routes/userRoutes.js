@@ -10,8 +10,8 @@ import {
   getSingleUser,
   showCurrentUser,
   getKeySkills,
-  editKeySkills,
-  editUserProfile,
+  updateUserProfile,
+  updateKeySkills,
   updateUserEmail,
   updateUserPassword,
 } from "../controllers/userController.js";
@@ -26,9 +26,9 @@ import {
 
 router.route("/").get(getAllUsers);
 router.route("/show-me").get(authenticateUser, showCurrentUser);
-router.route("/edit-profile").patch(authenticateUser, editUserProfile);
+router.route("/update-profile").patch(authenticateUser, updateUserProfile);
 router.route("/get-key-skills").get(authenticateUser, getKeySkills);
-router.route("/edit-key-skills").patch(authenticateUser, editKeySkills);
+router.route("/update-key-skills").patch(authenticateUser, updateKeySkills);
 router.route("/update-email").patch(updateUserEmail);
 router.route("/update-password").patch(updateUserPassword);
 router.route("/:id").get(getSingleUser);

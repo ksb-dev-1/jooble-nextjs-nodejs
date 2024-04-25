@@ -25,8 +25,13 @@ const KeySkilssForm = () => {
 
   const [skill, setSkill] = useState<string>("");
   const [skills, setSkills] = useState<string[]>([]);
+  const [toDeleteSkills, setToDeleteSkills] = useState<string[]>([]);
 
-  console.log(skills);
+  useEffect(() => {
+    if (data && data.skills) {
+      setSkills(data.skills);
+    }
+  }, [data]);
 
   const [editKeySkills, { isLoading, isError, isSuccess }] =
     useEditKeySkillsMutation();
@@ -41,7 +46,9 @@ const KeySkilssForm = () => {
     if (keySkillsModalRef.current) {
       keySkillsModalRef.current.style.transform = "scale(1)";
       keySkillsModalRef.current.style.opacity = "1";
-      //setValuesFn();
+      if (data && data.skills) {
+        setSkills(data.skills);
+      }
     }
   };
 
@@ -61,13 +68,15 @@ const KeySkilssForm = () => {
     }
   };
 
-  const handleEditKeySkills = async (e: FormEvent) => {
+  const handleEditKeySkills = async (e: any) => {
     e.preventDefault();
 
-    if (!skill) return;
+    if (!skills && !toDeleteSkills) return;
 
     try {
-      const res = await editKeySkills({ skills }).unwrap();
+      const res = await editKeySkills({ skills, toDeleteSkills }).unwrap();
+
+      //setSkills([]);
 
       if (res.msg) {
         dispatch(userApi.util.invalidateTags([{ type: "Skills" }]));
@@ -133,7 +142,8 @@ const KeySkilssForm = () => {
             onSubmit={(e: any) => {
               e.preventDefault();
 
-              setSkills((prevSkills) => [...prevSkills, skill]);
+              if (!skills.includes(skill))
+                setSkills((prevSkills) => [...prevSkills, skill]);
               setSkill("");
             }}
           >
@@ -155,11 +165,27 @@ const KeySkilssForm = () => {
               required
             />
           </form>
-          <div>
-            {data &&
+          <div className="mt-8 flex items-center flex-wrap">
+            {/* {data &&
               data.skills &&
-              data.skills.map((skill) => <span key={skill}>{skill}</span>)}
-            {skills && skills.map((skill) => <span key={skill}>{skill}</span>)}
+              data.skills.map((skill) => <span key={skill}>{skill}</span>)} */}
+            {skills &&
+              skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="border border-slate-300 rounded-[var(--r1)] py-1 sm:py-2 px-2 sm:px-4 mr-2 mb-2 flex items-center"
+                >
+                  {skill}
+                  <IoMdClose
+                    className="ml-2 text-[tomato] cursor-pointer"
+                    onClick={() => {
+                      const filter = skills.filter((el) => el !== skill);
+                      setToDeleteSkills((prev) => [...prev, skill]);
+                      setSkills(filter);
+                    }}
+                  />
+                </div>
+              ))}
           </div>
           <div className="flex items-center justify-end mt-8">
             <button

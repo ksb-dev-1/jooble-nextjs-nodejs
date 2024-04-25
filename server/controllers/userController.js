@@ -27,7 +27,7 @@ const showCurrentUser = async (req, res) => {
 };
 
 // ----- Edit user profile -----
-const editUserProfile = async (req, res) => {
+const updateUserProfile = async (req, res) => {
   const {
     image,
     first_name,
@@ -41,7 +41,7 @@ const editUserProfile = async (req, res) => {
   } = req.body;
 
   const user = await User.findOne({ email });
-
+  let updatedUser = "";
   let imageUrl = "";
 
   if (image) {
@@ -168,21 +168,33 @@ const getKeySkills = async (req, res) => {
   res.status(StatusCodes.OK).json({ skills: skillsArray.skills });
 };
 
-const editKeySkills = async (req, res) => {
-  const { skill } = req.body;
+const updateKeySkills = async (req, res) => {
+  const { skills, toDeleteSkills } = req.body;
 
   const skillsArray = await Skills.findOne({ user: req.user.userId });
 
-  if (skillsArray.length === 0 && skill) {
-    const isSkillAdded = await Skills.create({
-      skills: [skill],
+  if (toDeleteSkills) {
+    const filter = skillsArray.skills.filter(
+      (skill) => !toDeleteSkills.includes(skill)
+    );
+
+    await Skills.findOneAndUpdate(
+      { user: req.user.userId },
+      { skills: filter }
+    );
+  }
+
+  if (!skillsArray && skills) {
+    await Skills.create({
+      skills: skills,
       user: req.user.userId,
     });
-    console.log(isSkillAdded);
   } else {
-    if (!skillsArray.skills.includes(skill)) {
-      skillsArray.skills.push(skill);
-      await skillsArray.save();
+    for (let i = 0; i < skills.length; i++) {
+      if (!skillsArray.skills.includes(skills[i])) {
+        skillsArray.skills.push(skills[i]);
+        await skillsArray.save();
+      }
     }
   }
 
@@ -201,9 +213,9 @@ export {
   getAllUsers,
   getSingleUser,
   showCurrentUser,
-  editUserProfile,
+  updateUserProfile,
   getKeySkills,
-  editKeySkills,
+  updateKeySkills,
   updateUserEmail,
   updateUserPassword,
 };
