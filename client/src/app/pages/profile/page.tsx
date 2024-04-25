@@ -10,7 +10,8 @@ import { IoMdClose } from "react-icons/io";
 import { useShowMeQuery } from "@/redux/slices/userApi";
 
 // ----- components -----
-import KeySkilssForm from "./KeySkilssForm";
+import KeySkills from "./KeySkilssForm";
+import Projects from "./Projects";
 
 // ----- skeletons -----
 import ProfileSkeleton from "@/skeletons/ProfileSkeleton";
@@ -51,19 +52,8 @@ const ProfilePage: React.FC = () => {
           </p>
         </div>
         <div className="flex-grow mt-4 sm:mt-8 md:mt-0 md:ml-8 h-fit">
-          <KeySkilssForm />
-          {/* Projects */}
-          <div className="flex items-center justify-between bg-white rounded-[var(--r1)] p-4 sm:p-8 shadow-1 mt-4 sm:mt-8">
-            <div className="flex items-center">
-              <p className="font-bold mr-2">Projects</p>
-              <p className="relative h-[30px] w-[30px] rounded-full text-white bg-blue-600 hover:bg-blue-500 cursor-pointer">
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <BiSolidEdit />
-                </span>
-              </p>
-            </div>
-            <p className="text-blue-600 font-semibold cursor-pointer">Add</p>
-          </div>
+          <KeySkills />
+          <Projects />
           {/* Education */}
           <div className="flex items-center justify-between bg-white rounded-[var(--r1)] p-4 sm:p-8 shadow-1 mt-4 sm:mt-8">
             <div className="flex items-center">

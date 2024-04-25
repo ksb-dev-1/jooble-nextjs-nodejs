@@ -22,7 +22,7 @@ import { FaUpload } from "react-icons/fa6";
 import { FaLessThan } from "react-icons/fa6";
 import { FaGreaterThan } from "react-icons/fa6";
 // ----- redux
-import { useEditProfileMutation } from "@/redux/slices/userApi";
+import { useUpdateProfileMutation } from "@/redux/slices/userApi";
 import { useDispatch } from "react-redux";
 import { userApi } from "@/redux/slices/userApi";
 
@@ -95,7 +95,7 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
     };
 
     const [onHoverImage, setOnHoverImage] = useState(false);
-    const [editProfile, { isLoading, isError }] = useEditProfileMutation();
+    const [editProfile, { isLoading, isError }] = useUpdateProfileMutation();
     const dispatch = useDispatch();
 
     // ----- Handle form edit -----

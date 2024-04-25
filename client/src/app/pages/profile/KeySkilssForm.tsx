@@ -9,7 +9,7 @@ import { BiSolidEdit } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
 // ----- redux -----
 import { useGetKeySkillsQuery } from "@/redux/slices/userApi";
-import { useEditKeySkillsMutation } from "@/redux/slices/userApi";
+import { useUpdateKeySkillsMutation } from "@/redux/slices/userApi";
 import { useDispatch } from "react-redux";
 import { userApi } from "@/redux/slices/userApi";
 
@@ -20,21 +20,12 @@ interface ErrorProps {
   error?: string;
 }
 
-const KeySkilssForm = () => {
+const KeySkills = () => {
   const { data } = useGetKeySkillsQuery();
 
   const [skill, setSkill] = useState<string>("");
   const [skills, setSkills] = useState<string[]>([]);
   const [toDeleteSkills, setToDeleteSkills] = useState<string[]>([]);
-
-  // console.log("data : ", data);
-  // console.log("skills : ", skills);
-
-  // useEffect(() => {
-  //   if (data && data.skills) {
-  //     setSkills(data.skills);
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (data && data.skills) {
@@ -42,14 +33,13 @@ const KeySkilssForm = () => {
     }
   }, [data]);
 
-  const [editKeySkills, { isLoading, isError, isSuccess }] =
-    useEditKeySkillsMutation();
+  const [editKeySkills, { isLoading, isError }] = useUpdateKeySkillsMutation();
   const dispatch = useDispatch();
 
   const keySkillsEditBtnRef = useRef<HTMLSpanElement>(null);
   const keySkillsModalRef = useRef<HTMLDivElement>(null);
   const keySkillsCloseBtnRef = useRef<HTMLDivElement>(null);
-  const keySkilssCancelBtnRef = useRef<HTMLButtonElement>(null);
+  const keySkilsCancelBtnRef = useRef<HTMLButtonElement>(null);
 
   const showEditForm = () => {
     if (keySkillsModalRef.current) {
@@ -67,8 +57,8 @@ const KeySkilssForm = () => {
         keySkillsCloseBtnRef.current &&
         keySkillsCloseBtnRef.current.contains(e.target as Node)) ||
       (keySkillsModalRef.current &&
-        keySkilssCancelBtnRef.current &&
-        keySkilssCancelBtnRef.current.contains(e.target as Node))
+        keySkilsCancelBtnRef.current &&
+        keySkilsCancelBtnRef.current.contains(e.target as Node))
     ) {
       keySkillsModalRef.current.style.opacity = "0";
       setTimeout(() => {
@@ -154,7 +144,7 @@ const KeySkilssForm = () => {
             onSubmit={(e: any) => {
               e.preventDefault();
 
-              if (!skills.includes(skill))
+              if (!skills.includes(skill.toLocaleLowerCase()))
                 setSkills((prevSkills) => [...prevSkills, skill]);
               setSkill("");
             }}
@@ -207,7 +197,7 @@ const KeySkilssForm = () => {
           </div>
           <div className="flex items-center justify-end mt-8">
             <button
-              ref={keySkilssCancelBtnRef}
+              ref={keySkilsCancelBtnRef}
               type="button"
               className="h-[40px] px-4 border border-blue-600 hover:bg-[#f8f8f8] rounded-[var(--r1)] text-blue-600 font-medium flex items-center justify-center cursor-pointer"
               onClick={hideKeySkillsForm}
@@ -227,4 +217,4 @@ const KeySkilssForm = () => {
   );
 };
 
-export default KeySkilssForm;
+export default KeySkills;
