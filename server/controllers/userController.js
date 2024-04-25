@@ -173,7 +173,7 @@ const updateKeySkills = async (req, res) => {
 
   const skillsArray = await Skills.findOne({ user: req.user.userId });
 
-  if (toDeleteSkills) {
+  if (toDeleteSkills.length >= 1) {
     const filter = skillsArray.skills.filter(
       (skill) => !toDeleteSkills.includes(skill)
     );
@@ -182,9 +182,12 @@ const updateKeySkills = async (req, res) => {
       { user: req.user.userId },
       { skills: filter }
     );
+
+    //console.log(toDeleteSkills);
   }
 
   if (!skillsArray && skills) {
+    //console.log(2);
     await Skills.create({
       skills: skills,
       user: req.user.userId,
@@ -192,6 +195,7 @@ const updateKeySkills = async (req, res) => {
   } else {
     for (let i = 0; i < skills.length; i++) {
       if (!skillsArray.skills.includes(skills[i])) {
+        //console.log(3);
         skillsArray.skills.push(skills[i]);
         await skillsArray.save();
       }

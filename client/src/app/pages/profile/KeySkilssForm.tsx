@@ -27,6 +27,15 @@ const KeySkilssForm = () => {
   const [skills, setSkills] = useState<string[]>([]);
   const [toDeleteSkills, setToDeleteSkills] = useState<string[]>([]);
 
+  // console.log("data : ", data);
+  // console.log("skills : ", skills);
+
+  // useEffect(() => {
+  //   if (data && data.skills) {
+  //     setSkills(data.skills);
+  //   }
+  // }, []);
+
   useEffect(() => {
     if (data && data.skills) {
       setSkills(data.skills);
@@ -65,6 +74,8 @@ const KeySkilssForm = () => {
       setTimeout(() => {
         keySkillsModalRef.current!.style.transform = "scale(0)";
       }, 300);
+
+      setToDeleteSkills([]);
     }
   };
 
@@ -77,6 +88,7 @@ const KeySkilssForm = () => {
       const res = await editKeySkills({ skills, toDeleteSkills }).unwrap();
 
       //setSkills([]);
+      setToDeleteSkills([]);
 
       if (res.msg) {
         dispatch(userApi.util.invalidateTags([{ type: "Skills" }]));
@@ -138,7 +150,7 @@ const KeySkilssForm = () => {
             Next.js etc. (One at a time)
           </p>
           <form
-            className="flex-grow box-border mt-8"
+            className="relative flex-grow box-border mt-8"
             onSubmit={(e: any) => {
               e.preventDefault();
 
@@ -164,6 +176,12 @@ const KeySkilssForm = () => {
               placeholder="Add skill"
               required
             />
+            <button
+              type="submit"
+              className="absolute right-[5px] top-[33px] bg-blue-600 text-white rounded-[var(--r1)] py-1 sm:py-2 px-4"
+            >
+              Add
+            </button>
           </form>
           <div className="mt-8 flex items-center flex-wrap">
             {/* {data &&
