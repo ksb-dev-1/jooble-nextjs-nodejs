@@ -6,79 +6,78 @@ const { Schema, model } = mongoose;
 const { genSalt, hash, compare } = bcryptjs;
 const { isEmail } = validator;
 
-const UserSchema = new Schema({
-  image: {
-    type: String,
-    default: "",
-  },
-  first_name: {
-    type: String,
-    required: [true, "Please provide name"],
-    minlength: 3,
-    maxlength: 50,
-  },
-  last_name: {
-    type: String,
-    required: [true, "Please provide name"],
-    minlength: 1,
-    maxlength: 50,
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: [true, "Please provide email"],
-    validate: {
-      validator: isEmail,
-      message: "Please provide valid email",
+const UserSchema = new Schema(
+  {
+    image: {
+      type: String,
+      default: "",
+    },
+    name: {
+      type: String,
+      required: [true, "Please provide name"],
+      minlength: 3,
+      maxlength: 50,
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: [true, "Please provide email"],
+      validate: {
+        validator: isEmail,
+        message: "Please provide valid email",
+      },
+    },
+    password: {
+      type: String,
+      required: [true, "Please provide password"],
+      minlength: 6,
+    },
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
+    },
+    last_updated: {
+      type: Date,
+      default: Date.now,
+    },
+    country: {
+      type: String,
+      default: "",
+    },
+    state: {
+      type: String,
+      default: "",
+    },
+    city: {
+      type: String,
+      default: "",
+    },
+    available_to_join: {
+      type: String,
+      default: "15 days",
+    },
+    mobile_no: {
+      type: String,
+      default: "",
+    },
+    verificationToken: String,
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    verified: Date,
+    passwordToken: {
+      type: String,
+    },
+    passwordTokenExpirationDate: {
+      type: Date,
     },
   },
-  password: {
-    type: String,
-    required: [true, "Please provide password"],
-    minlength: 6,
-  },
-  role: {
-    type: String,
-    enum: ["admin", "user"],
-    default: "user",
-  },
-  last_updated: {
-    type: Date,
-    default: Date.now,
-  },
-  country: {
-    type: String,
-    default: "",
-  },
-  state: {
-    type: String,
-    default: "",
-  },
-  city: {
-    type: String,
-    default: "",
-  },
-  available_to_join: {
-    type: String,
-    default: "15 days",
-  },
-  mobile_no: {
-    type: String,
-    default: "Not provided",
-  },
-  verificationToken: String,
-  isVerified: {
-    type: Boolean,
-    default: false,
-  },
-  verified: Date,
-  passwordToken: {
-    type: String,
-  },
-  passwordTokenExpirationDate: {
-    type: Date,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 UserSchema.pre("save", async function () {
   // console.log(this.modifiedPaths());

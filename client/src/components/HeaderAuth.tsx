@@ -87,14 +87,14 @@ const HeaderAuth: React.FC = () => {
 
           <Link
             href="/pages/login"
-            className="px-4 py-[calc(0.5rem-0.8px)] hover:bg-[#F5F5FC] text-blue-600 rounded-[var(--r1)] w-[88.91px] font-medium text-center border border-blue-600"
+            className="px-4 py-2 flex items-center justify-center text-center bg-blue-500 text-white hover:bg-blue-400 rounded-[var(--r1)] w-[88.91px]"
           >
             Login
           </Link>
 
           <Link
             href="/pages/register"
-            className="px-4 py-2 hover:bg-blue-500 text-white rounded-[var(--r1)] bg-blue-600 ml-2"
+            className="px-4 py-2 flex items-center justify-center bg-blue-500 text-white hover:bg-blue-400 rounded-[var(--r1)]  ml-2"
           >
             Register
           </Link>
@@ -120,10 +120,10 @@ const HeaderAuth: React.FC = () => {
         >
           <div
             ref={profileRef}
-            className="flex items-center px-4 py-2 rounded-[var(--r1)] bg-blue-600 hover:bg-blue-500 transition cursor-pointer text-white"
+            className="px-4 py-2 flex items-center justify-center  bg-blue-500 text-white hover:bg-blue-400 rounded-[var(--r1)] transition cursor-pointer"
           >
             <span>
-              <HiOutlineUserCircle />
+              <HiOutlineUserCircle className="text-xl" />
             </span>
             <span className="ml-1 mr-6">Profile</span>
             <span ref={downIconRef} className="transition">
@@ -136,7 +136,7 @@ const HeaderAuth: React.FC = () => {
           >
             <Link
               href="/pages/profile"
-              className="pl-2 py-2 flex items-center hover:bg-[#F5F5FC] rounded-[var(--r1)]"
+              className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)]"
               onClick={hideModal}
             >
               <HiOutlineUserCircle className="mr-2" />{" "}
@@ -144,14 +144,14 @@ const HeaderAuth: React.FC = () => {
             </Link>
             <Link
               href="/pages/saved"
-              className="pl-2 py-2 flex items-center hover:bg-[#F5F5FC] rounded-[var(--r1)]"
+              className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)]"
               onClick={hideModal}
             >
               <HiOutlineHeart className="mr-2" />{" "}
               <span className="text-base">Saved</span>
             </Link>
             <button
-              className="flex items-center pl-2 py-2 hover:bg-[#F5F5FC] rounded-[var(--r1)]"
+              className="flex items-center pl-2 py-2 hover:bg-slate-100 rounded-[var(--r1)]"
               onClick={(e) => {
                 !isLoading && handleLogout(e);
               }}

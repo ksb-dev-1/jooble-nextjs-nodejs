@@ -24,7 +24,7 @@ export const userApi = createApi({
     }),
     updateProfile: builder.mutation({
       query: (data) => ({
-        url: "/edit-profile",
+        url: "/update-profile",
         method: "PATCH",
         body: data,
         formData: true,
@@ -37,9 +37,16 @@ export const userApi = createApi({
       }),
       providesTags: [{ type: "Skills" }] as unknown as undefined,
     }),
+    createKeySkills: builder.mutation({
+      query: (data) => ({
+        url: "/create-key-skills",
+        method: "POST",
+        body: data,
+      }),
+    }),
     updateKeySkills: builder.mutation({
       query: (data) => ({
-        url: "/edit-key-skills",
+        url: "/update-key-skills",
         method: "PATCH",
         body: data,
       }),
@@ -51,5 +58,6 @@ export const {
   useShowMeQuery,
   useUpdateProfileMutation,
   useGetKeySkillsQuery,
+  useCreateKeySkillsMutation,
   useUpdateKeySkillsMutation,
 } = userApi;

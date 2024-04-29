@@ -14,19 +14,19 @@ import crypto from "crypto";
 
 // ----- Register user -----
 const registerUser = async (req, res) => {
-  const { email, first_name, last_name, password, confirmPassword } = req.body;
+  const { name, email, password, confirm_password } = req.body;
 
-  if (!first_name || !last_name || !email || !password || !confirmPassword) {
+  if (!name || !email || !password || !confirm_password) {
     throw new CustomError.BadRequestError("You must enter all the fields.");
   }
 
-  if (first_name.length < 3) {
+  if (name.length < 3) {
     throw new CustomError.BadRequestError(
-      "First name should be atleast 3 characters"
+      "Name should be atleast 3 characters"
     );
   }
 
-  if (password !== confirmPassword) {
+  if (password !== confirm_password) {
     throw new CustomError.BadRequestError("Confirm password doesn't match.");
   }
 
@@ -45,8 +45,7 @@ const registerUser = async (req, res) => {
   let user = {};
 
   user = await User.create({
-    first_name,
-    last_name,
+    name,
     email,
     password,
     role,
@@ -57,7 +56,7 @@ const registerUser = async (req, res) => {
   // const newOrigin = 'https://react-node-user-workflow-front-end.netlify.app';
 
   await jwtUtils.sendVerificationEmail({
-    first_name: user.first_name,
+    name: user.name,
     email: user.email,
     verificationToken: user.verificationToken,
     origin,
@@ -212,13 +211,13 @@ const forgotPassword = async (req, res) => {
 
 // ----- Reset password -----
 const resetPassword = async (req, res) => {
-  const { token, email, password, confirmPassword } = req.body;
+  const { token, email, password, confirm_password } = req.body;
 
-  if (!token || !email || !password || !confirmPassword) {
+  if (!token || !email || !password || !confirm_password) {
     throw new CustomError.BadRequestError("Please provide all values");
   }
 
-  if (password !== confirmPassword) {
+  if (password !== confirm_password) {
     throw new CustomError.BadRequestError("Confirm password doesn't match.");
   }
 
@@ -255,48 +254,3 @@ export {
   forgotPassword,
   resetPassword,
 };
-
-// let imageUrl = "";
-// if (image) {
-//   imageUrl = await uploadProfilePictureToCloudinary(image);
-
-//   if (imageUrl.secure_url) {
-//     user = await User.create({
-//       image: imageUrl.secure_url,
-//       first_name,
-//       last_name,
-//       email,
-//       password,
-//       role,
-//       verificationToken,
-//     });
-//   } else {
-//     user = await User.create({
-//       image: "",
-//       first_name,
-//       last_name,
-//       email,
-//       password,
-//       role,
-//       verificationToken,
-//     });
-//   }
-// }
-
-// const uploadProfilePictureToCloudinary = async (image) => {
-//   const uploaded = await cloudinary.uploader.upload(
-//     image,
-//     {
-//       upload_preset: "unsigned_uploads",
-//       allowed_formats: ["png", "svg", "jpg", "webp", "jpeg", "ico", "jfif"],
-//       folder: "jooble",
-//     },
-//     function (error, result) {
-//       if (error) {
-//         console.log(error);
-//       }
-//       return result;
-//     }
-//   );
-//   return uploaded;
-// };

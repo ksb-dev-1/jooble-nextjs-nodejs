@@ -102,23 +102,18 @@ const Projects = () => {
 
   return (
     <>
-      <div className="mt-8 flex items-center justify-between bg-white rounded-[var(--r1)] p-4 sm:p-8 shadow-1">
-        <div className="flex items-center">
-          <p className="font-bold mr-2">Projects</p>
-          <p
-            className="relative h-[30px] w-[30px] rounded-full text-white bg-blue-600 hover:bg-blue-500 cursor-pointer"
-            onClick={showProjectsForm}
-          >
-            <span
-              ref={projectsEditBtnRef}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              onClick={showProjectsForm}
-            >
-              <BiSolidEdit />
-            </span>
-          </p>
-        </div>
-        <p className="text-blue-600 font-medium cursor-pointer">Add</p>
+      <div
+        className="mt-4 sm:mt-8 flex items-center justify-between bg-white rounded-[var(--r1)] p-4 sm:p-8 shadow-1"
+        id="projects"
+      >
+        <p className="font-bold mr-2">Projects</p>
+
+        <p
+          className="text-blue-600 font-medium cursor-pointer"
+          onClick={showProjectsForm}
+        >
+          Add
+        </p>
       </div>
       {/* ----- Key skills modal ----- */}
       <div
@@ -153,7 +148,7 @@ const Projects = () => {
             <div>
               <label
                 htmlFor="project_name"
-                className="inline-block mb-1 font-bold"
+                className="inline-block mb-1 font-semibold"
               >
                 Project Name
               </label>
@@ -163,41 +158,41 @@ const Projects = () => {
                 type="text"
                 name="project_name"
                 value={skill}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 // onChange={(e: any) =>
                 //   setSkills((prevSkills) => [...prevSkills, e.target.value])
                 // }
                 onChange={(e: any) => setSkill(e.target.value)}
-                placeholder="Project Name"
+                //placeholder="Project Name"
                 required
               />
             </div>
             <div className="mt-4">
               <label
-                htmlFor="descrition"
-                className="inline-block mb-1 font-bold"
+                htmlFor="details"
+                className="inline-block mb-1 font-semibold"
               >
-                Description
+                Details
               </label>
               <div></div>
-              <input
-                id="descrition"
-                type="text"
-                name="descrition"
+              <textarea
+                id="details"
+                rows={3}
+                name="details"
                 value={skill}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 // onChange={(e: any) =>
                 //   setSkills((prevSkills) => [...prevSkills, e.target.value])
                 // }
                 onChange={(e: any) => setSkill(e.target.value)}
-                placeholder="Description"
+                //placeholder="Description"
                 required
               />
             </div>
             <div className="mt-4">
               <label
                 htmlFor="hosted_link"
-                className="inline-block mb-1 font-bold"
+                className="inline-block mb-1 font-semibold"
               >
                 Hosted Link
               </label>
@@ -207,19 +202,19 @@ const Projects = () => {
                 type="text"
                 name="hosted_link"
                 value={skill}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 // onChange={(e: any) =>
                 //   setSkills((prevSkills) => [...prevSkills, e.target.value])
                 // }
                 onChange={(e: any) => setSkill(e.target.value)}
-                placeholder="Description"
+                //placeholder="Description"
                 required
               />
             </div>
             <div className="mt-4">
               <label
                 htmlFor="github_link"
-                className="inline-block mb-1 font-bold"
+                className="inline-block mb-1 font-semibold"
               >
                 GitHub Link
               </label>
@@ -229,12 +224,12 @@ const Projects = () => {
                 type="text"
                 name="github_link"
                 value={skill}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 // onChange={(e: any) =>
                 //   setSkills((prevSkills) => [...prevSkills, e.target.value])
                 // }
                 onChange={(e: any) => setSkill(e.target.value)}
-                placeholder="Description"
+                //placeholder="Description"
                 required
               />
             </div>
@@ -244,13 +239,13 @@ const Projects = () => {
             <button
               ref={prjectsCancelBtnRef}
               type="button"
-              className="h-[40px] px-4 border border-blue-600 hover:bg-[#f8f8f8] rounded-[var(--r1)] text-blue-600 font-medium flex items-center justify-center cursor-pointer"
+              className="py-2 px-4 border border-blue-600 hover:bg-slate-100 rounded-[var(--r2)] text-blue-600 font-medium cursor-pointer"
               onClick={hideProjectsForm}
             >
               Cancel
             </button>
             <button
-              className="h-[40px] px-4 bg-blue-600 hover:bg-blue-500 rounded-[var(--r1)] border border-blue-600 text-white flex items-center justify-center w-[90.9px] ml-2"
+              className="py-2 px-4 bg-blue-600 hover:bg-blue-500 rounded-[var(--r2)] border border-blue-600 flex items-center justify-center text-white w-[85.56px] ml-2"
               onClick={handleEditProjects}
             >
               {/* {isLoading ? <div className="loader-1"></div> : "Save"} */}

@@ -5,7 +5,7 @@ import { v2 as cloudinary } from "cloudinary";
 // models
 import User from "../models/User.js";
 import Token from "../models/Token.js";
-import Skills from "../models/Skills.js";
+import Skill from "../models/Skill.js";
 
 // errors
 import CustomError from "../errors/index.js";
@@ -30,8 +30,7 @@ const showCurrentUser = async (req, res) => {
 const updateUserProfile = async (req, res) => {
   const {
     image,
-    first_name,
-    last_name,
+    name,
     email,
     country,
     state,
@@ -62,8 +61,7 @@ const updateUserProfile = async (req, res) => {
       { email },
       {
         image: imageUrl.secure_url,
-        first_name: first_name !== "" ? first_name : user.first_name,
-        last_name: last_name !== "" ? last_name : user.last_name,
+        name: name !== "" ? name : user.name,
         country: country !== "" ? country : user.country,
         state: state !== "" ? state : user.state,
         city: city !== "" ? city : user.city,
@@ -76,8 +74,7 @@ const updateUserProfile = async (req, res) => {
     updatedUser = await User.findOneAndUpdate(
       { email },
       {
-        first_name: first_name !== "" ? first_name : user.first_name,
-        last_name: last_name !== "" ? last_name : user.last_name,
+        name: name !== "" ? name : user.name,
         country: country !== "" ? country : user.country,
         state: state !== "" ? state : user.state,
         city: city !== "" ? city : user.city,
@@ -159,7 +156,7 @@ const uploadProfilePictureToCloudinary = async (image) => {
 };
 
 const getKeySkills = async (req, res) => {
-  const skillsArray = await Skills.findOne({ user: req.user.userId });
+  const skillsArray = await Skill.findOne({ user: req.user.userId });
 
   if (!skillsArray) {
     res.status(StatusCodes.OK).json({ msg: "Start adding skills" });
@@ -168,34 +165,46 @@ const getKeySkills = async (req, res) => {
   res.status(StatusCodes.OK).json({ skills: skillsArray.skills });
 };
 
+const getProjects = async (req, res) => {
+  // const skillsArray = await Skill.findOne({ user: req.user.userId });
+  // if (!skillsArray) {
+  //   res.status(StatusCodes.OK).json({ msg: "Start adding skills" });
+  // }
+  // res.status(StatusCodes.OK).json({ skills: skillsArray.skills });
+};
+
+const createKeySkills = async (req, res) => {
+  const { skills } = req.body;
+
+  await Skill.create({
+    skills: skills,
+    user: req.user.userId,
+  });
+
+  res.status(StatusCodes.OK).json({ msg: "Key skills created successfully" });
+};
+
 const updateKeySkills = async (req, res) => {
   const { skills, toDeleteSkills } = req.body;
 
-  const skillsArray = await Skills.findOne({ user: req.user.userId });
+  const skillsArray = await Skill.findOne({ user: req.user.userId });
 
   if (toDeleteSkills.length >= 1) {
     const filter = skillsArray.skills.filter(
       (skill) => !toDeleteSkills.includes(skill)
     );
 
-    await Skills.findOneAndUpdate(
-      { user: req.user.userId },
-      { skills: filter }
-    );
-
-    //console.log(toDeleteSkills);
+    await Skill.findOneAndUpdate({ user: req.user.userId }, { skills: filter });
   }
 
   if (!skillsArray && skills) {
-    //console.log(2);
-    await Skills.create({
+    await Skill.create({
       skills: skills,
       user: req.user.userId,
     });
   } else {
     for (let i = 0; i < skills.length; i++) {
       if (!skillsArray.skills.includes(skills[i])) {
-        //console.log(3);
         skillsArray.skills.push(skills[i]);
         await skillsArray.save();
       }
@@ -204,6 +213,8 @@ const updateKeySkills = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ msg: "Key skills updated successfully" });
 };
+
+const updateProjects = async (req, res) => {};
 
 const updateUserEmail = async (req, res) => {
   res.send("Update user email");
@@ -219,7 +230,9 @@ export {
   showCurrentUser,
   updateUserProfile,
   getKeySkills,
+  createKeySkills,
   updateKeySkills,
+  updateProjects,
   updateUserEmail,
   updateUserPassword,
 };

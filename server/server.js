@@ -3,9 +3,6 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import session from "express-session";
-import passport from "passport";
-import { Strategy as GoogleStrategy2 } from "passport-google-oauth20";
 import morgan from "morgan";
 import fileUpload from "express-fileupload";
 import bodyParser from "body-parser";
@@ -23,9 +20,6 @@ import userRoutes from "./routes/userRoutes.js";
 import notFoundMiddleware from "./middlewares/not-found.js";
 import errorHandlerMiddleware from "./middlewares/error-handler.js";
 
-// models
-import GoogleUser from "./models/GoogleUser.js";
-
 dotenv.config();
 
 cloudinary.config({
@@ -39,49 +33,6 @@ const app = express();
 app.use(express.json());
 app.use(cors({ credentials: true, origin: true }));
 app.use(cookieParser(process.env.JWT_SECRET));
-app.use(
-  session({
-    secret: process.env.JWT_SECRET,
-    resave: false,
-    saveUninitialized: true,
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(
-  new GoogleStrategy2(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
-      scope: ["profile", "email"],
-    },
-    async function (accessToken, refreshToken, profile, cb) {
-      //console.log(profile);
-      try {
-        let user = await GoogleUser.findOne({ googleId: profile.id });
-
-        if (!user) {
-          user = new GoogleUser({
-            googleId: profile.id,
-            image: profile.photos[0].value,
-            first_name: profile.displayName,
-            email: profile.emails[0].value,
-          });
-
-          await user.save();
-        }
-
-        return cb(null, user);
-      } catch (error) {
-        return cb(error, null);
-      }
-    }
-  )
-);
-passport.serializeUser((user, cb) => cb(null, user));
-
-passport.deserializeUser((user, cb) => cb(null, user));
 app.use(morgan("tiny"));
 app.use(
   fileUpload({
@@ -93,23 +44,6 @@ app.use(bodyParser.json({ limit: "10mb" }));
 
 app.use("/jooble/api/auth", authRoutes);
 app.use("/jooble/api/users", userRoutes);
-
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/",
-    failureRedirect: "http://localhost:3000/pages/login",
-  })
-);
-
-app.get("/login/success", async (req, res) => {
-  console.log(req.user);
-});
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

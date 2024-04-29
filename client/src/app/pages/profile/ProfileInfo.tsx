@@ -22,8 +22,7 @@ interface UserProps {
 const ProfileInfo: React.FC<UserProps> = ({ user }) => {
   const {
     image,
-    first_name,
-    last_name,
+    name,
     email,
     country,
     state,
@@ -36,8 +35,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
   const [values, setValues] = useState({
     image: user.image,
     available_to_join: user.available_to_join,
-    first_name: user.first_name,
-    last_name: user.last_name,
+    name: user.name,
     email: user.email,
     country: user.country,
     state: user.state,
@@ -52,8 +50,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
       ...values,
       image: user.image,
       available_to_join: user.available_to_join,
-      first_name: user.first_name,
-      last_name: user.last_name,
+      name: user.name,
       country: user.country,
       state: user.state,
       city: user.city,
@@ -89,7 +86,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain"
+                className="object-cover"
               />
             ) : (
               <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[110px] md:text-[165px] text-slate-300" />
@@ -98,12 +95,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
 
           <div className="md:ml-8 mt-4 md:mt-0">
             <p className="font-bold text-center md:text-start text-xl">
-              <span>
-                {first_name.charAt(0).toUpperCase() + first_name.substring(1)}{" "}
-              </span>
-              <span>
-                {last_name.charAt(0).toUpperCase() + last_name.substring(1)}
-              </span>
+              <span>{name.charAt(0).toUpperCase() + name.substring(1)} </span>
             </p>
             <p className="text-center md:text-start">
               <span className="text-slate-500">Profile last updated - </span>
@@ -119,7 +111,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                 <div className="flex items-center">
                   <IoLocationOutline />
                   <div className="ml-2 w-max">
-                    {!country && !state && !city && <span>Not provided</span>}
+                    {!country && !city && <span>Not provided</span>}
                     <span>
                       {city &&
                         city.charAt(0).toUpperCase() + city.substring(1) + ", "}
@@ -159,7 +151,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
         </div>
 
         <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0">
-          <div className="max-w-full bg-blue-50 p-4 rounded-[var(--r1)]">
+          <div className="max-w-full bg-slate-100 p-4 rounded-[var(--r2)]">
             <input
               type="file"
               id="resume"
@@ -170,7 +162,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             />
             <label
               htmlFor="resume"
-              className="relative p-4 cursor-pointer px-4 w-full border border-dashed hover:bg-blue-100 border-blue-600 rounded-[var(--r1)] overflow-hidden flex flex-col items-center 
+              className="relative p-4 cursor-pointer w-full border border-dashed border-blue-600 rounded-[var(--r2)] overflow-hidden flex flex-col items-center 
               justify-center"
             >
               <p className="text-blue-600">Upload Resume</p>
@@ -180,7 +172,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             </label>
           </div>
           <button
-            className="flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-[var(--r1)] mt-2"
+            className="text-center h-[41.6px] bg-blue-600 hover:bg-blue-500 text-white px-4 rounded-[var(--r2)] mt-2"
             onClick={showEditForm}
           >
             Edit

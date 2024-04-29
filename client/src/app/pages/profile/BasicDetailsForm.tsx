@@ -30,8 +30,7 @@ interface UserProps {
   //user: User;
   values: {
     image: string;
-    first_name: string;
-    last_name: string;
+    name: string;
     email: string;
     country: string;
     state: string;
@@ -44,8 +43,7 @@ interface UserProps {
   setValues: Dispatch<
     SetStateAction<{
       image: string;
-      first_name: string;
-      last_name: string;
+      name: string;
       email: string;
       country: string;
       state: string;
@@ -106,8 +104,7 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
 
       formData.append("image", values.image);
       formData.append("available_to_join", values.available_to_join);
-      formData.append("first_name", values.first_name);
-      formData.append("last_name", values.last_name);
+      formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("country", values.country);
       formData.append("state", values.state);
@@ -196,7 +193,7 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
           </div>
           <p className="font-bold text-xl mb-8 mt-2 sm:mt-0">Basic Details</p>
 
-          <form onSubmit={handleEditProfile}>
+          <form onSubmit={handleEditProfile} className="">
             <div>
               <input
                 type="file"
@@ -229,7 +226,7 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                     alt="pic"
                     fill
                     priority
-                    className="object-contain"
+                    className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 )}
@@ -238,37 +235,19 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
 
             <div className="flex-grow box-border mt-4">
               <label
-                htmlFor="first_name"
+                htmlFor="name"
                 className="inline-block mb-1 font-semibold "
               >
-                First Name
+                Name
               </label>
               <input
-                id="first_name"
+                id="name"
                 type="text"
-                name="first_name"
-                value={values.first_name}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
+                name="name"
+                value={values.name}
+                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
                 onChange={handleChange}
-                placeholder="First Name"
-              />
-            </div>
-
-            <div className="flex-grow box-border mt-4">
-              <label
-                htmlFor="last_name"
-                className="inline-block mb-1 font-semibold "
-              >
-                Last Name
-              </label>
-              <input
-                id="last_name"
-                type="text"
-                name="last_name"
-                value={values.last_name}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
-                onChange={handleChange}
-                placeholder="Last Name"
+                //placeholder="First Name"
               />
             </div>
 
@@ -284,9 +263,9 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                 type="text"
                 name="country"
                 value={values.country}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
+                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
                 onChange={handleChange}
-                placeholder="country"
+                //placeholder="country"
               />
             </div>
 
@@ -302,9 +281,9 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                 type="text"
                 name="city"
                 value={values.city}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
+                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
                 onChange={handleChange}
-                placeholder="Mobile"
+                //placeholder="City"
               />
             </div>
 
@@ -320,9 +299,9 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                 type="text"
                 name="mobile_no"
                 value={values.mobile_no}
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
+                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
                 onChange={handleChange}
-                placeholder="Mobile"
+                //placeholder="Mobile"
               />
             </div>
 
@@ -331,33 +310,14 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
               <p className="text-slate-500 ">
                 Lets recruiters know your availability to join
               </p>
-              <div className="flex items-center flex-wrap mt-4 rounded-[var(--r1)]">
-                {values.available_to_join === "less than 15 days" ? (
-                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 cursor-pointer bg-slate-200 hover:bg-slate-300  flex items-center justify-center mr-2 mb-2">
-                    <FaLessThan className="mr-1 text-[0.65rem] " />
-                    15 Days
-                  </span>
-                ) : (
-                  <span
-                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 cursor-pointer flex items-center justify-center hover:bg-slate-100 mr-2 mb-2"
-                    onClick={(e: any) =>
-                      setValues({
-                        ...values,
-                        available_to_join: "less than 15 days",
-                      })
-                    }
-                  >
-                    <FaLessThan className="mr-1 text-slate-500 text-[0.65rem]" />
-                    15 Days
-                  </span>
-                )}
+              <div className="flex items-center flex-wrap mt-4">
                 {values.available_to_join === "15 days" ? (
-                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 text-center cursor-pointer bg-slate-200 hover:bg-slate-300  mr-2 mb-2">
+                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 text-center cursor-pointer bg-slate-200 hover:bg-slate-300  mr-2 mb-2">
                     15 Days
                   </span>
                 ) : (
                   <span
-                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
+                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -369,12 +329,12 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "1 month" ? (
-                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 text-center cursor-pointer bg-slate-200 hover:bg-slate-300  mr-2 mb-2">
+                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 text-center cursor-pointer bg-slate-200 hover:bg-slate-300  mr-2 mb-2">
                     1 Month
                   </span>
                 ) : (
                   <span
-                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
+                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -386,12 +346,12 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "2 months" ? (
-                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 text-center cursor-pointer bg-slate-200 hover:bg-slate-300  mr-2 mb-2">
+                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 text-center cursor-pointer bg-slate-200 hover:bg-slate-300  mr-2 mb-2">
                     2 Months
                   </span>
                 ) : (
                   <span
-                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
+                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -403,12 +363,12 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "3 months" ? (
-                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 text-center cursor-pointer bg-slate-200 hover:bg-slate-300  mr-2 mb-2">
+                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 text-center cursor-pointer bg-slate-200 hover:bg-slate-300  mr-2 mb-2">
                     3 Months
                   </span>
                 ) : (
                   <span
-                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
+                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 text-center cursor-pointer hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -420,12 +380,12 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                   </span>
                 )}
                 {values.available_to_join === "more than 3 months" ? (
-                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 cursor-pointer bg-slate-200 hover:bg-slate-300  flex items-center justify-center mr-2 mb-2">
+                  <span className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 cursor-pointer bg-slate-200 hover:bg-slate-300  flex items-center justify-center mr-2 mb-2">
                     <FaGreaterThan className="mr-1 text-[0.65rem] " />3 Months
                   </span>
                 ) : (
                   <span
-                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[var(--r1)] border border-slate-300 cursor-pointer flex items-center justify-center hover:bg-slate-100 mr-2 mb-2"
+                    className=" py-1 sm:py-2 px-2 sm:px-4 rounded-[25px] border border-slate-300 cursor-pointer flex items-center justify-center hover:bg-slate-100 mr-2 mb-2"
                     onClick={(e: any) =>
                       setValues({
                         ...values,
@@ -445,13 +405,13 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                 ref={cancelBtnRef}
                 type="button"
                 onClick={hideEditForm}
-                className="h-[40px] px-4 border border-blue-600 hover:bg-[#f8f8f8] rounded-[var(--r1)] text-blue-600 font-medium flex items-center justify-center cursor-pointer "
+                className="py-2 px-4 border border-blue-600 hover:bg-slate-100 rounded-[var(--r2)] text-blue-600 font-medium cursor-pointer "
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="h-[40px] px-4 bg-blue-600 hover:bg-blue-500 rounded-[var(--r1)] border border-blue-600 text-white flex items-center justify-center w-[90.9px] ml-2 "
+                className="py-2 px-4 bg-blue-600 hover:bg-blue-500 rounded-[var(--r2)] border border-blue-600 text-white w-[85.56px] flex items-center justify-center text-center ml-2 "
               >
                 {isLoading ? <div className="loader-1"></div> : "Save"}
               </button>

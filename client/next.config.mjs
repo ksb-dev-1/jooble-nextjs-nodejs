@@ -39,7 +39,7 @@ const nextConfig = {
         destination: "http://localhost:8000/jooble/api/users/show-me",
       },
       {
-        source: "/edit-profile",
+        source: "/update-profile",
         destination: "http://localhost:8000/jooble/api/users/update-profile",
       },
       {
@@ -47,8 +47,16 @@ const nextConfig = {
         destination: "http://localhost:8000/jooble/api/users/get-key-skills",
       },
       {
-        source: "/edit-key-skills",
+        source: "/create-key-skills",
+        destination: "http://localhost:8000/jooble/api/users/create-key-skills",
+      },
+      {
+        source: "/update-key-skills",
         destination: "http://localhost:8000/jooble/api/users/update-key-skills",
+      },
+      {
+        source: "/update-projects",
+        destination: "http://localhost:8000/jooble/api/users/update-projects",
       },
     ];
   },

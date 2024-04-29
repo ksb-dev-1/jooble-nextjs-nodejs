@@ -7,9 +7,12 @@ import { toast } from "react-toastify";
 // ----- react-icons -----
 import { BiSolidEdit } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
+import { BsPlus } from "react-icons/bs";
 // ----- redux -----
-import { useGetKeySkillsQuery } from "@/redux/slices/userApi";
-import { useUpdateKeySkillsMutation } from "@/redux/slices/userApi";
+import {
+  useGetKeySkillsQuery,
+  useUpdateKeySkillsMutation,
+} from "@/redux/slices/userApi";
 import { useDispatch } from "react-redux";
 import { userApi } from "@/redux/slices/userApi";
 
@@ -21,7 +24,11 @@ interface ErrorProps {
 }
 
 const KeySkills = () => {
-  const { data } = useGetKeySkillsQuery();
+  const {
+    data,
+    isLoading: skillsLoading,
+    isError: skillsError,
+  } = useGetKeySkillsQuery();
 
   const [skill, setSkill] = useState<string>("");
   const [skills, setSkills] = useState<string[]>([]);
@@ -33,7 +40,8 @@ const KeySkills = () => {
     }
   }, [data]);
 
-  const [editKeySkills, { isLoading, isError }] = useUpdateKeySkillsMutation();
+  const [updateKeySkills, { isLoading, isError }] =
+    useUpdateKeySkillsMutation();
   const dispatch = useDispatch();
 
   const keySkillsEditBtnRef = useRef<HTMLSpanElement>(null);
@@ -65,19 +73,35 @@ const KeySkills = () => {
         keySkillsModalRef.current!.style.transform = "scale(0)";
       }, 300);
 
+      setSkill("");
       setToDeleteSkills([]);
     }
   };
 
-  const handleEditKeySkills = async (e: any) => {
+  const handleUpdateKeySkills = async (e: any) => {
     e.preventDefault();
 
-    if (!skills && !toDeleteSkills) return;
+    if (
+      skills.length === (data && data.skills && data?.skills?.length)! &&
+      toDeleteSkills.length < 1
+    ) {
+      if (keySkillsModalRef.current) {
+        keySkillsModalRef.current.style.opacity = "0";
+        setTimeout(() => {
+          keySkillsModalRef.current!.style.transform = "scale(0)";
+        }, 300);
+
+        setSkill("");
+        setToDeleteSkills([]);
+        return;
+      }
+    }
 
     try {
-      const res = await editKeySkills({ skills, toDeleteSkills }).unwrap();
+      const res = await updateKeySkills({ skills, toDeleteSkills }).unwrap();
 
       //setSkills([]);
+      setSkill("");
       setToDeleteSkills([]);
 
       if (res.msg) {
@@ -101,24 +125,49 @@ const KeySkills = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between bg-white rounded-[var(--r1)] p-4 sm:p-8 shadow-1">
-        <div className="flex items-center">
-          <p className="font-bold mr-2">Key Skills</p>
-          <p
-            className="relative h-[30px] w-[30px] rounded-full text-white bg-blue-600 hover:bg-blue-500 cursor-pointer"
-            onClick={showEditForm}
-          >
-            <span
-              ref={keySkillsEditBtnRef}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      <div
+        className="bg-white rounded-[var(--r1)] p-4 sm:p-8 shadow-1"
+        id="skills"
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <p className="font-bold mr-2">Key Skills</p>
+
+            {skills.length >= 1 && (
+              <span
+                ref={keySkillsEditBtnRef}
+                className="text-blue-600 hover:text-blue-500 text-xl cursor-pointer"
+                onClick={showEditForm}
+              >
+                <BiSolidEdit />
+              </span>
+            )}
+          </div>
+          {skills.length < 1 && (
+            <p
+              className="text-blue-600 font-medium cursor-pointer"
               onClick={showEditForm}
             >
-              <BiSolidEdit />
-            </span>
-          </p>
+              Add
+            </p>
+          )}
         </div>
-        <p className="text-blue-600 font-medium cursor-pointer">Add</p>
+
+        {skills.length >= 1 && (
+          <div className="mt-8 flex items-center flex-wrap">
+            {skills &&
+              skills.map((skill, index) => (
+                <span
+                  key={index}
+                  className="border border-slate-300 rounded-[25px] py-2 px-4 mr-2 mb-2"
+                >
+                  {skill.charAt(0).toUpperCase() + skill.substring(1)}
+                </span>
+              ))}
+          </div>
+        )}
       </div>
+
       {/* ----- Key skills modal ----- */}
       <div
         ref={keySkillsModalRef}
@@ -137,7 +186,7 @@ const KeySkills = () => {
           <p className="font-bold text-xl">Key Skills</p>
           <p className="text-slate-500">
             Add skills that best define your expertise, for e.g, Javascript,
-            Next.js etc. (One at a time)
+            Next.js etc.
           </p>
           <form
             className="relative flex-grow box-border mt-8"
@@ -149,8 +198,8 @@ const KeySkills = () => {
               setSkill("");
             }}
           >
-            <label htmlFor="skill" className="inline-block mb-1 font-bold">
-              Skills
+            <label htmlFor="skill" className="inline-block mb-1 font-semibold">
+              Skill
             </label>
             <div></div>
             <input
@@ -158,34 +207,31 @@ const KeySkills = () => {
               type="text"
               name="skill"
               value={skill}
-              className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+              className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
               // onChange={(e: any) =>
               //   setSkills((prevSkills) => [...prevSkills, e.target.value])
               // }
               onChange={(e: any) => setSkill(e.target.value)}
-              placeholder="Add skill"
+              //placeholder="Add skill"
               required
             />
             <button
               type="submit"
-              className="absolute right-[5px] top-[33px] bg-blue-600 text-white rounded-[var(--r1)] py-1 sm:py-2 px-4"
+              className="absolute right-[5px] top-[33px] bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r2)] h-[32px] w-[32px]"
             >
-              Add
+              <BsPlus className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl" />
             </button>
           </form>
-          <div className="mt-8 flex items-center flex-wrap">
-            {/* {data &&
-              data.skills &&
-              data.skills.map((skill) => <span key={skill}>{skill}</span>)} */}
-            {skills &&
-              skills.map((skill, index) => (
+          {skills.length >= 1 && (
+            <div className="mt-8 flex items-center flex-wrap">
+              {skills.map((skill, index) => (
                 <div
                   key={index}
-                  className="border border-slate-300 rounded-[var(--r1)] py-1 sm:py-2 px-2 sm:px-4 mr-2 mb-2 flex items-center"
+                  className="border border-slate-300 rounded-[25px] py-2 pl-4 pr-2 mr-2 mb-2 flex items-center justify-between"
                 >
-                  {skill}
+                  {skill.charAt(0).toUpperCase() + skill.substring(1)}
                   <IoMdClose
-                    className="ml-2 text-[tomato] cursor-pointer"
+                    className="ml-2 bg-[tomato] cursor-pointer text-white hover:bg-tomato hover:bg-[#ff856f] rounded-full p-1 text-2xl transition"
                     onClick={() => {
                       const filter = skills.filter((el) => el !== skill);
                       setToDeleteSkills((prev) => [...prev, skill]);
@@ -194,19 +240,20 @@ const KeySkills = () => {
                   />
                 </div>
               ))}
-          </div>
+            </div>
+          )}
           <div className="flex items-center justify-end mt-8">
             <button
               ref={keySkilsCancelBtnRef}
               type="button"
-              className="h-[40px] px-4 border border-blue-600 hover:bg-[#f8f8f8] rounded-[var(--r1)] text-blue-600 font-medium flex items-center justify-center cursor-pointer"
+              className="py-2 px-4 border border-blue-600 hover:bg-slate-100 rounded-[var(--r2)] text-blue-600 font-medium cursor-pointer"
               onClick={hideKeySkillsForm}
             >
               Cancel
             </button>
             <button
-              className="h-[40px] px-4 bg-blue-600 hover:bg-blue-500 rounded-[var(--r1)] border border-blue-600 text-white flex items-center justify-center w-[90.9px] ml-2"
-              onClick={handleEditKeySkills}
+              className="py-2 px-4 bg-blue-600 hover:bg-blue-500 rounded-[var(--r2)] border border-blue-600 text-white flex items-center justify-center w-[85.56px] ml-2"
+              onClick={handleUpdateKeySkills}
             >
               {isLoading ? <div className="loader-1"></div> : "Save"}
             </button>

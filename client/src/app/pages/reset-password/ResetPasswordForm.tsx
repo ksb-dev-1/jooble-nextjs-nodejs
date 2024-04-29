@@ -25,7 +25,7 @@ const ResetPasswordForm: React.FC = () => {
   const token = searchParams.get("token");
   const email = searchParams.get("email");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirm_password, setConfirmPassword] = useState("");
   const router = useRouter();
   // const { user } = useSelector((state: RootState) => state.info);
 
@@ -44,7 +44,7 @@ const ResetPasswordForm: React.FC = () => {
         token,
         email,
         password,
-        confirmPassword,
+        confirm_password,
       }).unwrap();
 
       if (res.msg) {
@@ -61,37 +61,46 @@ const ResetPasswordForm: React.FC = () => {
 
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 xl:px-0 pt-[8.5rem] pb-[4rem]">
-      <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+      <div className="max-w-[450px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white border border-slate-300">
         <p className="font-bold text-xl mb-8">
           {/* Reset <span className="text-blue-600">Jooble</span> password. */}
           Reset Password
         </p>
         <form onSubmit={handleForgotPassword}>
-          <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border">
-            <div className="max-w-[50%] box-border">
+          <div className="w-full">
+            <div>
+              <label htmlFor="password" className="font-medium">
+                Password
+              </label>
               <input
+                id="password"
                 type="password"
                 name="password"
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                className="mt-1 border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
+                //placeholder="First Name"
                 required
               />
             </div>
-            <div className="max-w-[50%] box-border">
+
+            <div className="mt-4">
+              <label htmlFor="confirm_password" className="font-medium">
+                Confirm
+              </label>
               <input
+                id="confirm_password"
                 type="password"
-                name="confirmPassword"
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                name="confirm_password"
+                className="mt-1 border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm Password"
+                //placeholder="First Name"
                 required
               />
             </div>
           </div>
           <button
             type="submit"
-            className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+            className="h-[41.6px] flex items-center justify-center rounded-[var(--r2)] mt-4 px-4 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500"
           >
             {isLoading ? <div className="loader-1"></div> : "Save"}
           </button>

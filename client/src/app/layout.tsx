@@ -8,9 +8,9 @@ import InnerLayout from "./InnerLayout";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import { Public_Sans, Noto_Sans_Display } from "next/font/google";
+import { Public_Sans, Noto_Sans_Display, Nunito_Sans } from "next/font/google";
 
-const font_family = Noto_Sans_Display({
+const font_family = Public_Sans({
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal"],
   subsets: ["latin"],

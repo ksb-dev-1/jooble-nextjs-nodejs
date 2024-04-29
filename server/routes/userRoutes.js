@@ -11,7 +11,9 @@ import {
   showCurrentUser,
   getKeySkills,
   updateUserProfile,
+  createKeySkills,
   updateKeySkills,
+  updateProjects,
   updateUserEmail,
   updateUserPassword,
 } from "../controllers/userController.js";
@@ -25,12 +27,21 @@ import {
 // router.route("/:id").get(authenticateUser, getSingleUser);
 
 router.route("/").get(getAllUsers);
+
 router.route("/show-me").get(authenticateUser, showCurrentUser);
+
 router.route("/update-profile").patch(authenticateUser, updateUserProfile);
+
 router.route("/get-key-skills").get(authenticateUser, getKeySkills);
+router.route("/create-key-skills").post(authenticateUser, createKeySkills);
 router.route("/update-key-skills").patch(authenticateUser, updateKeySkills);
+
+router.route("/update-projects").patch(authenticateUser, updateProjects);
+
 router.route("/update-email").patch(updateUserEmail);
+
 router.route("/update-password").patch(updateUserPassword);
+
 router.route("/:id").get(getSingleUser);
 
 export default router;

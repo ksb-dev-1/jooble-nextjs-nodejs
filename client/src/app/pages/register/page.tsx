@@ -21,11 +21,10 @@ interface ErrorProps {
 const RegisterPage: React.FC = () => {
   const [values, setValues] = useState({
     image: "",
-    first_name: "",
-    last_name: "",
+    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    confirm_password: "",
   });
 
   const [register, { isLoading, isError, isSuccess }] = useRegisterMutation();
@@ -35,11 +34,10 @@ const RegisterPage: React.FC = () => {
 
     const formData = new FormData();
     formData.append("image", values.image);
-    formData.append("first_name", values.first_name);
-    formData.append("last_name", values.last_name);
+    formData.append("name", values.name);
     formData.append("email", values.email);
     formData.append("password", values.password);
-    formData.append("confirmPassword", values.confirmPassword);
+    formData.append("confirm_password", values.confirm_password);
 
     try {
       const res = await register(formData).unwrap();
@@ -62,75 +60,75 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem]">
       {isSuccess ? (
-        <div className="text-blue-600 rounded-[var(--r1)] p-8 bg-white w-full sm:w-[500px] shadow-1">
+        <div className="text-blue-600 rounded-[var(--r1)] p-8 bg-white w-full sm:w-[450px] border border-slate-300">
           <p className="text-center">
             We've sent you a link to your email account. Please check your email
             to verify it.
           </p>
         </div>
       ) : (
-        <div className="max-w-[500px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+        <div className="max-w-[450px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white border border-slate-300">
           <p className="font-bold text-xl mb-8">
             Register
             {/* for a <span className="text-blue-600">Jooble</span> account */}
           </p>
 
           <form onSubmit={handleRegister}>
-            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border">
-              <div className="flex-grow">
-                <input
-                  id="first_name"
-                  type="text"
-                  name="first_name"
-                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="First Name"
-                  required
-                />
-              </div>
-
-              <div className="flex-grow">
-                <input
-                  id="last_name"
-                  type="text"
-                  name="last_name"
-                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
-                  onChange={handleChange}
-                  placeholder="Last Name"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="relative mt-4">
+            <div>
+              <label htmlFor="name" className="font-medium">
+                Name
+              </label>
               <input
-                type="email"
-                name="email"
-                className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+                type="name"
+                name="name"
+                className="mt-1 border border-slate-300 rounded-[var(--r2)] py-2 px-4 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
                 onChange={handleChange}
-                placeholder="Email Address"
+                //placeholder="Email Address"
                 required
               />
             </div>
 
-            <div className="flex items-center justify-between w-[calc(100%-0.5rem)] box-border mt-4">
-              <div className="flex-grow box-border">
+            <div className="mt-4">
+              <label htmlFor="email" className="font-medium">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                className="mt-1 border border-slate-300 rounded-[var(--r2)] py-2 px-4 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+                onChange={handleChange}
+                //placeholder="Email Address"
+                required
+              />
+            </div>
+
+            <div className="flex items-center justify-between w-full box-border mt-4">
+              <div className="flex-grow mr-2">
+                <label htmlFor="password" className="font-medium">
+                  Password
+                </label>
                 <input
+                  id="password"
                   type="password"
                   name="password"
-                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent mr-2 w-[100%] text-sm sm:text-base"
+                  className="mt-1 border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
-                  placeholder="Password"
+                  //placeholder="First Name"
                   required
                 />
               </div>
-              <div className="flex-grow box-border">
+
+              <div className="flex-grow ml-2">
+                <label htmlFor="confirm_password" className="font-medium">
+                  Confirm
+                </label>
                 <input
+                  id="confirm_password"
                   type="password"
-                  name="confirmPassword"
-                  className="border border-slate-300 rounded-[var(--r1)] px-3 sm:px-4 py-2 sm:py-3 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent ml-2 w-[100%] text-sm sm:text-base"
+                  name="confirm_password"
+                  className="mt-1 border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
                   onChange={handleChange}
-                  placeholder="Confirm Password"
+                  //placeholder="First Name"
                   required
                 />
               </div>
@@ -138,7 +136,7 @@ const RegisterPage: React.FC = () => {
 
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] mt-4 p-2 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500 flex items-center justify-center"
+              className="h-[41.6px] flex items-center justify-center rounded-[var(--r2)] mt-4 px-4 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500"
             >
               {isLoading ? <div className="loader-1"></div> : "Register"}
             </button>
@@ -153,14 +151,14 @@ const RegisterPage: React.FC = () => {
           <div className="flex items-center justify-between w-[calc(100%)] box-border">
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
+              className="rounded-[var(--r2)] py-2 px-4 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-1"
               onClick={handleGoogleAuth}
             >
               <FcGoogle className="text-2xl" />
             </button>
             <button
               type="submit"
-              className="h-[37.6px] sm:h-[49.6px] rounded-[var(--r1)] p-2 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
+              className="rounded-[var(--r2)] py-2 px-4 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-1"
             >
               <FaGithub className="text-2xl" />
             </button>

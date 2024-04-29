@@ -54,20 +54,20 @@ const VerifyEmail: React.FC = () => {
   return (
     <div className="max-w-[1100px] w-full mx-auto flex justify-center min-h-[calc(100vh-4rem)] px-4 sm:px-8 xl:px-0 text-blue-600 pt-[8.5rem] pb-[4rem]">
       {isLoading && (
-        <div className="rounded-[var(--r1)] p-8 flex flex-col items-center bg-white h-fit w-full sm:w-[500px] shadow-1 border">
+        <div className="rounded-[var(--r1)] p-8 flex flex-col items-center bg-white h-fit w-full sm:w-[450px] shadow-1 border">
           <p className="mb-4 text-center">Verifying email account</p>
           <div className="loader-2"></div>
         </div>
       )}
 
       {isSuccess ? (
-        <div className="rounded-[var(--r1)] p-8 flex flex-col items-center bg-white h-fit w-full sm:w-[500px] shadow-1 border">
+        <div className="rounded-[var(--r1)] p-8 flex flex-col items-center bg-white h-fit w-full sm:w-[450px] shadow-1 border">
           <p className="mb-4 text-center">Email verification successful.</p>
           <Link
             href="/pages/login"
-            className="relative border border-slate-300 hover:bg-slate-100 rounded-[var(--r1)] h-[33.6px] w-[75px]"
+            className="relative bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r1)] h-[40px] w-[75px]"
           >
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black">
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               Login
             </span>
           </Link>
