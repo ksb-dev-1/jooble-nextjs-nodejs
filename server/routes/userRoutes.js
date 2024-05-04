@@ -13,7 +13,9 @@ import {
   updateUserProfile,
   createKeySkills,
   updateKeySkills,
-  updateProjects,
+  getProjects,
+  createProject,
+  updateProject,
   updateUserEmail,
   updateUserPassword,
 } from "../controllers/userController.js";
@@ -36,7 +38,9 @@ router.route("/get-key-skills").get(authenticateUser, getKeySkills);
 router.route("/create-key-skills").post(authenticateUser, createKeySkills);
 router.route("/update-key-skills").patch(authenticateUser, updateKeySkills);
 
-router.route("/update-projects").patch(authenticateUser, updateProjects);
+router.route("/get-projects").get(authenticateUser, getProjects);
+router.route("/create-project").post(authenticateUser, createProject);
+router.route("/update-project").patch(authenticateUser, updateProject);
 
 router.route("/update-email").patch(updateUserEmail);
 

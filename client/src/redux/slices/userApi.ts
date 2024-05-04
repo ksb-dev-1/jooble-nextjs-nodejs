@@ -8,12 +8,16 @@ interface Skills {
   skills: string[];
 }
 
+interface Projects {
+  projects: Project[];
+}
+
 export const userApi = createApi({
   reducerPath: "users",
   baseQuery: fetchBaseQuery({
     baseUrl: "",
   }),
-  tagTypes: ["Basic", "Skills"],
+  tagTypes: ["Basic", "Skills", "Projects"],
   endpoints: (builder) => ({
     showMe: builder.query<UserData, void>({
       query: () => ({
@@ -51,6 +55,29 @@ export const userApi = createApi({
         body: data,
       }),
     }),
+    getProjects: builder.query<Projects, void>({
+      query: () => ({
+        url: "/get-projects",
+        method: "GET",
+      }),
+      providesTags: [{ type: "Projects" }] as unknown as undefined,
+    }),
+    createProject: builder.mutation({
+      query: (data) => ({
+        url: "/create-project",
+        method: "POST",
+        body: data,
+        formData: true,
+      }),
+    }),
+    updateProject: builder.mutation({
+      query: (data) => ({
+        url: "/update-project",
+        method: "PATCH",
+        body: data,
+        formData: true,
+      }),
+    }),
   }),
 });
 
@@ -60,4 +87,7 @@ export const {
   useGetKeySkillsQuery,
   useCreateKeySkillsMutation,
   useUpdateKeySkillsMutation,
+  useGetProjectsQuery,
+  useCreateProjectMutation,
+  useUpdateProjectMutation,
 } = userApi;

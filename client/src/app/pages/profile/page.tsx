@@ -12,7 +12,7 @@ import { useShowMeQuery } from "@/redux/slices/userApi";
 
 // ----- components -----
 import KeySkills from "./KeySkillsForm";
-import Projects from "./Projects";
+import Projects from "./projects/Projects";
 
 // ----- skeletons -----
 import ProfileSkeleton from "@/skeletons/ProfileSkeleton";

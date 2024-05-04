@@ -8,7 +8,7 @@ const Project = new Schema(
       type: String,
       default: "",
     },
-    description: {
+    details: {
       type: String,
       default: "",
     },

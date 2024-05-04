@@ -172,7 +172,7 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
     return (
       <div
         ref={editFormContainerRef}
-        className="z-30 scale-0 opacity-0 absolute w-full top-0 left-0 right-0 bottom-0 flex justify-center min-h-full px-4 bg-[rgba(0,0,0,0.85)] transition-opacity duration-300 pt-[4.5rem] pb-[4rem]"
+        className="fixed z-30 scale-0 opacity-0 w-full top-0 left-0 right-0 bottom-0 flex justify-center min-h-full px-4 bg-[rgba(0,0,0,0.85)] transition-opacity duration-300 pt-[4.5rem] pb-[4rem] overflow-y-auto"
         //className="parent"
       >
         <div

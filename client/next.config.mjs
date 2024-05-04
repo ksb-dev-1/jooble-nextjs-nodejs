@@ -55,8 +55,16 @@ const nextConfig = {
         destination: "http://localhost:8000/jooble/api/users/update-key-skills",
       },
       {
-        source: "/update-projects",
-        destination: "http://localhost:8000/jooble/api/users/update-projects",
+        source: "/get-projects",
+        destination: "http://localhost:8000/jooble/api/users/get-projects",
+      },
+      {
+        source: "/create-project",
+        destination: "http://localhost:8000/jooble/api/users/create-project",
+      },
+      {
+        source: "/update-project",
+        destination: "http://localhost:8000/jooble/api/users/update-project",
       },
     ];
   },

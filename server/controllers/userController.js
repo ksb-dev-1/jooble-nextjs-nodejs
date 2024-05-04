@@ -6,6 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 import User from "../models/User.js";
 import Token from "../models/Token.js";
 import Skill from "../models/Skill.js";
+import Project from "../models/Project.js";
 
 // errors
 import CustomError from "../errors/index.js";
@@ -165,14 +166,6 @@ const getKeySkills = async (req, res) => {
   res.status(StatusCodes.OK).json({ skills: skillsArray.skills });
 };
 
-const getProjects = async (req, res) => {
-  // const skillsArray = await Skill.findOne({ user: req.user.userId });
-  // if (!skillsArray) {
-  //   res.status(StatusCodes.OK).json({ msg: "Start adding skills" });
-  // }
-  // res.status(StatusCodes.OK).json({ skills: skillsArray.skills });
-};
-
 const createKeySkills = async (req, res) => {
   const { skills } = req.body;
 
@@ -214,7 +207,31 @@ const updateKeySkills = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Key skills updated successfully" });
 };
 
-const updateProjects = async (req, res) => {};
+const getProjects = async (req, res) => {
+  const projects = await Project.find({ user: req.user.userId });
+
+  if (!projects) {
+    res.status(StatusCodes.OK).json({ msg: "Start adding skills" });
+  }
+
+  res.status(StatusCodes.OK).json({ projects });
+};
+
+const createProject = async (req, res) => {
+  const { project_name, details, hosted_link, github_link } = req.body;
+
+  await Project.create({
+    project_name,
+    details,
+    hosted_link,
+    github_link,
+    user: req.user.userId,
+  });
+
+  res.status(StatusCodes.OK).json({ msg: "Project added successfully" });
+};
+
+const updateProject = async (req, res) => {};
 
 const updateUserEmail = async (req, res) => {
   res.send("Update user email");
@@ -232,7 +249,9 @@ export {
   getKeySkills,
   createKeySkills,
   updateKeySkills,
-  updateProjects,
+  getProjects,
+  createProject,
+  updateProject,
   updateUserEmail,
   updateUserPassword,
 };
