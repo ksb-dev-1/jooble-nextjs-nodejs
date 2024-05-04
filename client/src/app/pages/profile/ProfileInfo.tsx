@@ -151,7 +151,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
         </div>
 
         <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0">
-          <div className="max-w-full bg-slate-100 p-4 rounded-[var(--r2)]">
+          <div className="max-w-full flex-grow border border-dashed border-blue-600 rounded-[var(--r2)] hover:bg-slate-100">
             <input
               type="file"
               id="resume"
@@ -162,7 +162,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             />
             <label
               htmlFor="resume"
-              className="relative p-4 cursor-pointer w-full border border-dashed border-blue-600 rounded-[var(--r2)] overflow-hidden flex flex-col items-center 
+              className="relative p-4 cursor-pointer w-full overflow-hidden flex flex-col items-center 
               justify-center"
             >
               <p className="text-blue-600">Upload Resume</p>
@@ -172,7 +172,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             </label>
           </div>
           <button
-            className="text-center h-[41.6px] bg-blue-600 hover:bg-blue-500 text-white px-4 rounded-[var(--r2)] mt-2"
+            className="text-center h-[41.6px] bg-blue-600 hover:bg-blue-500 text-white px-4 rounded-[var(--r2)] mt-4"
             onClick={showEditForm}
           >
             Edit

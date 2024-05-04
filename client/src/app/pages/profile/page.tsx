@@ -11,6 +11,7 @@ import { IoMdClose } from "react-icons/io";
 import { useShowMeQuery } from "@/redux/slices/userApi";
 
 // ----- components -----
+import ProfileInfo from "./ProfileInfo";
 import KeySkills from "./KeySkillsForm";
 import Projects from "./projects/Projects";
 
@@ -28,7 +29,7 @@ const ProfilePage: React.FC = () => {
     <div className="relative flex flex-col items-center mx-auto min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 pt-[4.5rem] pb-[4rem]">
       <div className="max-w-[1280px] w-full p-4 sm:p-8 rounded-[var(--r1)] min-h-[244.8px] bg-white mt-4 sm:mt-16 shadow-1">
         {isFetching && <ProfileSkeleton />}
-        {isSuccess && <ProfileInfoNoSSR user={data.user} />}
+        {isSuccess && <ProfileInfo user={data.user} />}
       </div>
       <div className="max-w-[1280px] flex flex-col md:flex-row w-full mt-4 sm:mt-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:flex md:flex-wrap md:flex-col bg-white rounded-[var(--r1)] p-4 md:p-4 w-full md:w-[225px] md:sticky top-[6.5rem] h-fit shadow-1">
@@ -58,7 +59,7 @@ const ProfilePage: React.FC = () => {
             Personal details
           </p>
         </div>
-        <div className="flex-grow mt-4 sm:mt-8 md:mt-0 md:ml-8 h-fit">
+        <div className="mt-4 sm:mt-8 md:mt-0 md:ml-8 h-fit max-w-[calc(1280px-227px-2rem)] w-full">
           <KeySkills />
           <Projects />
           {/* Education */}

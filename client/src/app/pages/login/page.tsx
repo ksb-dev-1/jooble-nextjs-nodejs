@@ -62,7 +62,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem] ">
-      <div className="max-w-[450px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white border border-slate-300">
+      <div className="max-w-[450px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
         <p className="font-bold text-xl mb-8">
           Login
           {/* in to <span className="text-blue-600">Jooble</span> account */}
