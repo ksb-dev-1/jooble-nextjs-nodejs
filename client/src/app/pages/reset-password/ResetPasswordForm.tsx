@@ -61,7 +61,7 @@ const ResetPasswordForm: React.FC = () => {
 
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-8 xl:px-0 pt-[8.5rem] pb-[4rem]">
-      <div className="max-w-[450px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+      <div className="max-w-[450px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white custom-border-1">
         <p className="font-bold text-xl mb-8">
           {/* Reset <span className="text-blue-600">Jooble</span> password. */}
           Reset Password
@@ -76,9 +76,9 @@ const ResetPasswordForm: React.FC = () => {
                 id="password"
                 type="password"
                 name="password"
-                className="mt-1 border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
+                className="mt-1 custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
                 onChange={(e) => setPassword(e.target.value)}
-                //placeholder="First Name"
+                //placeholder="Password"
                 required
               />
             </div>
@@ -91,16 +91,16 @@ const ResetPasswordForm: React.FC = () => {
                 id="confirm_password"
                 type="password"
                 name="confirm_password"
-                className="mt-1 border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
+                className="mt-1 custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] text-sm sm:text-base"
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                //placeholder="First Name"
+                //placeholder="Confirm"
                 required
               />
             </div>
           </div>
           <button
             type="submit"
-            className="h-[41.6px] flex items-center justify-center rounded-[var(--r2)] mt-4 px-4 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500"
+            className="h-[41.6px] flex items-center justify-center rounded-[var(--r1)] mt-4 px-4 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500"
           >
             {isLoading ? <div className="loader-1"></div> : "Save"}
           </button>

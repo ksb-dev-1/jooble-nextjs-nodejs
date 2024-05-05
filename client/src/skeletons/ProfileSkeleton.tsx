@@ -6,13 +6,13 @@ const ProfileSkeleton: React.FC = () => {
   return (
     <div className="flex items-center">
       <div>
-        <Skeleton circle height={150} width={150} />
+        <Skeleton height={165.6} width={150} borderRadius={0} />
       </div>
-      <div className="ml-2 w-full">
-        <Skeleton height={25} borderRadius={25} />
-        <Skeleton height={25} borderRadius={25} className="mt-2" />
-        <Skeleton height={25} borderRadius={25} className="mt-2" />
-        <Skeleton height={25} borderRadius={25} className="mt-2" />
+      <div className="ml-4 w-full">
+        <Skeleton height={25} borderRadius={0} />
+        <Skeleton height={25} borderRadius={0} className="mt-2" />
+        <Skeleton height={25} borderRadius={0} className="mt-2" />
+        <Skeleton height={25} borderRadius={0} className="mt-2" />
       </div>
     </div>
   );

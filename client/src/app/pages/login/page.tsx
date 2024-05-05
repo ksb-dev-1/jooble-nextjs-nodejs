@@ -62,7 +62,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="max-w-[1100px] w-full mx-auto flex flex-col items-center min-h-[calc(100vh-4.5rem)] px-4 sm:px-0 pt-[8.5rem] pb-[4rem] ">
-      <div className="max-w-[450px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white shadow-1">
+      <div className="max-w-[450px] w-[100%] rounded-[var(--r1)] p-4 sm:p-8 bg-white custom-border-1">
         <p className="font-bold text-xl mb-8">
           Login
           {/* in to <span className="text-blue-600">Jooble</span> account */}
@@ -75,9 +75,9 @@ const LoginPage: React.FC = () => {
             <input
               type="email"
               name="email"
-              className="mt-1 border border-slate-300 rounded-[var(--r2)] py-2 px-4 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+              className="mt-1 border custom-border-1 rounded-[var(--r1)] py-2 px-4 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
               onChange={handleChange}
-              //placeholder="Email Address"
+              //placeholder="Email"
               required
             />
           </div>
@@ -89,9 +89,9 @@ const LoginPage: React.FC = () => {
             <input
               type="password"
               name="password"
-              className="mt-1 border border-slate-300 rounded-[var(--r2)] py-2 px-4 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
+              className="mt-1 border custom-border-1 rounded-[var(--r1)] py-2 px-4 focus:outline-blue-600 w-[100%] placeholder:text-slate-500 focus:placeholder:text-transparent text-sm sm:text-base"
               onChange={handleChange}
-              //placeholder="Email Address"
+              //placeholder="Password"
               required
             />
           </div>
@@ -104,13 +104,13 @@ const LoginPage: React.FC = () => {
 
           <button
             type="submit"
-            className="h-[41.6px] flex items-center justify-center rounded-[var(--r2)] mt-2 p-2 w-full bg-blue-600 text-white hover:bg-blue-500"
+            className="h-[41.6px] flex items-center justify-center rounded-[var(--r1)] mt-2 p-2 w-full bg-blue-600 text-white hover:bg-blue-500"
           >
             {isLoading ? <div className="loader-1"></div> : "Login"}
           </button>
         </form>
 
-        <div className="relative bg-slate-300 w-full h-[0.5px] my-8">
+        <div className="relative bg-[#dfe3e9] w-full h-[2px] my-8">
           <span className="absolute bg-white top-[-12px] left-[calc(50%-(70.95px))] px-3 font-semibold">
             Or continue with
           </span>
@@ -119,14 +119,14 @@ const LoginPage: React.FC = () => {
         <div className="flex items-center justify-between w-[calc(100%)] box-border">
           <button
             type="submit"
-            className="py-2 rounded-[var(--r2)] p-2 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-2"
+            className="py-2 rounded-[var(--r1)] p-2 w-full border custom-border-1 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border mr-2"
             onClick={handleGoogleAuth}
           >
             <FcGoogle className="text-2xl" />
           </button>
           <button
             type="submit"
-            className="py-2 rounded-[var(--r2)] p-2 w-full border border-slate-300 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-2"
+            className="py-2 rounded-[var(--r1)] p-2 w-full border custom-border-1 hover:bg-slate-100 flex items-center justify-center max-w-[100%] box-border ml-2"
           >
             <FaGithub className="text-2xl" />
           </button>

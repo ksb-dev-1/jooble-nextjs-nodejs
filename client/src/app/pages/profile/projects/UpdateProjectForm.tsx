@@ -162,7 +162,7 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
         ref={updateProjectFormModal}
         className="fixed z-30 scale-0 opacity-0 w-full top-0 left-0 right-0 bottom-0 flex justify-center min-h-full px-4 bg-[rgba(0,0,0,0.85)] transition-opacity duration-300 pt-[4.5rem] pb-[4rem] overflow-y-auto"
       >
-        <div className="relative rounded-[var(--r1)] bg-white p-8 md:p-16 w-full sm:w-[550px] h-fit">
+        <div className="relative rounded-[var(--r1)] bg-white p-8 w-full sm:w-[550px] h-fit">
           <div
             ref={closeBtnRef}
             onClick={(e: any) => hideUpdateProjectForm(e)}
@@ -181,7 +181,7 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
             <div>
               <label
                 htmlFor="project_name"
-                className="inline-block mb-1 font-semibold"
+                className="inline-block mb-1 font-medium"
               >
                 Project Name
               </label>
@@ -191,7 +191,7 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
                 type="text"
                 name="project_name"
                 value={values.project_name}
-                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="custom-border-1 flex items-center justify-center rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 onChange={handleChange}
                 required
               />
@@ -199,7 +199,7 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
             <div className="mt-4">
               <label
                 htmlFor="details"
-                className="inline-block mb-1 font-semibold"
+                className="inline-block mb-1 font-medium"
               >
                 Details
               </label>
@@ -208,7 +208,7 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
                 rows={5}
                 name="details"
                 value={values.details}
-                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="custom-border-1 flex items-center justify-center rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 onChange={handleChange}
                 required
               />
@@ -216,7 +216,7 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
             <div className="mt-4">
               <label
                 htmlFor="hosted_link"
-                className="inline-block mb-1 font-semibold"
+                className="inline-block mb-1 font-medium"
               >
                 Hosted Link
               </label>
@@ -226,7 +226,7 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
                 type="text"
                 name="hosted_link"
                 value={values.hosted_link}
-                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="custom-border-1 flex items-center justify-center rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 onChange={handleChange}
                 required
               />
@@ -234,7 +234,7 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
             <div className="mt-4">
               <label
                 htmlFor="github_link"
-                className="inline-block mb-1 font-semibold"
+                className="inline-block mb-1 font-medium"
               >
                 GitHub Link
               </label>
@@ -244,24 +244,24 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
                 type="text"
                 name="github_link"
                 value={values.github_link}
-                className="border border-slate-300 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="custom-border-1 flex items-center justify-center rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 onChange={handleChange}
                 required
               />
             </div>
           </form>
 
-          <div className="flex items-center justify-end mt-8">
+          <div className="flex items-center mt-8">
             <button
               ref={cancelBtnRef}
               type="button"
-              className="py-2 px-4 border border-blue-600 hover:bg-slate-100 rounded-[var(--r2)] text-blue-600 font-medium cursor-pointer"
+              className="h-[41.6px] min-w-[50%] border border-blue-600 hover:bg-slate-100 rounded-[var(--r1)] text-blue-600 font-medium cursor-pointer"
               onClick={hideUpdateProjectForm}
             >
               Cancel
             </button>
             <button
-              className="py-2 px-4 bg-blue-600 hover:bg-blue-500 rounded-[var(--r2)] border border-blue-600 flex items-center justify-center text-white w-[85.56px] ml-2"
+              className="h-[41.6px] min-w-[50%] bg-blue-600 hover:bg-blue-500 rounded-[var(--r1)] border border-blue-600 flex items-center justify-center text-white w-[85.56px] ml-2"
               onClick={handleUpdateProject}
             >
               {isLoading ? <div className="loader-1"></div> : "Save"}

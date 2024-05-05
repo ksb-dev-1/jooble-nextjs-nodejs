@@ -78,7 +78,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
     <>
       <div className="flex flex-col xl:flex-row">
         <div className="flex flex-col md:flex-row items-center justify-center">
-          <div className="relative w-[100px] md:w-[150px] h-[100px] md:h-[150px] border border-slate-300 rounded-full overflow-hidden ">
+          <div className="relative w-[150px] h-[165.5px] border border-slate-300 rounded-[var(--r1)] overflow-hidden ">
             {user.image ? (
               <Image
                 src={image}
@@ -131,7 +131,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
                 </div>
               </div>
 
-              <span className="hidden sm:inline-block h-[50px] w-[0.5px] bg-slate-300 mx-8"></span>
+              <span className="hidden sm:inline-block h-[75px] w-[0.5px] bg-slate-300 mx-8"></span>
 
               <div className="flex flex-col items-center sm:block">
                 <div className="mt-4 sm:mt-0 flex items-center w-max">
@@ -151,7 +151,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
         </div>
 
         <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0">
-          <div className="max-w-full flex-grow border border-dashed border-blue-600 rounded-[var(--r2)] hover:bg-slate-100">
+          <div className="max-w-full flex-grow border border-dashed border-blue-600 rounded-[var(--r1)] hover:bg-slate-100">
             <input
               type="file"
               id="resume"
@@ -165,14 +165,14 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
               className="relative p-4 cursor-pointer w-full overflow-hidden flex flex-col items-center 
               justify-center"
             >
-              <p className="text-blue-600">Upload Resume</p>
+              <p className="text-blue-600 text-base">Upload Resume</p>
               <p className="mt-2 text-center">
                 Supported Formats: doc, docx, rtf, pdf, upto 2 MB
               </p>
             </label>
           </div>
           <button
-            className="text-center h-[41.6px] bg-blue-600 hover:bg-blue-500 text-white px-4 rounded-[var(--r2)] mt-4"
+            className="text-center h-[41.6px] bg-blue-600 hover:bg-blue-500 text-white px-4 rounded-[var(--r1)] mt-4"
             onClick={showEditForm}
           >
             Edit

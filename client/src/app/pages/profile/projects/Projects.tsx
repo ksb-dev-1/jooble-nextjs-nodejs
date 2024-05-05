@@ -87,7 +87,7 @@ const Projects = () => {
   return (
     <>
       <div
-        className="mt-4 sm:mt-8 bg-white rounded-[var(--r1)] p-4 sm:p-8 shadow-1"
+        className="mt-4 sm:mt-8 bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-border-1"
         id="projects"
       >
         <div className="flex items-center justify-between">
@@ -105,13 +105,13 @@ const Projects = () => {
           <div className="mt-8">
             {projects.map((project, index) => (
               <div
-                className="border border-slate-300 p-8 rounded-[var(--r1)] mt-8"
+                className="custom-border-1 p-8 rounded-[var(--r1)] mt-8"
                 key={index}
               >
                 <div className="flex items-center">
                   <span className="font-bold">{project.project_name}</span>
                   <div
-                    className="relative h-[30px] w-[30px] rounded-full bg-blue-600 hover:bg-blue-500 cursor-pointer mx-4"
+                    className="relative h-[30px] w-[30px] rounded-[var(--r1)] bg-blue-600 hover:bg-blue-500 cursor-pointer mx-4"
                     onClick={() => {
                       setValues({
                         ...values,
@@ -127,7 +127,7 @@ const Projects = () => {
                     <BiSolidEdit className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white" />
                   </div>
                   <div
-                    className="relative h-[30px] w-[30px] rounded-full bg-red-500 hover:bg-red-400 cursor-pointer"
+                    className="relative h-[30px] w-[30px] rounded-[var(--r1)] bg-red-500 hover:bg-red-400 cursor-pointer"
                     onClick={() => handleDeleteProject(project._id)}
                   >
                     <RiDeleteBin6Line className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white" />
@@ -136,9 +136,9 @@ const Projects = () => {
                 <div className="mt-2">
                   {expandedStates[index] ? (
                     <div>
-                      <span>{project.details}</span>
+                      <span className="leading-relaxed">{project.details}</span>
                       <span
-                        className="text-blue-600 ml-1 text-xs cursor-pointer font-semibold"
+                        className="text-blue-600 ml-1 text-sm cursor-pointer font-semibold"
                         onClick={() => toggleReadMore(index)}
                       >
                         Hide more
@@ -146,10 +146,12 @@ const Projects = () => {
                     </div>
                   ) : (
                     <div>
-                      <span>{project.details.substring(0, 150)}</span>
+                      <span className="leading-relaxed">
+                        {project.details.substring(0, 150)}
+                      </span>
                       {project.details.length >= 75 && (
                         <span
-                          className="text-blue-600 text-xs ml-1 cursor-pointer font-semibold"
+                          className="text-blue-600 text-sm ml-1 cursor-pointer font-semibold"
                           onClick={() => toggleReadMore(index)}
                         >
                           ... Read more
@@ -164,7 +166,7 @@ const Projects = () => {
                     {project.hosted_link && (
                       <Link
                         href="#"
-                        className="text-blue-600 py-2 px-4 rounded-[var(--r2)] bg-blue-100 hover:bg-blue-200"
+                        className="text-blue-600 py-2 px-4 rounded-[var(--r1)] bg-blue-100 hover:bg-blue-200"
                       >
                         Live
                       </Link>
@@ -172,7 +174,7 @@ const Projects = () => {
                     {project.github_link && (
                       <Link
                         href="#"
-                        className="text-blue-600 py-2 px-4 rounded-[var(--r2)] bg-blue-100 hover:bg-blue-200 ml-2"
+                        className="text-blue-600 py-2 px-4 rounded-[var(--r1)] bg-blue-100 hover:bg-blue-200 ml-2"
                       >
                         Code
                       </Link>
