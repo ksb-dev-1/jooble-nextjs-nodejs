@@ -8,9 +8,9 @@ import InnerLayout from "./InnerLayout";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-const font_family = Inter({
+const font_family = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal"],
   subsets: ["latin"],
