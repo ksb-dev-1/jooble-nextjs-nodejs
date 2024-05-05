@@ -15,6 +15,8 @@ import {
 } from "@/redux/slices/userApi";
 import { useDispatch } from "react-redux";
 import { userApi } from "@/redux/slices/userApi";
+// ----- skeletons -----
+import KeySkillsSkeleton from "@/skeletons/KeySkillsSkeleton";
 
 interface ErrorProps {
   data?: {
@@ -26,6 +28,7 @@ interface ErrorProps {
 const KeySkills = () => {
   const {
     data,
+    isFetching: skillsFetching,
     isLoading: skillsLoading,
     isError: skillsError,
   } = useGetKeySkillsQuery();
@@ -152,6 +155,7 @@ const KeySkills = () => {
             </p>
           )}
         </div>
+        {skillsFetching && <KeySkillsSkeleton />}
 
         {skills.length >= 1 && (
           <div className="mt-8 flex items-center flex-wrap">
@@ -159,7 +163,7 @@ const KeySkills = () => {
               skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="border border-slate-300 rounded-[25px] py-2 px-4 mr-2 mb-2"
+                  className="border border-slate-300 rounded-[var(--r1)] py-2 px-4 mr-2 mb-2"
                 >
                   {skill.charAt(0).toUpperCase() + skill.substring(1)}
                 </span>
