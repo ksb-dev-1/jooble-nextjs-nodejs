@@ -71,6 +71,11 @@ const nextConfig = {
         destination:
           "http://localhost:8000/jooble/api/users/update-project/:id",
       },
+      {
+        source: "/delete-project/:id",
+        destination:
+          "http://localhost:8000/jooble/api/users/delete-project/:id",
+      },
     ];
   },
 };

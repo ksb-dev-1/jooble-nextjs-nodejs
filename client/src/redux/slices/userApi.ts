@@ -80,14 +80,6 @@ export const userApi = createApi({
         formData: true,
       }),
     }),
-    // updateProject: builder.mutation({
-    //   query: ({ data, project_id }: { data: Project; project_id: string }) => ({
-    //     url: `/update-project/${project_id}`,
-    //     method: "PATCH",
-    //     body: data,
-    //     formData: true,
-    //   }),
-    // }),
     updateProject: builder.mutation({
       query: ({ formData, project_id }) => {
         const formDataToSend = new FormData();
@@ -108,6 +100,12 @@ export const userApi = createApi({
         };
       },
     }),
+    deleteProject: builder.mutation({
+      query: (project_id) => ({
+        url: `/delete-project/${project_id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -121,4 +119,5 @@ export const {
   useGetProjectQuery,
   useCreateProjectMutation,
   useUpdateProjectMutation,
+  useDeleteProjectMutation,
 } = userApi;

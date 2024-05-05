@@ -14,9 +14,10 @@ import {
   createKeySkills,
   updateKeySkills,
   getProjects,
-  getProjectById,
+  getProject,
   createProject,
-  updateProjectById,
+  updateProject,
+  deleteProject,
   updateUserEmail,
   updateUserPassword,
 } from "../controllers/userController.js";
@@ -40,9 +41,10 @@ router.route("/create-key-skills").post(authenticateUser, createKeySkills);
 router.route("/update-key-skills").patch(authenticateUser, updateKeySkills);
 
 router.route("/get-projects").get(authenticateUser, getProjects);
-router.route("/get-project/:id").get(authenticateUser, getProjectById);
+router.route("/get-project/:id").get(authenticateUser, getProject);
 router.route("/create-project").post(authenticateUser, createProject);
-router.route("/update-project/:id").patch(authenticateUser, updateProjectById);
+router.route("/update-project/:id").patch(authenticateUser, updateProject);
+router.route("/delete-project/:id").delete(authenticateUser, deleteProject);
 
 router.route("/update-email").patch(updateUserEmail);
 

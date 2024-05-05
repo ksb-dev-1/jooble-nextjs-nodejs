@@ -213,7 +213,7 @@ const getProjects = async (req, res) => {
   res.status(StatusCodes.OK).json({ projects });
 };
 
-const getProjectById = async (req, res) => {
+const getProject = async (req, res) => {
   const project = await Project.findOne({ _id: req.params.id });
 
   res.status(StatusCodes.OK).json({ project });
@@ -233,7 +233,7 @@ const createProject = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Project added successfully" });
 };
 
-const updateProjectById = async (req, res) => {
+const updateProject = async (req, res) => {
   const { id: project_id } = req.params;
 
   const { project_name, details, hosted_link, github_link } = req.body;
@@ -254,15 +254,20 @@ const updateProjectById = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Project updated successfully" });
 };
 
-// const project = await Project.findOneAndUpdate(
-//   { _id: project_id },
-//   req.body,
-//   { new: true, runValidators: true }
-// );
+const deleteProject = async (req, res) => {
+  const { id: project_id } = req.params;
 
-// if (!project) {
-//   throw new CustomError.NotFoundError(`No product with id : ${project_id}`);
-// }
+  const project = await Project.findOne({ _id: project_id });
+
+  if (!project) {
+    throw new CustomError.NotFoundError(`No project with id : ${project_id}`);
+  }
+
+  await Project.deleteOne({ _id: project_id });
+  //await project.remove();
+
+  res.status(StatusCodes.OK).json({ msg: "Project deleted successfully" });
+};
 
 const updateUserEmail = async (req, res) => {
   res.send("Update user email");
@@ -281,9 +286,10 @@ export {
   createKeySkills,
   updateKeySkills,
   getProjects,
-  getProjectById,
+  getProject,
   createProject,
-  updateProjectById,
+  updateProject,
+  deleteProject,
   updateUserEmail,
   updateUserPassword,
 };

@@ -4,18 +4,26 @@ import Link from "next/link";
 
 import { useState, useEffect, useRef } from "react";
 
+// ----- react-toastify -----
+import { toast } from "react-toastify";
 // ----- react-icons -----
 import { BiSolidEdit } from "react-icons/bi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 // ----- redux -----
-// import { useGetProjectsQuery } from "@/redux/slices/userApi";
-import { useGetProjectsQuery } from "@/redux/slices/userApi";
+import {
+  userApi,
+  useGetProjectsQuery,
+  useDeleteProjectMutation,
+} from "@/redux/slices/userApi";
+import { useDispatch } from "react-redux";
 // ----- components -----
 import CreateProjectForm from "./CreateProjectForm";
 import UpdateProjectForm from "./UpdateProjectForm";
 
 const Projects = () => {
-  //const [projectId, setProjectId] = useState<string>("");
   const { data, isFetching, isError } = useGetProjectsQuery();
+  const [deleteProject, { data: deleteMsg }] = useDeleteProjectMutation();
+  const dispatch = useDispatch();
   const [values, setValues] = useState({
     _id: "",
     project_name: "",
@@ -43,6 +51,24 @@ const Projects = () => {
       setProjects(data.projects);
     }
   }, [data]);
+
+  const handleDeleteProject = async (project_id: string) => {
+    //e.preventDefault();
+
+    try {
+      const res = await deleteProject(project_id).unwrap();
+
+      if (res.msg) {
+        dispatch(userApi.util.invalidateTags([{ type: "Projects" }]));
+        toast.success(res.msg);
+      }
+
+      isError && toast.error(res.data.msg);
+    } catch (err) {
+      const error = err as ErrorProps;
+      toast.error(error?.data?.msg);
+    }
+  };
 
   const showCreateProjectForm = () => {
     if (createProjectFormModal.current) {
@@ -83,11 +109,10 @@ const Projects = () => {
                 key={index}
               >
                 <div className="flex items-center">
-                  <span className="font-bold mr-4">{project.project_name}</span>
-                  <span
-                    className="text-blue-600 hover:text-blue-500 text-xl cursor-pointer"
+                  <span className="font-bold">{project.project_name}</span>
+                  <div
+                    className="relative h-[30px] w-[30px] rounded-full bg-blue-600 hover:bg-blue-500 cursor-pointer mx-4"
                     onClick={() => {
-                      //setProjectId(project._id);
                       setValues({
                         ...values,
                         _id: project._id,
@@ -99,8 +124,14 @@ const Projects = () => {
                       showUpdateProjectForm();
                     }}
                   >
-                    <BiSolidEdit />
-                  </span>
+                    <BiSolidEdit className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white" />
+                  </div>
+                  <div
+                    className="relative h-[30px] w-[30px] rounded-full bg-red-500 hover:bg-red-400 cursor-pointer"
+                    onClick={() => handleDeleteProject(project._id)}
+                  >
+                    <RiDeleteBin6Line className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white" />
+                  </div>
                 </div>
                 <div className="mt-2">
                   {expandedStates[index] ? (
@@ -128,20 +159,26 @@ const Projects = () => {
                   )}
                 </div>
 
-                <div className="mt-4">
-                  <Link
-                    href="#"
-                    className="text-blue-600 py-2 px-4 rounded-[var(--r2)] bg-blue-100 hover:bg-blue-200"
-                  >
-                    Live
-                  </Link>
-                  <Link
-                    href="#"
-                    className="text-blue-600 py-2 px-4 rounded-[var(--r2)] bg-blue-100 hover:bg-blue-200 ml-2"
-                  >
-                    Code
-                  </Link>
-                </div>
+                {(project.hosted_link || project.github_link) && (
+                  <div className="mt-6">
+                    {project.hosted_link && (
+                      <Link
+                        href="#"
+                        className="text-blue-600 py-2 px-4 rounded-[var(--r2)] bg-blue-100 hover:bg-blue-200"
+                      >
+                        Live
+                      </Link>
+                    )}
+                    {project.github_link && (
+                      <Link
+                        href="#"
+                        className="text-blue-600 py-2 px-4 rounded-[var(--r2)] bg-blue-100 hover:bg-blue-200 ml-2"
+                      >
+                        Code
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -154,7 +191,6 @@ const Projects = () => {
       {/* ----- Update Project Form ----- */}
       <UpdateProjectForm
         ref={updateProjectFormModal}
-        //project_id={projectId}
         values={values}
         setValues={setValues}
       />

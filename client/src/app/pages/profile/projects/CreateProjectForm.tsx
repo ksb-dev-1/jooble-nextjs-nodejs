@@ -111,9 +111,9 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
       ref={createProjectFormModal}
-      className="fixed top-0 left-0 right-0 bottom-0 z-30 scale-0 opacity-0 bg-[rgba(0,0,0,0.85)] w-full h-full flex justify-center transition-opacity duration-300 pt-[4.5rem] pb-[4rem] px-4 overflow-y-auto"
+      className="fixed z-30 scale-0 opacity-0 w-full top-0 left-0 right-0 bottom-0 flex justify-center min-h-full px-4 bg-[rgba(0,0,0,0.85)] transition-opacity duration-300 pt-[4.5rem] pb-[4rem] overflow-y-auto"
     >
-      <div className="relative rounded-[var(--r1)] bg-white p-8 md:p-16 w-fit h-fit">
+      <div className="relative rounded-[var(--r1)] bg-white p-8 md:p-16 w-full sm:w-[550px] h-fit">
         <div
           ref={closeBtnRef}
           onClick={(e: any) => hideCreateProjectForm(e)}
@@ -126,7 +126,7 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((props, ref) => {
         <p className="font-bold text-xl">Create Project</p>
 
         <form
-          className="relative flex-grow box-border mt-8 min-w-[450px] w-full"
+          className="relative flex-grow box-border mt-8"
           onSubmit={handleCreateProject}
         >
           <div>

@@ -177,7 +177,7 @@ const BasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
       >
         <div
           ref={editFormRef}
-          className="relative h-fit rounded-[var(--r1)] p-4 sm:p-8 md:p-16 bg-white shadow-1"
+          className="relative h-fit rounded-[var(--r1)] p-8 md:p-16 bg-white shadow-1"
         >
           <div
             ref={closeBtnRef}
