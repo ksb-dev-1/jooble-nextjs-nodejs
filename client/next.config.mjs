@@ -59,12 +59,17 @@ const nextConfig = {
         destination: "http://localhost:8000/jooble/api/users/get-projects",
       },
       {
+        source: "/get-project/:id",
+        destination: "http://localhost:8000/jooble/api/users/get-project/:id",
+      },
+      {
         source: "/create-project",
         destination: "http://localhost:8000/jooble/api/users/create-project",
       },
       {
-        source: "/update-project",
-        destination: "http://localhost:8000/jooble/api/users/update-project",
+        source: "/update-project/:id",
+        destination:
+          "http://localhost:8000/jooble/api/users/update-project/:id",
       },
     ];
   },

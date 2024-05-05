@@ -210,11 +210,13 @@ const updateKeySkills = async (req, res) => {
 const getProjects = async (req, res) => {
   const projects = await Project.find({ user: req.user.userId });
 
-  if (!projects) {
-    res.status(StatusCodes.OK).json({ msg: "Start adding skills" });
-  }
-
   res.status(StatusCodes.OK).json({ projects });
+};
+
+const getProjectById = async (req, res) => {
+  const project = await Project.findOne({ _id: req.params.id });
+
+  res.status(StatusCodes.OK).json({ project });
 };
 
 const createProject = async (req, res) => {
@@ -231,7 +233,7 @@ const createProject = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Project added successfully" });
 };
 
-const updateProject = async (req, res) => {};
+const updateProjectById = async (req, res) => {};
 
 const updateUserEmail = async (req, res) => {
   res.send("Update user email");
@@ -250,8 +252,9 @@ export {
   createKeySkills,
   updateKeySkills,
   getProjects,
+  getProjectById,
   createProject,
-  updateProject,
+  updateProjectById,
   updateUserEmail,
   updateUserPassword,
 };

@@ -26,14 +26,17 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((props, ref) => {
     github_link: "",
   });
   const dispatch = useDispatch();
-  const projectFormModalRef = useRef<HTMLDivElement>(null);
+  const createProjectFormModal = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLDivElement>(null);
   const cancelBtnRef = useRef<HTMLButtonElement>(null);
 
   const [createProject, { isLoading, isError, isSuccess }] =
     useCreateProjectMutation();
 
-  useImperativeHandle(ref, () => projectFormModalRef.current as HTMLDivElement);
+  useImperativeHandle(
+    ref,
+    () => createProjectFormModal.current as HTMLDivElement
+  );
 
   const handleCreateProject = async (e: any) => {
     e.preventDefault();
@@ -60,10 +63,10 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((props, ref) => {
           github_link: "",
         });
 
-        if (projectFormModalRef.current) {
-          projectFormModalRef.current.style.opacity = "0";
+        if (createProjectFormModal.current) {
+          createProjectFormModal.current.style.opacity = "0";
           setTimeout(() => {
-            projectFormModalRef.current!.style.transform = "scale(0)";
+            createProjectFormModal.current!.style.transform = "scale(0)";
           }, 300);
         }
       }
@@ -77,16 +80,16 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((props, ref) => {
 
   const hideCreateProjectForm = (e: any) => {
     if (
-      (projectFormModalRef.current &&
+      (createProjectFormModal.current &&
         closeBtnRef.current &&
         closeBtnRef.current.contains(e.target as Node)) ||
-      (projectFormModalRef.current &&
+      (createProjectFormModal.current &&
         cancelBtnRef.current &&
         cancelBtnRef.current.contains(e.target as Node))
     ) {
-      projectFormModalRef.current.style.opacity = "0";
+      createProjectFormModal.current.style.opacity = "0";
       setTimeout(() => {
-        projectFormModalRef.current!.style.transform = "scale(0)";
+        createProjectFormModal.current!.style.transform = "scale(0)";
       }, 300);
 
       setValues({
@@ -107,7 +110,7 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((props, ref) => {
 
   return (
     <div
-      ref={projectFormModalRef}
+      ref={createProjectFormModal}
       className="fixed top-0 left-0 right-0 bottom-0 z-30 scale-0 opacity-0 bg-[rgba(0,0,0,0.85)] w-full h-full flex justify-center transition-opacity duration-300 pt-[4.5rem] pb-[4rem] px-4 overflow-y-auto"
     >
       <div className="relative rounded-[var(--r1)] bg-white p-8 md:p-16 w-fit h-fit">
@@ -120,13 +123,10 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((props, ref) => {
             <IoMdClose />
           </span>
         </div>
-        <p className="font-bold text-xl">Projects</p>
-        <p className="text-slate-500">
-          Increase your chances of catching the eye of HR by showcasing your
-          projects.
-        </p>
+        <p className="font-bold text-xl">Create Project</p>
+
         <form
-          className="relative flex-grow box-border mt-8"
+          className="relative flex-grow box-border mt-8 min-w-[450px] w-full"
           onSubmit={handleCreateProject}
         >
           <div>

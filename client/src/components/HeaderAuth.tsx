@@ -132,7 +132,7 @@ const HeaderAuth: React.FC = () => {
           </div>
           <div
             ref={modalRef}
-            className="absolute top-[100%] rounded-[var(--r1)] shadow-1 w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white p-2"
+            className="absolute top-[100%] rounded-[var(--r1)] border-[3px] border-blue-100 w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white p-2"
           >
             <Link
               href="/pages/profile"

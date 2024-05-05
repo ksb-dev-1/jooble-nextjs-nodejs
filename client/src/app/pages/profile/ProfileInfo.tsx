@@ -99,7 +99,7 @@ const ProfileInfo: React.FC<UserProps> = ({ user }) => {
             </p>
             <p className="text-center md:text-start">
               <span className="text-slate-500">Profile last updated - </span>
-              <span className="inline-block font-semibold">
+              <span className="inline-block font-semibold text-sm">
                 {moment(last_updated).format("Do MMM, YYYY")}
               </span>
             </p>

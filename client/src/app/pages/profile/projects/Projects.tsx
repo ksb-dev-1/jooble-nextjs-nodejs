@@ -11,12 +11,31 @@ import { BiSolidEdit } from "react-icons/bi";
 import { useGetProjectsQuery } from "@/redux/slices/userApi";
 // ----- components -----
 import CreateProjectForm from "./CreateProjectForm";
+import UpdateProjectForm from "./UpdateProjectForm";
 
 const Projects = () => {
+  //const [projectId, setProjectId] = useState<string>("");
   const { data, isFetching, isError } = useGetProjectsQuery();
+  const [values, setValues] = useState({
+    project_name: "",
+    details: "",
+    hosted_link: "",
+    github_link: "",
+  });
 
   const [projects, setProjects] = useState<Project[]>([]);
-  const [readMore, setReadMore] = useState<boolean>(false);
+  const [expandedStates, setExpandedStates] = useState(
+    Array(projects.length).fill(false)
+  );
+
+  const createProjectFormModal = useRef<HTMLDivElement>(null);
+  const updateProjectFormModal = useRef<HTMLDivElement>(null);
+
+  const toggleReadMore = (index: number) => {
+    const newExpandedStates = [...expandedStates];
+    newExpandedStates[index] = !newExpandedStates[index];
+    setExpandedStates(newExpandedStates);
+  };
 
   useEffect(() => {
     if (data && data.projects) {
@@ -24,12 +43,17 @@ const Projects = () => {
     }
   }, [data]);
 
-  const projectFormModalRef = useRef<HTMLDivElement>(null);
-
   const showCreateProjectForm = () => {
-    if (projectFormModalRef.current) {
-      projectFormModalRef.current.style.transform = "scale(1)";
-      projectFormModalRef.current.style.opacity = "1";
+    if (createProjectFormModal.current) {
+      createProjectFormModal.current.style.transform = "scale(1)";
+      createProjectFormModal.current.style.opacity = "1";
+    }
+  };
+
+  const showUpdateProjectForm = () => {
+    if (updateProjectFormModal.current) {
+      updateProjectFormModal.current.style.transform = "scale(1)";
+      updateProjectFormModal.current.style.opacity = "1";
     }
   };
 
@@ -49,39 +73,58 @@ const Projects = () => {
             Add
           </p>
         </div>
-        <div className="mt-8">
-          {projects.length >= 1 &&
-            projects.map((project) => (
-              <div className="border border-slate-300 p-8 rounded-[var(--r1)] mt-8">
+
+        {projects.length >= 1 && (
+          <div className="mt-8">
+            {projects.map((project, index) => (
+              <div
+                className="border border-slate-300 p-8 rounded-[var(--r1)] mt-8"
+                key={index}
+              >
                 <div className="flex items-center">
                   <span className="font-bold mr-4">{project.project_name}</span>
-                  <span className="text-blue-600 hover:text-blue-500 text-xl cursor-pointer">
+                  <span
+                    className="text-blue-600 hover:text-blue-500 text-xl cursor-pointer"
+                    onClick={() => {
+                      //setProjectId(project._id);
+                      setValues({
+                        ...values,
+                        project_name: project.project_name,
+                        details: project.details,
+                        hosted_link: project.hosted_link,
+                        github_link: project.github_link,
+                      });
+                      showUpdateProjectForm();
+                    }}
+                  >
                     <BiSolidEdit />
                   </span>
                 </div>
-                <p className="mt-2">
-                  {readMore ? (
+                <div className="mt-2">
+                  {expandedStates[index] ? (
                     <div>
                       <span>{project.details}</span>
                       <span
-                        className="text-blue-600 ml-1 cursor-pointer"
-                        onClick={() => setReadMore(!readMore)}
+                        className="text-blue-600 ml-1 text-sm cursor-pointer font-semibold"
+                        onClick={() => toggleReadMore(index)}
                       >
                         Hide more
                       </span>
                     </div>
                   ) : (
                     <div>
-                      <span>{project.details.substring(0, 75)}</span>
-                      <span
-                        className="text-blue-600 ml-1 cursor-pointer"
-                        onClick={() => setReadMore(!readMore)}
-                      >
-                        Read more
-                      </span>
+                      <span>{project.details.substring(0, 150)}</span>
+                      {project.details.length >= 75 && (
+                        <span
+                          className="text-blue-600 text-sm ml-1 cursor-pointer font-semibold"
+                          onClick={() => toggleReadMore(index)}
+                        >
+                          Read more...
+                        </span>
+                      )}
                     </div>
                   )}
-                </p>
+                </div>
 
                 <div className="mt-4">
                   <Link
@@ -99,10 +142,20 @@ const Projects = () => {
                 </div>
               </div>
             ))}
-        </div>
+          </div>
+        )}
       </div>
+
       {/* ----- Create Project Form ----- */}
-      <CreateProjectForm ref={projectFormModalRef} />
+      <CreateProjectForm ref={createProjectFormModal} />
+
+      {/* ----- Update Project Form ----- */}
+      <UpdateProjectForm
+        ref={updateProjectFormModal}
+        //project_id={projectId}
+        values={values}
+        setValues={setValues}
+      />
     </>
   );
 };

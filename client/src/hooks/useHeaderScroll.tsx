@@ -15,7 +15,7 @@ export const useHandleHeaderScroll = (
         headerRef.current!.style.boxShadow = "none";
       } else {
         headerRef.current!.style.boxShadow =
-          "0px 6px 12px rgba(30, 10, 58, 0.04)";
+          "0px 4px 4px rgba(30, 10, 58, 0.1)";
       }
     };
 

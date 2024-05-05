@@ -12,6 +12,10 @@ interface Projects {
   projects: Project[];
 }
 
+interface SingleProject {
+  project: Project;
+}
+
 export const userApi = createApi({
   reducerPath: "users",
   baseQuery: fetchBaseQuery({
@@ -62,6 +66,12 @@ export const userApi = createApi({
       }),
       providesTags: [{ type: "Projects" }] as unknown as undefined,
     }),
+    getProject: builder.query<SingleProject, string>({
+      query: (project_id) => ({
+        url: `/get-project/${project_id}`,
+        method: "GET",
+      }),
+    }),
     createProject: builder.mutation({
       query: (data) => ({
         url: "/create-project",
@@ -72,7 +82,7 @@ export const userApi = createApi({
     }),
     updateProject: builder.mutation({
       query: (data) => ({
-        url: "/update-project",
+        url: `/update-project/${data.project_id}`,
         method: "PATCH",
         body: data,
         formData: true,
@@ -88,6 +98,7 @@ export const {
   useCreateKeySkillsMutation,
   useUpdateKeySkillsMutation,
   useGetProjectsQuery,
+  useGetProjectQuery,
   useCreateProjectMutation,
   useUpdateProjectMutation,
 } = userApi;
