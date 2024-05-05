@@ -233,7 +233,36 @@ const createProject = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Project added successfully" });
 };
 
-const updateProjectById = async (req, res) => {};
+const updateProjectById = async (req, res) => {
+  const { id: project_id } = req.params;
+
+  const { project_name, details, hosted_link, github_link } = req.body;
+
+  console.log(project_id);
+  console.log(project_name, details, hosted_link, github_link);
+
+  const project = await Project.findOneAndUpdate(
+    { _id: project_id },
+    req.body,
+    { new: true, runValidators: true }
+  );
+
+  if (!project) {
+    throw new CustomError.NotFoundError(`No product with id : ${project_id}`);
+  }
+
+  res.status(StatusCodes.OK).json({ msg: "Project updated successfully" });
+};
+
+// const project = await Project.findOneAndUpdate(
+//   { _id: project_id },
+//   req.body,
+//   { new: true, runValidators: true }
+// );
+
+// if (!project) {
+//   throw new CustomError.NotFoundError(`No product with id : ${project_id}`);
+// }
 
 const updateUserEmail = async (req, res) => {
   res.send("Update user email");

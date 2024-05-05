@@ -17,6 +17,7 @@ const Projects = () => {
   //const [projectId, setProjectId] = useState<string>("");
   const { data, isFetching, isError } = useGetProjectsQuery();
   const [values, setValues] = useState({
+    _id: "",
     project_name: "",
     details: "",
     hosted_link: "",
@@ -89,6 +90,7 @@ const Projects = () => {
                       //setProjectId(project._id);
                       setValues({
                         ...values,
+                        _id: project._id,
                         project_name: project.project_name,
                         details: project.details,
                         hosted_link: project.hosted_link,

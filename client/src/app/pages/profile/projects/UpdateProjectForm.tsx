@@ -27,6 +27,7 @@ import { userApi } from "@/redux/slices/userApi";
 interface Props {
   //project_id: string;
   values: {
+    _id: string;
     project_name: string;
     details: string;
     hosted_link: string;
@@ -34,6 +35,7 @@ interface Props {
   };
   setValues: Dispatch<
     SetStateAction<{
+      _id: string;
       project_name: string;
       details: string;
       hosted_link: string;
@@ -87,10 +89,19 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
       formData.append("hosted_link", values.hosted_link);
       formData.append("github_link", values.github_link);
 
+      //   const res = await updateProject({
+      //     formData,
+      //     project_id: values._id,
+      //   }).unwrap();
+
       try {
-        const res = await updateProject(formData).unwrap();
+        const res = await updateProject({
+          formData,
+          project_id: values._id,
+        }).unwrap();
 
         if (res.msg) {
+          dispatch(userApi.util.invalidateTags([{ type: "Projects" }]));
           toast.success(res.msg);
 
           setValues({

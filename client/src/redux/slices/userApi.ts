@@ -80,13 +80,33 @@ export const userApi = createApi({
         formData: true,
       }),
     }),
+    // updateProject: builder.mutation({
+    //   query: ({ data, project_id }: { data: Project; project_id: string }) => ({
+    //     url: `/update-project/${project_id}`,
+    //     method: "PATCH",
+    //     body: data,
+    //     formData: true,
+    //   }),
+    // }),
     updateProject: builder.mutation({
-      query: (data) => ({
-        url: `/update-project/${data.project_id}`,
-        method: "PATCH",
-        body: data,
-        formData: true,
-      }),
+      query: ({ formData, project_id }) => {
+        const formDataToSend = new FormData();
+
+        // Iterate over formData entries
+        for (const [key, value] of formData.entries()) {
+          formDataToSend.append(key, value);
+        }
+
+        // Append project_id to formData
+        //formDataToSend.append("project_id", project_id);
+
+        return {
+          url: `/update-project/${project_id}`,
+          method: "PATCH",
+          body: formDataToSend,
+          formData: true,
+        };
+      },
     }),
   }),
 });
