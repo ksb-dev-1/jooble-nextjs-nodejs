@@ -138,7 +138,7 @@ const Projects = () => {
                     <div>
                       <span>{project.details}</span>
                       <span
-                        className="text-blue-600 ml-1 text-sm cursor-pointer font-semibold"
+                        className="text-blue-600 ml-1 text-xs cursor-pointer font-semibold"
                         onClick={() => toggleReadMore(index)}
                       >
                         Hide more
@@ -149,10 +149,10 @@ const Projects = () => {
                       <span>{project.details.substring(0, 150)}</span>
                       {project.details.length >= 75 && (
                         <span
-                          className="text-blue-600 text-sm ml-1 cursor-pointer font-semibold"
+                          className="text-blue-600 text-xs ml-1 cursor-pointer font-semibold"
                           onClick={() => toggleReadMore(index)}
                         >
-                          Read more...
+                          ... Read more
                         </span>
                       )}
                     </div>
