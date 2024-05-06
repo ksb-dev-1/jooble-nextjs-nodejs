@@ -11,7 +11,9 @@ const store = configureStore({
     info: userInfoReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({
+      immutableCheck: false, // Disable ImmutableStateInvariantMiddleware
+    })
       .concat(authApi.middleware)
       .concat(userApi.middleware),
   devTools: true,

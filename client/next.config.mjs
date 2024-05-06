@@ -35,8 +35,8 @@ const nextConfig = {
         destination: "http://localhost:8000/jooble/api/auth/reset-password",
       },
       {
-        source: "/show-me",
-        destination: "http://localhost:8000/jooble/api/users/show-me",
+        source: "/get-current-user",
+        destination: "http://localhost:8000/jooble/api/users/get-current-user",
       },
       {
         source: "/update-profile",

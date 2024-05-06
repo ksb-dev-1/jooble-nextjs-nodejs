@@ -16,16 +16,13 @@ import { toast } from "react-toastify";
 // ----- react-icons -----
 import { IoMdClose } from "react-icons/io";
 // ----- redux -----
-// import { useGetProjectsQuery } from "@/redux/slices/userApi";
-import {
-  useGetProjectQuery,
-  useUpdateProjectMutation,
-} from "@/redux/slices/userApi";
+import { useUpdateProjectMutation } from "@/redux/slices/userApi";
 import { useDispatch } from "react-redux";
 import { userApi } from "@/redux/slices/userApi";
+// ----- common -----
+import CancelSaveButtons from "../common/CancelSaveButtons";
 
 interface Props {
-  //project_id: string;
   values: {
     _id: string;
     project_name: string;
@@ -46,33 +43,12 @@ interface Props {
 
 const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
   ({ values, setValues }, ref) => {
-    //const { data } = useGetProjectQuery(props.project_id);
-
-    //   const [values, setValues] = useState({
-    //     project_name: data?.project?.project_name || "",
-    //     details: data?.project?.details || "",
-    //     hosted_link: data?.project?.hosted_link || "",
-    //     github_link: data?.project?.github_link || "",
-    //   });
-
     const dispatch = useDispatch();
     const updateProjectFormModal = useRef<HTMLDivElement>(null);
-    const closeBtnRef = useRef<HTMLDivElement>(null);
+    const closeBtnRef = useRef<HTMLButtonElement>(null);
     const cancelBtnRef = useRef<HTMLButtonElement>(null);
 
-    //   useEffect(() => {
-    //     data &&
-    //       setValues({
-    //         ...values,
-    //         project_name: data.project.project_name,
-    //         details: data.project.details,
-    //         hosted_link: data.project.hosted_link,
-    //         github_link: data.project.github_link,
-    //       });
-    //   }, [data]);
-
-    const [updateProject, { isLoading, isError, isSuccess }] =
-      useUpdateProjectMutation();
+    const [updateProject, { isLoading, isError }] = useUpdateProjectMutation();
 
     useImperativeHandle(
       ref,
@@ -88,11 +64,6 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
       formData.append("details", values.details);
       formData.append("hosted_link", values.hosted_link);
       formData.append("github_link", values.github_link);
-
-      //   const res = await updateProject({
-      //     formData,
-      //     project_id: values._id,
-      //   }).unwrap();
 
       try {
         const res = await updateProject({
@@ -127,7 +98,9 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
       }
     };
 
-    const hideUpdateProjectForm = (e: any) => {
+    const hideUpdateProjectForm = (
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
       if (
         (updateProjectFormModal.current &&
           closeBtnRef.current &&
@@ -162,16 +135,16 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
         ref={updateProjectFormModal}
         className="fixed z-30 scale-0 opacity-0 w-full top-0 left-0 right-0 bottom-0 flex justify-center min-h-full px-4 bg-[rgba(0,0,0,0.85)] transition-opacity duration-300 pt-[4.5rem] pb-[4rem] overflow-y-auto"
       >
-        <div className="relative rounded-[var(--r1)] bg-white p-8 w-full sm:w-[550px] h-fit">
-          <div
+        <div className="relative rounded-[var(--r1)] bg-white p-8 sm:p-16 w-full sm:w-[600px] h-fit">
+          <button
             ref={closeBtnRef}
-            onClick={(e: any) => hideUpdateProjectForm(e)}
-            className="absolute top-2 right-2 bg-[tomato] cursor-pointer rounded-[var(--r1)] h-[40px] w-[40px] hover:bg-[#ff856f]"
+            onClick={hideUpdateProjectForm}
+            className="absolute top-2 right-2 bg-[tomato] cursor-pointer rounded-full h-[40px] w-[40px] hover:bg-[#ff856f]"
           >
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-white">
               <IoMdClose />
             </span>
-          </div>
+          </button>
           <p className="font-bold text-xl">Update Project</p>
 
           <form
@@ -185,13 +158,12 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
               >
                 Project Name
               </label>
-              <div></div>
               <input
                 id="project_name"
                 type="text"
                 name="project_name"
                 value={values.project_name}
-                className="custom-border-1 flex items-center justify-center rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="custom-border-1 flex items-center justify-center rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 onChange={handleChange}
                 required
               />
@@ -208,9 +180,8 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
                 rows={5}
                 name="details"
                 value={values.details}
-                className="custom-border-1 flex items-center justify-center rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="custom-border-1 flex items-center justify-center rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 onChange={handleChange}
-                required
               />
             </div>
             <div className="mt-4">
@@ -220,15 +191,13 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
               >
                 Hosted Link
               </label>
-              <div></div>
               <input
                 id="hosted_link"
                 type="text"
                 name="hosted_link"
                 value={values.hosted_link}
-                className="custom-border-1 flex items-center justify-center rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="custom-border-1 flex items-center justify-center rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 onChange={handleChange}
-                required
               />
             </div>
             <div className="mt-4">
@@ -238,35 +207,22 @@ const UpdateProjectForm = forwardRef<HTMLDivElement, Props>(
               >
                 GitHub Link
               </label>
-              <div></div>
               <input
                 id="github_link"
                 type="text"
                 name="github_link"
                 value={values.github_link}
-                className="custom-border-1 flex items-center justify-center rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+                className="custom-border-1 flex items-center justify-center rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
                 onChange={handleChange}
-                required
               />
             </div>
+            {/* ----- Cancel & Save buttons ----- */}
+            <CancelSaveButtons
+              cancelBtnRef={cancelBtnRef}
+              fn={hideUpdateProjectForm}
+              isLoading={isLoading}
+            />
           </form>
-
-          <div className="flex items-center mt-8">
-            <button
-              ref={cancelBtnRef}
-              type="button"
-              className="h-[41.6px] min-w-[50%] border border-blue-600 hover:bg-slate-100 rounded-[var(--r1)] text-blue-600 font-medium cursor-pointer"
-              onClick={hideUpdateProjectForm}
-            >
-              Cancel
-            </button>
-            <button
-              className="h-[41.6px] min-w-[50%] bg-blue-600 hover:bg-blue-500 rounded-[var(--r1)] border border-blue-600 flex items-center justify-center text-white w-[85.56px] ml-2"
-              onClick={handleUpdateProject}
-            >
-              {isLoading ? <div className="loader-1"></div> : "Save"}
-            </button>
-          </div>
         </div>
       </div>
     );

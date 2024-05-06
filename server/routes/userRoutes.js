@@ -8,7 +8,7 @@ import {
 import {
   getAllUsers,
   getSingleUser,
-  showCurrentUser,
+  getCurrentUser,
   getKeySkills,
   updateUserProfile,
   createKeySkills,
@@ -25,14 +25,14 @@ import {
 // router
 //   .route("/")
 //   .get(authenticateUser, authorizePermissions("admin"), getAllUsers);
-// router.route("/showMe").get(authenticateUser, showCurrentUser);
+// router.route("/getMe").get(authenticateUser, getCurrentUser);
 // router.route("/updateUser").patch(authenticateUser, updateUser);
 // router.route("/updateUserPassword").patch(authenticateUser, updateUserPassword);
 // router.route("/:id").get(authenticateUser, getSingleUser);
 
 router.route("/").get(getAllUsers);
 
-router.route("/show-me").get(authenticateUser, showCurrentUser);
+router.route("/get-current-user").get(authenticateUser, getCurrentUser);
 
 router.route("/update-profile").patch(authenticateUser, updateUserProfile);
 

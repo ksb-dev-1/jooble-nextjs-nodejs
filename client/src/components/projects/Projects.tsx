@@ -111,7 +111,7 @@ const Projects = () => {
                 <div className="flex items-center">
                   <span className="font-bold">{project.project_name}</span>
                   <div
-                    className="relative h-[30px] w-[30px] rounded-[var(--r1)] bg-blue-600 hover:bg-blue-500 cursor-pointer mx-4"
+                    className="relative h-[30px] w-[30px] rounded-full bg-blue-600 hover:bg-blue-500 cursor-pointer mx-4"
                     onClick={() => {
                       setValues({
                         ...values,
@@ -127,7 +127,7 @@ const Projects = () => {
                     <BiSolidEdit className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white" />
                   </div>
                   <div
-                    className="relative h-[30px] w-[30px] rounded-[var(--r1)] bg-red-500 hover:bg-red-400 cursor-pointer"
+                    className="relative h-[30px] w-[30px] rounded-full bg-red-500 hover:bg-red-400 cursor-pointer"
                     onClick={() => handleDeleteProject(project._id)}
                   >
                     <RiDeleteBin6Line className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white" />
@@ -162,11 +162,11 @@ const Projects = () => {
                 </div>
 
                 {(project.hosted_link || project.github_link) && (
-                  <div className="mt-6">
+                  <div className="mt-6 flex items-center">
                     {project.hosted_link && (
                       <Link
                         href="#"
-                        className="text-blue-600 py-2 px-4 rounded-[var(--r1)] bg-blue-100 hover:bg-blue-200"
+                        className="text-blue-600 py-2 px-4 rounded-[var(--r2)] bg-blue-100 hover:bg-blue-200 w-[69.08px] inline-block text-center"
                       >
                         Live
                       </Link>
@@ -174,7 +174,7 @@ const Projects = () => {
                     {project.github_link && (
                       <Link
                         href="#"
-                        className="text-blue-600 py-2 px-4 rounded-[var(--r1)] bg-blue-100 hover:bg-blue-200 ml-2"
+                        className="text-blue-600 py-2 px-4 rounded-[var(--r2)] bg-blue-100 hover:bg-blue-200 ml-2"
                       >
                         Code
                       </Link>

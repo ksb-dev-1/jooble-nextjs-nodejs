@@ -22,9 +22,16 @@ const getSingleUser = async (req, res) => {
   res.send("Get single user");
 };
 
-// ----- Show current user -----
-const showCurrentUser = async (req, res) => {
-  res.status(StatusCodes.OK).json({ user: req.user });
+// ----- Get current user -----
+const getCurrentUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new CustomError.NotFoundError("User not found.");
+  }
+
+  res.status(StatusCodes.OK).json({ user });
+  //res.status(StatusCodes.OK).json({ user: req.user });
 };
 
 // ----- Edit user profile -----
@@ -280,7 +287,7 @@ const updateUserPassword = async (req, res) => {
 export {
   getAllUsers,
   getSingleUser,
-  showCurrentUser,
+  getCurrentUser,
   updateUserProfile,
   getKeySkills,
   createKeySkills,

@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
 
 // ----- react-skeleton-icons -----
 import Skeleton from "react-loading-skeleton";
@@ -17,6 +16,7 @@ import { BsChevronDown } from "react-icons/bs";
 // ----- react-toastify -----
 import { toast } from "react-toastify";
 // ----- redux -----
+import { userApi } from "@/redux/slices/userApi";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useLogoutMutation } from "@/redux/slices/authApi";
@@ -30,8 +30,6 @@ interface ErrorProps {
 }
 
 const HeaderAuth: React.FC = () => {
-  const pathname = usePathname();
-  //const path = pathname.includes("login") || pathname.includes("register");
   const dispatch = useDispatch();
   const router = useRouter();
   const { user } = useSelector((state: RootState) => state.info);
@@ -40,6 +38,9 @@ const HeaderAuth: React.FC = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const downIconRef = useRef<HTMLSpanElement>(null);
 
+  // console.log(data?.user);
+  // console.log(user);
+
   const handleLogout = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -47,9 +48,10 @@ const HeaderAuth: React.FC = () => {
 
     try {
       const res = await logout(user).unwrap();
-      dispatch(removeUser());
 
       if (res.msg) {
+        dispatch(userApi.util.invalidateTags([{ type: "Basic" }]));
+        dispatch(removeUser());
         toast.success("User logged out successfully");
         router.push("/");
       }
@@ -83,8 +85,6 @@ const HeaderAuth: React.FC = () => {
     <>
       {!user && (
         <div className="hidden sm:flex items-center ">
-          {/* {typeof window === "undefined" && <div className="loader-3"></div>} */}
-
           <Link
             href="/pages/login"
             className="px-4 py-2 flex items-center justify-center text-center bg-blue-500 text-white hover:bg-blue-400 rounded-[var(--r1)] w-[88.91px]"
@@ -98,17 +98,6 @@ const HeaderAuth: React.FC = () => {
           >
             Register
           </Link>
-
-          {/* {pathname !== "/" && (
-            <>
-              <Link
-                href="/pages/register"
-                className="px-4 py-2 hover:bg-blue-500 text-white rounded-[var(--r1)] bg-blue-600 ml-2"
-              >
-                Register
-              </Link>
-            </>
-          )} */}
         </div>
       )}
 

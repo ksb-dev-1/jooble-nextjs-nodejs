@@ -23,9 +23,9 @@ export const userApi = createApi({
   }),
   tagTypes: ["Basic", "Skills", "Projects"],
   endpoints: (builder) => ({
-    showMe: builder.query<UserData, void>({
+    getCurrentUser: builder.query<UserData, void>({
       query: () => ({
-        url: "/show-me",
+        url: "/get-current-user",
         method: "GET",
       }),
       providesTags: [{ type: "Basic" }],
@@ -110,7 +110,7 @@ export const userApi = createApi({
 });
 
 export const {
-  useShowMeQuery,
+  useGetCurrentUserQuery,
   useUpdateProfileMutation,
   useGetKeySkillsQuery,
   useCreateKeySkillsMutation,
