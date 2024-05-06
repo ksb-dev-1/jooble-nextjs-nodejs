@@ -26,7 +26,7 @@ const config: Config = {
       // => @media (min-width: 1536px) { ... }
     },
     fontSize: {
-      xs: "0.75rem",
+      xs: "0.8rem",
       sm: "0.9rem",
       base: "1rem",
       lg: "1.125rem",

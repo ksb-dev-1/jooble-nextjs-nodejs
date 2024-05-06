@@ -83,12 +83,7 @@ const BasicDetails: React.FC = () => {
 
               <div className="md:ml-8 mt-4 md:mt-0">
                 <p className="font-bold text-center md:text-start text-xl">
-                  <span>
-                    {data?.user.name
-                      ? data.user.name.charAt(0).toUpperCase() +
-                        data.user.name.substring(1)
-                      : ""}{" "}
-                  </span>
+                  <span>{data?.user.name ? data.user.name : ""} </span>
                 </p>
                 <p className="text-center md:text-start">
                   <span className="text-slate-500">
@@ -120,8 +115,7 @@ const BasicDetails: React.FC = () => {
                         </span>
                         <span>
                           {data?.user.country
-                            ? data.user.country.charAt(0).toUpperCase() +
-                              data.user.country.substring(1)
+                            ? data.user.country.toUpperCase()
                             : ""}
                         </span>
                       </div>
@@ -143,19 +137,19 @@ const BasicDetails: React.FC = () => {
 
                   <div className="flex flex-col items-center sm:block">
                     <div className="mt-4 sm:mt-0 flex items-center w-max">
-                      <HiOutlineMail />
-                      <span className="ml-2">
-                        {data?.user.email ? data.user.email : ""}
-                      </span>
-                      <FaCheckCircle className="ml-2 text-green-600" />
-                    </div>
-                    <div className="flex items-center mt-4 w-max">
                       <FiPhone />
                       <span className="ml-2">
                         {data?.user.mobile_no
                           ? data.user.mobile_no
                           : "Not provided"}
                       </span>
+                    </div>
+                    <div className="flex items-center mt-4 w-max">
+                      <HiOutlineMail />
+                      <span className="ml-2">
+                        {data?.user.email ? data.user.email : ""}
+                      </span>
+                      <FaCheckCircle className="ml-2 text-green-600" />
                     </div>
                   </div>
                 </div>

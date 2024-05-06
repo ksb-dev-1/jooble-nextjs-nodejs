@@ -8,9 +8,23 @@ import InnerLayout from "./InnerLayout";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import { Poppins } from "next/font/google";
+import {
+  DM_Sans,
+  Albert_Sans,
+  Instrument_Sans,
+  Rethink_Sans,
+  Roboto_Flex,
+  Roboto_Condensed,
+  Roboto,
+  Public_Sans,
+  Open_Sans,
+  Nunito_Sans,
+  Nunito,
+  Fira_Sans,
+  Roboto_Slab,
+} from "next/font/google";
 
-const font_family = Poppins({
+const font_family = Roboto_Flex({
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal"],
   subsets: ["latin"],

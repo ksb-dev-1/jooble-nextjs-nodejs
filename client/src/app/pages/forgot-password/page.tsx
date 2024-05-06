@@ -61,7 +61,7 @@ const ForgotPasswordPage: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="h-[41.6px] flex items-center justify-center rounded-[var(--r2)] mt-4 px-4 w-full bg-blue-600 text-[var(--white-1)] hover:bg-blue-500"
+              className="h-[41.6px] flex items-center justify-center rounded-[var(--r2)] mt-4 px-4 w-full text-white bg-blue-600 text-[var(--white-1)] hover:bg-blue-500"
             >
               {isLoading ? <div className="loader-1"></div> : "Send"}
             </button>

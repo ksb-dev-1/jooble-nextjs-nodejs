@@ -57,7 +57,7 @@ const Header: React.FC = () => {
         className="fixed top-0 left-0 w-full bg-blue-600 z-20 px-4 sm:px-8 transition duration-300"
       >
         {isFetching && <HeaderSkeleton />}
-        {isSuccess && (
+        {!isFetching && (
           <>
             <div
               ref={headerInnerRef}
@@ -74,10 +74,10 @@ const Header: React.FC = () => {
                 </div>
                 <Link
                   href="/"
-                  className="flex items-center transition duration-300 hover:tracking-wide"
+                  className="flex items-center transition-all duration-300 hover:tracking-wide"
                 >
-                  <span className="text-white font-bold text-2xl sm:text-3xl cursor-pointer no-underline">
-                    Jooble
+                  <span className="text-white font-bold text-2xl sm:text-3xl cursor-pointer">
+                    naukri
                   </span>
                 </Link>
               </div>
