@@ -4,10 +4,11 @@ import Link from "next/link";
 
 // ----- redux -----
 import { useGetKeySkillsQuery } from "@/redux/slices/userApi";
+
 // ----- skeletons -----
 import QuickLinksSkeleton from "@/skeletons/QuickLinksSkeleton";
 
-const QuickLinks: React.FC = () => {
+const UserQuickLinks: React.FC = () => {
   const { isFetching, isSuccess } = useGetKeySkillsQuery();
 
   return (
@@ -46,4 +47,4 @@ const QuickLinks: React.FC = () => {
   );
 };
 
-export default QuickLinks;
+export default UserQuickLinks;

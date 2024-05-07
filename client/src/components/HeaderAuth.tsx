@@ -11,7 +11,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { IoIosLogOut } from "react-icons/io";
-import { MdAdminPanelSettings } from "react-icons/md";
+import { GrUserAdmin } from "react-icons/gr";
 import { BsChevronDown } from "react-icons/bs";
 // ----- react-toastify -----
 import { toast } from "react-toastify";
@@ -123,6 +123,18 @@ const HeaderAuth: React.FC = () => {
             ref={modalRef}
             className="absolute top-[100%] rounded-[var(--r1)] w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white custom-border-1 p-2"
           >
+            {user?.role === "admin" ? (
+              <Link
+                href="/pages/admin"
+                className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)] text-blue-600"
+                onClick={hideModal}
+              >
+                <GrUserAdmin className="mr-2" />{" "}
+                <span className="text-base font-medium">Admin</span>
+              </Link>
+            ) : (
+              ""
+            )}
             <Link
               href="/pages/profile"
               className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)]"
