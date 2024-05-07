@@ -164,6 +164,7 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
             ref={closeBtnRef}
             onClick={hideUpdateBasicDetailsForm}
             className="absolute top-2 right-2 bg-[tomato] cursor-pointer rounded-full h-[40px] w-[40px] hover:bg-[#ff856f]"
+            aria-label="Close"
           >
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-white">
               <IoMdClose />
@@ -183,12 +184,12 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
               />
               <label
                 htmlFor="image"
-                className="relative cursor-pointer block w-[100px] sm:w-[125px] h-[100px] sm:h-[125px] rounded-[var(--r2)] overflow-hidden custom-border-1"
+                className="relative cursor-pointer block w-[100px] sm:w-[125px] h-[100px] sm:h-[125px] rounded-full overflow-hidden custom-border-1"
                 onMouseOver={() => setOnHoverImage(true)}
                 onMouseLeave={() => setOnHoverImage(false)}
               >
                 {onHoverImage && (
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.5)] text-white rounded-[var(--r2)] w-[5.65rem] sm:w-[7rem] h-[5.65rem] sm:h-[7rem] flex flex-col items-center justify-center">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.5)] text-white rounded-full w-[5.65rem] sm:w-[7rem] h-[5.65rem] sm:h-[7rem] flex flex-col items-center justify-center">
                     <FaUpload className="sm:text-xl mb-1 sm" />
                     <span className="text-[0.6rem] sm:text-xs font-medium">
                       Upload

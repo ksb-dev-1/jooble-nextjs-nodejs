@@ -135,7 +135,7 @@ const KeySkills = () => {
       {skillsSuccess && (
         <>
           <div
-            className="bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-border-1"
+            className="bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-shadow-1"
             id="skills"
           >
             <div className="flex items-center justify-between">
@@ -153,22 +153,23 @@ const KeySkills = () => {
                 )}
               </div>
               {skills.length < 1 && (
-                <p
+                <button
                   className="text-blue-600 font-medium cursor-pointer"
                   onClick={showEditForm}
+                  aria-label="Add"
                 >
                   Add
-                </p>
+                </button>
               )}
             </div>
 
             {skills.length >= 1 && (
-              <div className="mt-8 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:flex items-center flex-wrap">
+              <div className="mt-8 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-2 lg:flex items-center flex-wrap">
                 {skills &&
                   skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="custom-border-1 rounded-[var(--r1)] py-2 px-4 mr-2 mb-2"
+                      className="custom-border-1 rounded-[var(--r1)] py-2 px-4 lg:mr-2 lg:mb-2"
                     >
                       {skill.charAt(0).toUpperCase() + skill.substring(1)}
                     </span>
@@ -187,6 +188,7 @@ const KeySkills = () => {
                 ref={closeBtnRef}
                 onClick={hideKeySkillsForm}
                 className="absolute top-2 right-2 bg-[tomato] cursor-pointer rounded-full h-[40px] w-[40px] hover:bg-[#ff856f]"
+                aria-label="Close"
               >
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-white">
                   <IoMdClose />
@@ -227,6 +229,7 @@ const KeySkills = () => {
                       ? setSkills((prevSkills) => [...prevSkills, skill])
                       : setSkill("");
                   }}
+                  aria-label="Add"
                 >
                   <BsPlus className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl" />
                 </button>

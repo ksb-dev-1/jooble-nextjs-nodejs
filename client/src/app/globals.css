@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-shadow-1 {
+  box-shadow: 0 6px 12px rgba(30, 10, 58, 0.04);
+}
+
 .custom-border-1 {
   border: 1px solid #cbd5e1;
 }
@@ -23,14 +27,13 @@
 :root {
   --r1: 25px;
   --r2: 13px;
+  --c1: #f8f9fa;
+  --c2: #e8f4ff;
 }
 
 body {
-  background: white;
+  background: var(--c1);
   letter-spacing: -0.25px;
-  /* font-weight: 500;
-  color: #333;
-  font-size: 0.9rem; */
 }
 
 .parent {
@@ -61,7 +64,7 @@ body {
 .loader-1 {
   border: 2px solid #fff;
   border-radius: 50%;
-  border-top: 2px solid var(--blue-1);
+  border-top: 2px solid #2563eb;
   width: 24px;
   height: 24px;
   -webkit-animation: spin 2s linear infinite; /* Safari */

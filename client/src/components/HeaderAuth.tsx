@@ -87,14 +87,14 @@ const HeaderAuth: React.FC = () => {
         <div className="hidden sm:flex items-center ">
           <Link
             href="/pages/login"
-            className="px-4 py-2 flex items-center justify-center text-center bg-blue-500 text-white hover:bg-blue-400 rounded-[var(--r1)] w-[88.91px]"
+            className="px-4 py-2 flex items-center justify-center text-center bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r1)] w-[88.91px]"
           >
             Login
           </Link>
 
           <Link
             href="/pages/register"
-            className="px-4 py-2 flex items-center justify-center bg-blue-500 text-white hover:bg-blue-400 rounded-[var(--r1)]  ml-2"
+            className="px-4 py-2 flex items-center justify-center bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r1)]  ml-2"
           >
             Register
           </Link>
@@ -109,7 +109,7 @@ const HeaderAuth: React.FC = () => {
         >
           <div
             ref={profileRef}
-            className="px-4 py-2 flex items-center justify-center  bg-blue-500 text-white hover:bg-blue-400 rounded-[var(--r1)] transition cursor-pointer"
+            className="px-4 py-2 flex items-center justify-center  bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r1)] transition cursor-pointer"
           >
             <span>
               <HiOutlineUserCircle className="text-xl" />

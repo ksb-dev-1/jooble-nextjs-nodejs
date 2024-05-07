@@ -35,6 +35,7 @@ const Projects = () => {
   });
 
   const [projects, setProjects] = useState<Project[]>([]);
+  const [showMore, setShowMore] = useState<boolean>(false);
   const [expandedStates, setExpandedStates] = useState(
     Array(projects.length).fill(false)
   );

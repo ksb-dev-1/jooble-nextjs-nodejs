@@ -15,7 +15,7 @@ const UserQuickLinks: React.FC = () => {
     <>
       {isFetching && <QuickLinksSkeleton />}
       {isSuccess && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:flex md:flex-wrap md:flex-col bg-white rounded-[var(--r1)] p-4 w-full md:w-[225px] md:sticky top-[6.5rem] h-fit custom-border-1">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:flex md:flex-wrap md:flex-col bg-white rounded-[var(--r1)] p-4 w-full md:w-[225px] md:sticky top-[6.5rem] h-fit custom-shadow-1">
           <p className="font-bold hidden md:block ml-4 mt-2">Quick links</p>
           <Link
             href="#skills"

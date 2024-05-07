@@ -54,18 +54,18 @@ const Header: React.FC = () => {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 w-full bg-blue-600 z-20 px-4 sm:px-8 transition duration-300"
+        className="fixed top-0 left-0 w-full bg-white z-20 px-4 sm:px-8 transition duration-300"
       >
         {isFetching && <HeaderSkeleton />}
         {!isFetching && (
           <>
             <div
               ref={headerInnerRef}
-              className="max-w-[1280px] w-[100%] h-[3.5rem] sm:h-[4.5rem] mx-auto flex items-center justify-between transition duration-300"
+              className="max-w-[1280px] w-[100%] h-[4.5rem] mx-auto flex items-center justify-between transition duration-300"
             >
               <div className="flex items-center sm:justify-start md:w-[33.33%]">
                 <div
-                  className="relative h-[35px] w-[35px] rounded-full bg-blue-500 hover:bg-blue-400 cursor-pointer sm:hidden text-white mr-2 xs:mr-4"
+                  className="relative h-[35px] w-[35px] rounded-full text-white bg-blue-600 hover:bg-blue-500 cursor-pointer sm:hidden mr-2"
                   onClick={showMenu}
                 >
                   <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl">
@@ -76,7 +76,7 @@ const Header: React.FC = () => {
                   href="/"
                   className="flex items-center transition-all duration-300 hover:tracking-wide"
                 >
-                  <span className="text-white font-bold text-2xl sm:text-3xl cursor-pointer">
+                  <span className="text-blue-600 font-bold text-3xl cursor-pointer">
                     naukri
                   </span>
                 </Link>
@@ -85,19 +85,19 @@ const Header: React.FC = () => {
               <div className="hidden sm:flex items-center justify-center ml-4 md:w-[33.33%]">
                 <Link
                   href="/pages/jobs"
-                  className="py-2 px-4 text-white hover:bg-blue-500 rounded-[var(--r1)]"
+                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r1)]"
                 >
                   Jobs
                 </Link>
                 <Link
                   href="/pages/pricing"
-                  className="py-2 px-4 text-white hover:bg-blue-500 rounded-[var(--r1)]"
+                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r1)]"
                 >
                   Pricing
                 </Link>
                 <Link
                   href="/pages/dashboard"
-                  className="py-2 px-4 text-white hover:bg-blue-500 rounded-[var(--r1)]"
+                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r1)]"
                 >
                   Dashboard
                 </Link>

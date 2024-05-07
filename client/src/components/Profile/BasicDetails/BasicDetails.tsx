@@ -63,10 +63,10 @@ const BasicDetails: React.FC = () => {
     <>
       {isFetching && <BasicDetailsSkeleton />}
       {isSuccess && (
-        <>
+        <div className="max-w-[1280px] w-full p-4 sm:p-8 rounded-[var(--r1)] bg-white custom-shadow-1 mb-4 sm:mb-8">
           <div className="flex flex-col xl:flex-row">
             <div className="flex flex-col md:flex-row items-center justify-center">
-              <div className="relative w-[150px] h-[165.5px] border border-slate-300 rounded-[var(--r2)] overflow-hidden ">
+              <div className="relative w-[150px] h-[177px] xl:h-full border border-slate-300 rounded-[var(--r2)] overflow-hidden ">
                 {data?.user.image ? (
                   <Image
                     src={data.user.image}
@@ -96,9 +96,9 @@ const BasicDetails: React.FC = () => {
                   </span>
                 </p>
 
-                <span className="inline-block w-full h-[0.5px] bg-slate-300 my-4"></span>
+                {/* <span className="inline-block w-full h-[0.5px] bg-slate-300 my-4"></span> */}
 
-                <div className="flex flex-col sm:flex-row sm:items-center">
+                <div className="flex flex-col sm:flex-row sm:items-center bg-[var(--c1)] w-full p-8 md:p-4 rounded-[var(--r2)] mt-4">
                   <div className="flex flex-col items-center sm:block">
                     <div className="flex items-center">
                       <IoLocationOutline />
@@ -168,7 +168,7 @@ const BasicDetails: React.FC = () => {
                 />
                 <label
                   htmlFor="resume"
-                  className="relative p-4 cursor-pointer w-full overflow-hidden flex flex-col items-center 
+                  className="relative cursor-pointer w-full xl:h-full p-4 xl:p-0 overflow-hidden flex flex-col items-center 
               justify-center"
                 >
                   <p className="text-blue-600 text-base">Upload Resume</p>
@@ -191,7 +191,7 @@ const BasicDetails: React.FC = () => {
             values={values}
             setValues={setValues}
           />
-        </>
+        </div>
       )}
     </>
   );

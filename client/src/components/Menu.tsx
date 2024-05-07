@@ -15,7 +15,7 @@ const Menu = forwardRef((props: MenuProps, ref: React.Ref<HTMLDivElement>) => (
     className="fixed top-0 left-0 z-20 w-full h-full bg-[rgba(240,240,240,0.75)] flex items-center justify-center translate-x-[-100%] transition-all duration-300"
   >
     <div className="relative bg-white h-full w-full">
-      <div className="border-b border-slate-300 h-[3.5rem] flex items-center cursor-pointer">
+      <div className="border-b border-slate-300 h-[4.5rem] flex items-center cursor-pointer">
         <div
           className="relative h-[35px] w-[35px] rounded-full text-white bg-blue-600 hover:bg-blue-500 cursor-pointer sm:hidden ml-4"
           onClick={props.hideMenu}

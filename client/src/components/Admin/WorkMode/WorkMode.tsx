@@ -5,7 +5,7 @@ const WorkMode = () => {
   return (
     <>
       <div
-        className="mt-4 sm:mt-8 bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-border-1"
+        className="mt-4 sm:mt-8 bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-shadow-1"
         id="skills"
       >
         <div className="flex items-center justify-between">

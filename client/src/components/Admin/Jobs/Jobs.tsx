@@ -5,7 +5,7 @@ const Jobs = () => {
   return (
     <>
       <div
-        className="bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-border-1"
+        className="bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-shadow-1"
         id="skills"
       >
         <div className="flex items-center justify-between">
