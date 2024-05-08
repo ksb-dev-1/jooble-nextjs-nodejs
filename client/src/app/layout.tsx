@@ -24,8 +24,8 @@ import {
   Roboto_Slab,
 } from "next/font/google";
 
-const font_family = Roboto_Flex({
-  weight: ["400", "500", "600", "700", "800", "900"],
+const font_family = Roboto({
+  weight: ["400", "500", "700", "900"],
   style: ["normal"],
   subsets: ["latin"],
 });

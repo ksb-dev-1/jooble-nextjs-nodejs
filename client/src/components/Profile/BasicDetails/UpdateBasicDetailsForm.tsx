@@ -221,7 +221,7 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                 type="text"
                 name="name"
                 value={values.name}
-                className="custom-border-1 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
+                className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
                 onChange={handleValuesChange}
               />
             </div>
@@ -238,7 +238,7 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                 type="text"
                 name="country"
                 value={values.country}
-                className="custom-border-1 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
+                className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
                 onChange={handleValuesChange}
               />
             </div>
@@ -252,7 +252,7 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                 type="text"
                 name="city"
                 value={values.city}
-                className="custom-border-1 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
+                className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
                 onChange={handleValuesChange}
               />
             </div>
@@ -269,13 +269,13 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
                 type="text"
                 name="mobile_no"
                 value={values.mobile_no}
-                className="custom-border-1 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
+                className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%] "
                 onChange={handleValuesChange}
               />
             </div>
 
             {/* ----- Availability to join ----- */}
-            <div className="flex flex-col mt-8 rounded-[var(--r2)]">
+            <div className="flex flex-col mt-8 rounded-[var(--r1)]">
               <p className="font-semibold">Available to join</p>
               <p className="text-slate-500 ">
                 Lets recruiters know your availability to join
@@ -295,7 +295,7 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
             {/* ----- Cancel & Save buttons ----- */}
             <CancelSaveButtons
               cancelBtnRef={cancelBtnRef}
-              fn={hideUpdateBasicDetailsForm}
+              fn1={hideUpdateBasicDetailsForm}
               isLoading={isLoading}
             />
           </form>

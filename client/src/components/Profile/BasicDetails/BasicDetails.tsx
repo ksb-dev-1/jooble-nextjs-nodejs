@@ -61,12 +61,12 @@ const BasicDetails: React.FC = () => {
 
   return (
     <>
-      {isFetching && <BasicDetailsSkeleton />}
-      {isSuccess && (
+      {!isFetching && <BasicDetailsSkeleton />}
+      {!isSuccess && (
         <div className="max-w-[1280px] w-full p-4 sm:p-8 rounded-[var(--r1)] bg-white custom-shadow-1 mb-4 sm:mb-8">
           <div className="flex flex-col xl:flex-row">
             <div className="flex flex-col md:flex-row items-center justify-center">
-              <div className="relative w-[150px] h-[177px] xl:h-full border border-slate-300 rounded-[var(--r2)] overflow-hidden ">
+              <div className="relative w-[150px] h-[150px] border border-slate-300 rounded-full overflow-hidden ">
                 {data?.user.image ? (
                   <Image
                     src={data.user.image}
@@ -98,7 +98,7 @@ const BasicDetails: React.FC = () => {
 
                 {/* <span className="inline-block w-full h-[0.5px] bg-slate-300 my-4"></span> */}
 
-                <div className="flex flex-col sm:flex-row sm:items-center bg-[var(--c1)] w-full p-8 md:p-4 rounded-[var(--r2)] mt-4">
+                <div className="flex flex-col sm:flex-row sm:items-center bg-[var(--c1)] w-full p-8 md:p-4 rounded-[var(--r1)] mt-4">
                   <div className="flex flex-col items-center sm:block">
                     <div className="flex items-center">
                       <IoLocationOutline />
@@ -157,7 +157,7 @@ const BasicDetails: React.FC = () => {
             </div>
 
             <div className="flex flex-col flex-grow xl:ml-8 mt-8 xl:mt-0">
-              <div className="max-w-full flex-grow border border-dashed border-blue-600 rounded-[var(--r2)] hover:bg-slate-100">
+              <div className="max-w-full flex-grow border border-dashed border-blue-600 rounded-[var(--r1)] hover:bg-slate-100">
                 <input
                   type="file"
                   id="resume"
@@ -178,7 +178,7 @@ const BasicDetails: React.FC = () => {
                 </label>
               </div>
               <button
-                className="text-center h-[41.6px] bg-blue-600 hover:bg-blue-500 text-white px-4 rounded-[var(--r2)] mt-4"
+                className="text-center h-[41.6px] bg-blue-600 hover:bg-blue-500 text-white px-4 rounded-[var(--r1)] mt-4"
                 onClick={showUpdateBasicDetailsForm}
               >
                 Edit

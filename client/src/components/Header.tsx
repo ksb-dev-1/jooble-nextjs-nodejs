@@ -54,7 +54,7 @@ const Header: React.FC = () => {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 w-full bg-white z-20 px-4 sm:px-8 transition duration-300"
+        className="fixed top-0 left-0 w-full bg-white border-b border-slate-300 z-20 px-4 sm:px-8 transition duration-300"
       >
         {isFetching && <HeaderSkeleton />}
         {!isFetching && (
@@ -85,19 +85,19 @@ const Header: React.FC = () => {
               <div className="hidden sm:flex items-center justify-center ml-4 md:w-[33.33%]">
                 <Link
                   href="/pages/jobs"
-                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r1)]"
+                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r2)]"
                 >
                   Jobs
                 </Link>
                 <Link
                   href="/pages/pricing"
-                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r1)]"
+                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r2)]"
                 >
                   Pricing
                 </Link>
                 <Link
                   href="/pages/dashboard"
-                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r1)]"
+                  className="py-2 px-4 hover:bg-slate-100 rounded-[var(--r2)]"
                 >
                   Dashboard
                 </Link>

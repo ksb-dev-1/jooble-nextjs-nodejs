@@ -9,6 +9,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 // ----- react-icons -----
 import { HiOutlineUserCircle } from "react-icons/hi2";
+import { SlUser } from "react-icons/sl";
+import { LiaUserCircle } from "react-icons/lia";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { IoIosLogOut } from "react-icons/io";
 import { GrUserAdmin } from "react-icons/gr";
@@ -66,16 +68,24 @@ const HeaderAuth: React.FC = () => {
   };
 
   const showModal = () => {
-    if (downIconRef.current && modalRef.current) {
-      downIconRef.current.style.transform = "rotate(180deg)";
+    // if (downIconRef.current && modalRef.current) {
+    //   downIconRef.current.style.transform = "rotate(180deg)";
+    //   modalRef.current.style.transform = "scale(1)";
+    //   modalRef.current.style.opacity = "1";
+    // }
+    if (modalRef.current) {
       modalRef.current.style.transform = "scale(1)";
       modalRef.current.style.opacity = "1";
     }
   };
 
   const hideModal = () => {
-    if (downIconRef.current && modalRef.current) {
-      downIconRef.current.style.transform = "rotate(0deg)";
+    // if (downIconRef.current && modalRef.current) {
+    //   downIconRef.current.style.transform = "rotate(0deg)";
+    //   modalRef.current.style.transform = "scale(0)";
+    //   modalRef.current.style.opacity = "0";
+    // }
+    if (modalRef.current) {
       modalRef.current.style.transform = "scale(0)";
       modalRef.current.style.opacity = "0";
     }
@@ -107,26 +117,23 @@ const HeaderAuth: React.FC = () => {
           onMouseOver={showModal}
           onMouseLeave={hideModal}
         >
-          <div
-            ref={profileRef}
-            className="px-4 py-2 flex items-center justify-center  bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r1)] transition cursor-pointer"
-          >
-            <span>
-              <HiOutlineUserCircle className="text-xl" />
+          <div className="relative h-[40px] w-[40px] rounded-full transition cursor-pointer hover:bg-slate-100">
+            <span ref={profileRef}>
+              <HiOutlineUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl" />
             </span>
-            <span className="ml-1 mr-6">Profile</span>
+            {/* <span className="ml-1 mr-6">Profile</span>
             <span ref={downIconRef} className="transition">
               <BsChevronDown />
-            </span>
+            </span> */}
           </div>
           <div
             ref={modalRef}
-            className="absolute top-[100%] rounded-[var(--r1)] w-full scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white custom-border-1 p-2"
+            className="absolute top-[100%] right-0 rounded-[var(--r1)] w-max scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white custom-border-1 p-4"
           >
             {user?.role === "admin" ? (
               <Link
                 href="/pages/admin"
-                className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)] text-blue-600"
+                className="px-4 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)] text-blue-600"
                 onClick={hideModal}
               >
                 <GrUserAdmin className="mr-2" />{" "}
@@ -137,7 +144,7 @@ const HeaderAuth: React.FC = () => {
             )}
             <Link
               href="/pages/profile"
-              className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)]"
+              className="px-4 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)]"
               onClick={hideModal}
             >
               <HiOutlineUserCircle className="mr-2" />{" "}
@@ -145,14 +152,14 @@ const HeaderAuth: React.FC = () => {
             </Link>
             <Link
               href="/pages/saved"
-              className="pl-2 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)]"
+              className="px-4 py-2 flex items-center hover:bg-slate-100 rounded-[var(--r1)]"
               onClick={hideModal}
             >
               <HiOutlineHeart className="mr-2" />{" "}
               <span className="text-base">Saved</span>
             </Link>
             <button
-              className="flex items-center pl-2 py-2 hover:bg-slate-100 rounded-[var(--r1)]"
+              className="flex items-center px-4 py-2 hover:bg-slate-100 rounded-[var(--r1)]"
               onClick={(e) => {
                 !isLoading && handleLogout(e);
               }}

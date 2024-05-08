@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 .custom-shadow-1 {
-  box-shadow: 0 6px 12px rgba(30, 10, 58, 0.04);
+  /* box-shadow: 0 6px 12px rgba(30, 10, 58, 0.04); */
+  border: 1px solid #cbd5e1;
 }
 
 .custom-border-1 {
@@ -25,15 +26,16 @@
 }
 
 :root {
-  --r1: 25px;
-  --r2: 13px;
+  --r1: 8px;
+  --r2: 25px;
   --c1: #f8f9fa;
   --c2: #e8f4ff;
 }
 
 body {
   background: var(--c1);
-  letter-spacing: -0.25px;
+  background: #fff;
+  /* letter-spacing: -0.25px; */
 }
 
 .parent {
@@ -140,4 +142,8 @@ body {
   100% {
     background-color: rgb(225, 225, 225);
   }
+}
+
+.custom-hidden {
+  display: none;
 }
