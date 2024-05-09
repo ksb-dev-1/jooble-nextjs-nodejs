@@ -70,11 +70,6 @@ const HeaderAuth: React.FC = () => {
   };
 
   const showModal = () => {
-    // if (downIconRef.current && modalRef.current) {
-    //   downIconRef.current.style.transform = "rotate(180deg)";
-    //   modalRef.current.style.transform = "scale(1)";
-    //   modalRef.current.style.opacity = "1";
-    // }
     if (modalRef.current) {
       modalRef.current.style.transform = "scale(1)";
       modalRef.current.style.opacity = "1";
@@ -82,11 +77,6 @@ const HeaderAuth: React.FC = () => {
   };
 
   const hideModal = () => {
-    // if (downIconRef.current && modalRef.current) {
-    //   downIconRef.current.style.transform = "rotate(0deg)";
-    //   modalRef.current.style.transform = "scale(0)";
-    //   modalRef.current.style.opacity = "0";
-    // }
     if (modalRef.current) {
       modalRef.current.style.transform = "scale(0)";
       modalRef.current.style.opacity = "0";
@@ -99,14 +89,14 @@ const HeaderAuth: React.FC = () => {
         <div className="hidden sm:flex items-center ">
           <Link
             href="/pages/login"
-            className="px-4 py-2 flex items-center justify-center text-center bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r1)] w-[88.91px]"
+            className="px-4 py-2 flex items-center justify-center text-center bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r2)] w-[88.91px]"
           >
             Login
           </Link>
 
           <Link
             href="/pages/register"
-            className="px-4 py-2 flex items-center justify-center bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r1)]  ml-2"
+            className="px-4 py-2 flex items-center justify-center bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r2)]  ml-2"
           >
             Register
           </Link>
@@ -119,21 +109,7 @@ const HeaderAuth: React.FC = () => {
           onMouseOver={showModal}
           onMouseLeave={hideModal}
         >
-          {/* <div className="relative h-[40px] w-[40px] rounded-full transition cursor-pointer hover:bg-slate-100">
-            <span ref={profileRef}>
-              <HiOutlineUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl" />
-            </span>
-          </div> */}
-          {/* <div className="flex items-center rounded-[var(--r1)] px-4 py-2 transition cursor-pointer hover:bg-slate-100">
-            <span ref={profileRef}>
-              <HiOutlineUserCircle className="text-xl" />
-            </span>
-            <span className="ml-1">Profile</span>
-            <span ref={downIconRef} className="transition mr-6">
-              <BsChevronDown />
-            </span>
-          </div> */}
-          <div className="relative w-[40px] h-[40px] border border-slate-300 rounded-full overflow-hidden cursor-pointer">
+          <div className="relative w-[40px] h-[40px] border-[3px] border-slate-300 rounded-full overflow-hidden cursor-pointer">
             {user?.image ? (
               <Image
                 src={user.image}
@@ -149,7 +125,7 @@ const HeaderAuth: React.FC = () => {
           </div>
           <div
             ref={modalRef}
-            className="absolute top-[100%] right-0 rounded-[var(--r1)] w-max scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white custom-border-1 p-4"
+            className="absolute top-[100%] right-0 rounded-[var(--r1)] w-max scale-0 opacity-0 transition-opacity duration-300 flex flex-col bg-white custom-shadow-1 p-4"
           >
             {user?.role === "admin" ? (
               <Link

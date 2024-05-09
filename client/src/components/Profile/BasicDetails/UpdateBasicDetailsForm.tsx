@@ -186,7 +186,7 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
               />
               <label
                 htmlFor="image"
-                className="relative cursor-pointer block w-[100px] sm:w-[125px] h-[100px] sm:h-[125px] rounded-full overflow-hidden custom-border-1"
+                className="relative cursor-pointer block w-[100px] sm:w-[125px] h-[100px] sm:h-[125px] rounded-full overflow-hidden border-[3px] border-slate-300"
                 onMouseOver={() => setOnHoverImage(true)}
                 onMouseLeave={() => setOnHoverImage(false)}
               >

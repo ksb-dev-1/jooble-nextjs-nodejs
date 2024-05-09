@@ -78,7 +78,7 @@ const KeySkills = () => {
                     key={index}
                     className="custom-border-1 rounded-[var(--r2)] py-2 px-4 lg:mr-2 lg:mb-2"
                   >
-                    {skill.charAt(0).toUpperCase() + skill.substring(1)}
+                    {skill}
                   </span>
                 ))}
             </div>

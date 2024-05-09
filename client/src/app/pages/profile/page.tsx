@@ -17,7 +17,7 @@ const ProfilePage: React.FC = () => {
       {/* <BasicDetails /> */}
       <Basic />
 
-      <div className="max-w-[1000px] flex flex-col md:flex-row w-full">
+      <div className="max-w-[1280px] flex flex-col md:flex-row w-full">
         <UserQuickLinks />
 
         <div className="mt-4 sm:mt-8 md:mt-0 md:ml-8 h-fit max-w-[calc(1280px-227px-2rem)] w-full">

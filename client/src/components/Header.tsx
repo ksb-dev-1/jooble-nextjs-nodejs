@@ -54,14 +54,14 @@ const Header: React.FC = () => {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 w-full bg-white z-20 px-4 sm:px-8 transition duration-300"
+        className="fixed top-0 left-0 w-full bg-[var(--c4)] z-20 px-4 sm:px-8 transition duration-300 bg-white"
       >
         {isFetching && <HeaderSkeleton />}
         {!isFetching && (
           <>
             <div
               ref={headerInnerRef}
-              className="max-w-[1000px] w-[100%] h-[4.5rem] mx-auto flex items-center justify-between transition duration-300"
+              className="max-w-[1280px] w-[100%] h-[4.5rem] mx-auto flex items-center justify-between transition duration-300"
             >
               <div className="flex items-center sm:justify-start md:w-[33.33%]">
                 <div

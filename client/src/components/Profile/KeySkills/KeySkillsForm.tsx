@@ -176,7 +176,7 @@ const KeySkillsForm = forwardRef<HTMLDivElement, SkillsProps>(
                     key={index}
                     className="custom-border-1 rounded-[var(--r2)] py-2 pl-4 pr-2 mr-2 mb-2 flex items-center justify-between"
                   >
-                    {skill.charAt(0).toUpperCase() + skill.substring(1)}
+                    {skill}
                     <IoMdClose
                       className="ml-2 bg-[tomato] cursor-pointer text-white hover:bg-tomato hover:bg-[#ff856f] rounded-full p-1 text-2xl transition"
                       onClick={() => {

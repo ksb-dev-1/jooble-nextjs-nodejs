@@ -4,7 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const BasicDetailsSkeleton: React.FC = () => {
   return (
-    <div className="max-w-[1000px] w-full p-4 sm:p-8 rounded-[var(--r1)] bg-white custom-shadow-1 mb-4 sm:mb-8">
+    <div className="max-w-[1280px] w-full p-4 sm:p-8 rounded-[var(--r1)] custom-shadow-1 mb-4 sm:mb-8">
       <div className="flex items-center">
         <div>
           <Skeleton height={150} width={150} circle />

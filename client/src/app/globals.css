@@ -33,6 +33,8 @@
 
 body {
   background: var(--c1);
+  background: #fff;
+  background: #f8f9fa;
   font-weight: 400;
   /* letter-spacing: -0.25px; */
 }

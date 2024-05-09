@@ -64,7 +64,7 @@ const Basic: React.FC = () => {
     <>
       {isFetching && <BasicDetailsSkeleton />}
       {isSuccess && (
-        <div className="relative max-w-[1000px] w-full rounded-[var(--r1)] mb-4 sm:mb-8 flex min-h-[250px] custom-shadow-1">
+        <div className="relative max-w-[1280px] w-full rounded-[var(--r1)] mb-4 sm:mb-8 flex min-h-[250px] custom-shadow-1 bg-white">
           <div className="absolute top-0 left-0 right-0 bottom-0 rounded-[var(--r1)]">
             {data?.user.image && (
               <Image
@@ -77,9 +77,9 @@ const Basic: React.FC = () => {
               />
             )}
 
-            {!data?.user.image ? (
-              <div className="absolute top-0 left-0 right-0 bottom-0 rounded-[var(--r1)] bg-[rgba(0,0,0,0.75)] flex items-center p-4 sm:p-8">
-                <span className="absolute top-4 left-4 inline-block font-semibold text-xs text-white">
+            {data?.user.image ? (
+              <div className="absolute top-0 left-0 right-0 bottom-0 rounded-[var(--r1)] bg-[rgba(20,20,20,0.9)] flex items-center p-4 sm:p-8">
+                <span className="absolute bottom-4 right-4 inline-block text-xs text-white">
                   {moment(
                     data?.user.last_updated ? data.user.last_updated : ""
                   ).format("Do MMM, YYYY")}
@@ -103,6 +103,10 @@ const Basic: React.FC = () => {
                   />
                 </div>
                 <div className="text-white ml-8">
+                  <p className="font-bold">
+                    {data?.user.name ? data.user.name : ""}
+                  </p>
+                  <span className="inline-block w-full h-[0.5px] bg-white my-2"></span>
                   <div>
                     <div className="flex items-center w-max">
                       <HiOutlineMail />
@@ -166,7 +170,7 @@ const Basic: React.FC = () => {
                     <BiSolidEdit />
                   </span>
                 </div>
-                <div className="relative w-[150px] h-[150px] border-[3px] border-white rounded-full overflow-hidden">
+                <div className="relative w-[150px] h-[150px] border-[3px] border-slate-300 rounded-full overflow-hidden">
                   <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[110px] md:text-[165px] text-slate-300" />
                 </div>
                 <div className="text-black ml-8">
