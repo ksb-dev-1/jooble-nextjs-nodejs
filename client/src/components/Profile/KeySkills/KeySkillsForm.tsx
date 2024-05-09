@@ -126,7 +126,7 @@ const KeySkillsForm = forwardRef<HTMLDivElement, SkillsProps>(
             </span>
           </button>
           <p className="font-bold text-xl">Key Skills</p>
-          <p className="text-slate-500">
+          <p className="mt-2">
             Add skills that best define your expertise, for e.g, Javascript,
             Next.js etc.
           </p>
@@ -135,9 +135,10 @@ const KeySkillsForm = forwardRef<HTMLDivElement, SkillsProps>(
             //onSubmit={handleUpdateKeySkills}
             onSubmit={(e) => {
               e.preventDefault();
-              !skills.includes(skill.toLocaleLowerCase())
-                ? setSkills((prevSkills) => [...prevSkills, skill])
-                : setSkills((prevSkills) => [...prevSkills]);
+              !skills.includes(skill.toLocaleLowerCase()) &&
+                skill &&
+                setSkills((prevSkills) => [...prevSkills, skill]);
+
               setSkill("");
             }}
           >
@@ -151,14 +152,16 @@ const KeySkillsForm = forwardRef<HTMLDivElement, SkillsProps>(
               value={skill}
               className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
               onChange={(e: any) => setSkill(e.target.value)}
+              required
             />
             <button
-              type="button"
+              type="submit"
               className="absolute right-[5px] top-[33px] bg-blue-600 text-white hover:bg-blue-500 rounded-[var(--r1)] h-[32px] w-[32px]"
               onClick={() => {
-                !skills.includes(skill.toLocaleLowerCase())
-                  ? setSkills((prevSkills) => [...prevSkills, skill])
-                  : setSkills((prevSkills) => [...prevSkills]);
+                !skills.includes(skill.toLocaleLowerCase()) &&
+                  skill &&
+                  setSkills((prevSkills) => [...prevSkills, skill]);
+
                 setSkill("");
               }}
               aria-label="Add"

@@ -16,7 +16,7 @@ const KeySkills = () => {
 
   const [skills, setSkills] = useState<string[]>([]);
 
-  const keySkillsEditBtnRef = useRef<HTMLSpanElement>(null);
+  const keySkillsEditBtnRef = useRef<HTMLDivElement>(null);
   const keySkillsModalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const KeySkills = () => {
       {isFetching && <KeySkillsSkeleton />}
       {isSuccess && (
         <div
-          className="bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-shadow-1"
+          className="rounded-[var(--r1)] p-4 sm:p-8 custom-shadow-1 bg-white"
           id="skills"
         >
           <div className="flex items-center justify-between">
@@ -48,13 +48,15 @@ const KeySkills = () => {
               <p className="font-bold mr-2">Key Skills</p>
 
               {skills.length >= 1 && (
-                <span
+                <div
                   ref={keySkillsEditBtnRef}
-                  className="text-blue-600 hover:text-blue-500 text-xl cursor-pointer"
+                  className="relative h-[30px] w-[30px] rounded-full bg-blue-600 hover:bg-blue-500  text-white cursor-pointer"
                   onClick={showEditForm}
                 >
-                  <BiSolidEdit />
-                </span>
+                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <BiSolidEdit />
+                  </span>
+                </div>
               )}
             </div>
             {skills.length < 1 && (

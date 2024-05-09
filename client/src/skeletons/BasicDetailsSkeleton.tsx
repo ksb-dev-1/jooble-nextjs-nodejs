@@ -4,16 +4,16 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const BasicDetailsSkeleton: React.FC = () => {
   return (
-    <div className="max-w-[1280px] w-full p-4 sm:p-8 rounded-[var(--r1)] bg-white custom-shadow-1 mb-4 sm:mb-8">
+    <div className="max-w-[1000px] w-full p-4 sm:p-8 rounded-[var(--r1)] bg-white custom-shadow-1 mb-4 sm:mb-8">
       <div className="flex items-center">
         <div>
           <Skeleton height={150} width={150} circle />
         </div>
         <div className="ml-4 w-full">
-          <Skeleton height={25} borderRadius={25} />
-          <Skeleton height={25} borderRadius={25} className="mt-2" />
-          <Skeleton height={25} borderRadius={25} className="mt-2" />
-          <Skeleton height={25} borderRadius={25} className="mt-2" />
+          <Skeleton height={30} borderRadius={25} />
+          <Skeleton height={30} borderRadius={25} className="mt-2" />
+          <Skeleton height={30} borderRadius={25} className="mt-2" />
+          <Skeleton height={30} borderRadius={25} className="mt-2" />
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@ export default BasicDetailsSkeleton;
 
 // const BasicDetailsSkeleton: React.FC = () => {
 //   return (
-//     <div className="max-w-[1280px] w-full p-4 sm:p-8 rounded-[var(--r1)] bg-white custom-shadow-1 mb-4 sm:mb-8">
+//     <div className="max-w-[1000px] w-full p-4 sm:p-8 rounded-[var(--r1)] bg-white custom-border-1 mb-4 sm:mb-8">
 //       <div className="flex flex-col lg:flex-row items-center">
 //         <div className="flex items-center flex-grow">
 //           <div>

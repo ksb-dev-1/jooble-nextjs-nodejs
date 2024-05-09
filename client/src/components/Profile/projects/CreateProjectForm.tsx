@@ -143,7 +143,7 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((_, ref) => {
               type="text"
               name="project_name"
               value={values.project_name}
-              className="custom-border-1 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+              className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
               onChange={handleChange}
               required
             />
@@ -158,7 +158,7 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((_, ref) => {
               rows={5}
               name="details"
               value={values.details}
-              className="custom-border-1 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+              className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
               onChange={handleChange}
             />
           </div>
@@ -175,7 +175,7 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((_, ref) => {
               type="text"
               name="hosted_link"
               value={values.hosted_link}
-              className="custom-border-1 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+              className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
               onChange={handleChange}
             />
           </div>
@@ -192,14 +192,14 @@ const CreateProjectForm = forwardRef<HTMLDivElement>((_, ref) => {
               type="text"
               name="github_link"
               value={values.github_link}
-              className="custom-border-1 rounded-[var(--r2)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
+              className="custom-border-1 rounded-[var(--r1)] px-4 py-2 focus:outline-blue-600 placeholder:text-slate-500 focus:placeholder:text-transparent w-[100%]"
               onChange={handleChange}
             />
           </div>
           {/* ----- Cancel & Save buttons ----- */}
           <CancelSaveButtons
             cancelBtnRef={cancelBtnRef}
-            fn={hideCreateProjectForm}
+            fn1={hideCreateProjectForm}
             isLoading={isLoading}
           />
         </form>

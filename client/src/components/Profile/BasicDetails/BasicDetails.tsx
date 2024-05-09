@@ -61,12 +61,12 @@ const BasicDetails: React.FC = () => {
 
   return (
     <>
-      {!isFetching && <BasicDetailsSkeleton />}
-      {!isSuccess && (
-        <div className="max-w-[1280px] w-full p-4 sm:p-8 rounded-[var(--r1)] bg-white custom-shadow-1 mb-4 sm:mb-8">
+      {isFetching && <BasicDetailsSkeleton />}
+      {isSuccess && (
+        <div className="max-w-[1000px] w-full p-4 sm:p-8 rounded-[var(--r1)] custom-shadow-1 mb-4 sm:mb-8 bg-white">
           <div className="flex flex-col xl:flex-row">
             <div className="flex flex-col md:flex-row items-center justify-center">
-              <div className="relative w-[150px] h-[150px] border border-slate-300 rounded-full overflow-hidden ">
+              <div className="relative w-[150px] h-[150px] border border-slate-300 rounded-full overflow-hidden">
                 {data?.user.image ? (
                   <Image
                     src={data.user.image}
@@ -98,7 +98,7 @@ const BasicDetails: React.FC = () => {
 
                 {/* <span className="inline-block w-full h-[0.5px] bg-slate-300 my-4"></span> */}
 
-                <div className="flex flex-col sm:flex-row sm:items-center bg-[var(--c1)] w-full p-8 md:p-4 rounded-[var(--r1)] mt-4">
+                <div className="flex flex-col sm:flex-row sm:items-center border border-slate-300 w-full p-8 md:p-4 rounded-[var(--r1)] mt-4">
                   <div className="flex flex-col items-center sm:block">
                     <div className="flex items-center">
                       <IoLocationOutline />
@@ -172,8 +172,8 @@ const BasicDetails: React.FC = () => {
               justify-center"
                 >
                   <p className="text-blue-600 text-base">Upload Resume</p>
-                  <p className="mt-2 text-center">
-                    Supported Formats: doc, docx, rtf, pdf, upto 2 MB
+                  <p className="mt-2 text-center text-xs">
+                    doc, docx, rtf, pdf - upto 2 MB
                   </p>
                 </label>
               </div>

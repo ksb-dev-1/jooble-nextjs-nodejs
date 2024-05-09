@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 // ----- react-icons -----
 import { HiOutlineUserCircle } from "react-icons/hi2";
+import { BiSolidUserCircle } from "react-icons/bi";
 import { SlUser } from "react-icons/sl";
 import { LiaUserCircle } from "react-icons/lia";
 import { HiOutlineHeart } from "react-icons/hi2";
@@ -41,7 +43,7 @@ const HeaderAuth: React.FC = () => {
   const downIconRef = useRef<HTMLSpanElement>(null);
 
   // console.log(data?.user);
-  // console.log(user);
+  //console.log(user);
 
   const handleLogout = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -117,14 +119,33 @@ const HeaderAuth: React.FC = () => {
           onMouseOver={showModal}
           onMouseLeave={hideModal}
         >
-          <div className="relative h-[40px] w-[40px] rounded-full transition cursor-pointer hover:bg-slate-100">
+          {/* <div className="relative h-[40px] w-[40px] rounded-full transition cursor-pointer hover:bg-slate-100">
             <span ref={profileRef}>
               <HiOutlineUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl" />
             </span>
-            {/* <span className="ml-1 mr-6">Profile</span>
-            <span ref={downIconRef} className="transition">
+          </div> */}
+          {/* <div className="flex items-center rounded-[var(--r1)] px-4 py-2 transition cursor-pointer hover:bg-slate-100">
+            <span ref={profileRef}>
+              <HiOutlineUserCircle className="text-xl" />
+            </span>
+            <span className="ml-1">Profile</span>
+            <span ref={downIconRef} className="transition mr-6">
               <BsChevronDown />
-            </span> */}
+            </span>
+          </div> */}
+          <div className="relative w-[40px] h-[40px] border border-slate-300 rounded-full overflow-hidden cursor-pointer">
+            {user?.image ? (
+              <Image
+                src={user.image}
+                alt="profile"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover rounded-full"
+              />
+            ) : (
+              <BiSolidUserCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-slate-300 rounded-full" />
+            )}
           </div>
           <div
             ref={modalRef}

@@ -22,6 +22,7 @@ import { FaUpload } from "react-icons/fa6";
 import { useUpdateProfileMutation } from "@/redux/slices/userApi";
 import { useDispatch } from "react-redux";
 import { userApi } from "@/redux/slices/userApi";
+import { setCredentials } from "@/redux/slices/userInfoSlice";
 // ----- common -----
 import CancelSaveButtons from "../common/CancelSaveButtons";
 
@@ -112,6 +113,7 @@ const UpdateBasicDetailsForm = forwardRef<HTMLDivElement, UserProps>(
 
         if (res.msg) {
           dispatch(userApi.util.invalidateTags([{ type: "Basic" }]));
+          dispatch(setCredentials({ ...res.user }));
           toast.success("Profile updated successfully");
 
           if (updateBasicDetailsFormRef.current) {
