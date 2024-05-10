@@ -77,7 +77,7 @@ const Header: React.FC = () => {
                   className="flex items-center transition-all duration-300 hover:tracking-wide"
                 >
                   <span className="text-blue-600 font-bold text-3xl cursor-pointer">
-                    naukri
+                    jooble
                   </span>
                 </Link>
               </div>

@@ -23,8 +23,8 @@ const ProfilePage: React.FC = () => {
         <div className="mt-4 sm:mt-8 md:mt-0 md:ml-8 h-fit max-w-[calc(1280px-227px-2rem)] w-full">
           {/* <Basic /> */}
           <KeySkills />
-          {/* <Projects />
-          <Education />
+          {/* <Projects /> */}
+          {/* <Education />
           <Certifications />
           <CareerProfile />
           <PersonalDetails /> */}

@@ -145,6 +145,21 @@ body {
   }
 }
 
-.custom-hidden {
-  display: none;
+.skeleton {
+  animation: skeleton-loading 0.5s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: rgb(240, 240, 240);
+  }
+  25% {
+    background-color: rgb(235, 235, 235);
+  }
+  75% {
+    background-color: rgb(230, 230, 230);
+  }
+  100% {
+    background-color: rgb(225, 225, 225);
+  }
 }

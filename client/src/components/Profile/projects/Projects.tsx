@@ -4,6 +4,9 @@ import Link from "next/link";
 
 import { useState, useEffect, useRef } from "react";
 
+// ----- react-skeleton-icons -----
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 // ----- react-toastify -----
 import { toast } from "react-toastify";
 // ----- react-icons -----
@@ -92,7 +95,7 @@ const Projects = () => {
       {isFetching && <ProjectSkeleton />}
       {isSuccess && (
         <div
-          className="mt-4 sm:mt-8 bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-border-1"
+          className="mt-4 sm:mt-8 bg-white rounded-[var(--r1)] p-4 sm:p-8 custom-shadow-1"
           id="projects"
         >
           <div className="flex items-center justify-between">
